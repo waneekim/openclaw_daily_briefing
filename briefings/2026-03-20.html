@@ -6,130 +6,107 @@
   <title>Daily Briefing | 2026-03-20</title>
   <style>
     :root{
-      --bg:#0b0b0c; --bg2:#111214; --panel:#141518; --line:#27292e; --text:#f4f4f2; --muted:#a4a7ad; --sub:#d7d9dd; --accent:#9eff57;
-      --radius:22px; --max:1180px; --shadow:0 18px 70px rgba(0,0,0,.34);
+      --paper:#fcfcfa; --ink:#111111; --muted:#666; --line:#ddd; --accent:#2f7d32; --max:920px;
     }
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:var(--text);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif}
-    a{text-decoration:none;color:inherit} img{max-width:100%;display:block}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 90px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.pill{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px;background:rgba(255,255,255,.015)}
-    .hero{padding:28px 0 22px;border-bottom:1px solid var(--line)} h1{margin:10px 0 14px;font-size:clamp(36px,5vw,62px);line-height:.98;letter-spacing:-.05em;font-weight:800;max-width:800px}.lead{max-width:760px;color:var(--sub);font-size:17px;line-height:1.85}
-    .summary{display:grid;gap:12px;margin-top:18px}.summary .row{padding:14px 16px;border-left:2px solid var(--accent);background:#101114;border-radius:14px;line-height:1.75}
-    .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.meta .box{padding:16px;border-radius:16px;background:#101114;border:1px solid var(--line)}.k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.v{font-size:18px;font-weight:740;margin-top:10px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)} .section{padding:24px}
-    .section h2{margin:0 0 14px;font-size:24px;letter-spacing:-.03em}.bullets{display:grid;gap:12px}.bullet{padding:14px 16px;border-radius:16px;background:#101114;border:1px solid var(--line);line-height:1.78;color:#e8e9eb}.links{display:grid;gap:10px;margin-top:14px}.link-item{padding:12px 14px;border-radius:14px;border:1px solid var(--line);color:var(--sub)}.tag{display:inline-flex;margin-top:14px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:var(--muted)}
-    .science{display:grid;gap:14px}.science img{border-radius:18px;border:1px solid var(--line);background:#fff}.footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-    @media (max-width:920px){.grid{grid-template-columns:1fr}.meta{grid-template-columns:1fr}}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Serif KR","Iowan Old Style","Times New Roman",serif}
+    a{color:var(--ink);text-decoration:none;border-bottom:1px solid #bbb}
+    .wrap{max-width:var(--max);margin:0 auto;padding:36px 20px 80px}
+    .top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+    .name{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    h1{font-size:46px;line-height:1.02;letter-spacing:-.04em;margin:10px 0 0;font-weight:700}
+    .sub{margin-top:16px;color:var(--muted);font-size:14px;line-height:1.8}
+    .summary{margin:26px 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .summary li{margin:10px 0;line-height:1.9}
+    article{padding:22px 0;border-bottom:1px solid var(--line)}
+    h2{margin:0 0 12px;font-size:28px;line-height:1.15;letter-spacing:-.03em}
+    .body{font-size:17px;line-height:2.0;color:#1b1b1b}
+    .body p{margin:0 0 14px}
+    .refs{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+    .refs a{margin-right:12px}
+    .meta{margin-top:12px;font-size:13px;color:var(--accent);font-weight:600}
+    .science-img{margin-top:16px;border:1px solid var(--line);background:white;padding:10px}
+    .footer{margin-top:24px;color:var(--muted);font-size:13px}
+    @media (max-width:640px){h1{font-size:36px}h2{font-size:24px}.body{font-size:16px}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="nav">
-      <a class="pill" href="../index.html">← Dashboard</a>
-      <div class="pill">2026-03-20</div>
+    <div class="top">
+      <div>
+        <div class="name">OpenClaw Daily Briefing</div>
+        <h1>오늘의 데일리 브리핑</h1>
+      </div>
+      <div class="name">2026-03-20</div>
     </div>
 
-    <section class="hero">
-      <div class="pill">Daily Briefing · editorial card layout</div>
-      <h1>오늘의 데일리 브리핑</h1>
-      <div class="lead">긴 본문을 한 덩어리로 읽는 대신, 섹션별 카드와 짧은 bullet, 그리고 바로 검증 가능한 참조 링크로 나눴어. 전체 화면은 흑백 톤을 유지하고, 포인트 컬러는 최소로만 사용했어.</div>
-      <div class="summary">
-        <div class="row">OLED와 AI 테스트 자동화 흐름은 모두 <b>검증 품질과 운영 안정성</b>이 더 중요해지는 쪽으로 움직이고 있어.</div>
-        <div class="row">아이들 쪽은 선행보다 <b>생활 루틴 · 자기조절 · 이유 설명</b>이 더 직접적이야.</div>
-        <div class="row">오늘은 환율·유가 부담이 커서 <b>비중 관리와 실행 가능성</b>이 우선이야.</div>
-      </div>
-      <div class="meta">
-        <div class="box"><div class="k">기준일</div><div class="v">2026-03-20</div></div>
-        <div class="box"><div class="k">수집 기준</div><div class="v">01:28</div></div>
-        <div class="box"><div class="k">작성 완료</div><div class="v">01:30</div></div>
-      </div>
+    <div class="sub">수집 기준 01:28 · 작성 완료 01:30 · 오늘 버전은 대시보드보다 읽기 쉬운 신문형 레이아웃으로 정리했다.</div>
+
+    <section class="summary">
+      <ul>
+        <li>OLED와 AI 테스트 자동화 흐름은 <b>기능 확장</b>보다 <span style="color:var(--accent)">검증 품질과 운영 안정성</span>이 더 중요해지는 쪽으로 움직이고 있다.</li>
+        <li>교육/양육은 선행보다 <b>생활 루틴, 자기조절, 이유 설명</b>이 더 직접적인 우선순위다.</li>
+        <li>경제는 방향 예측보다 <b>비중 관리와 실행 가능성</b>이 더 중요한 날이다.</li>
+      </ul>
     </section>
 
-    <section class="grid">
-      <article class="card section">
-        <h2>1. 디스플레이 / 업무</h2>
-        <div class="bullets">
-          <div class="bullet">QA 흐름은 AI가 테스트 케이스·테스트 데이터·스크립트 초안을 맡고, 사람은 품질 기준과 리스크 판단에 더 집중하는 방향으로 이동 중이야.</div>
-          <div class="bullet">자율형 테스트, self-healing, 변경 영향 우선 테스트가 사실상 표준처럼 자리 잡는 분위기야.</div>
-          <div class="bullet">실무 메모: “AI를 붙였다”보다 회귀 테스트 유지비 절감, 변경 영향 우선순위화, 품질지표 자동화로 번역해야 더 실용적이야.</div>
-        </div>
-        <div class="links">
-          <a class="link-item" href="https://zdnet.co.kr/view/?no=20260319154649" target="_blank">LG디스플레이 45인치 5K2K 게이밍 OLED 양산</a>
-          <a class="link-item" href="https://www.gttkorea.com/news/articleView.html?idxno=24959" target="_blank">AI 테스트 자동화 / 품질 검증 흐름</a>
-        </div>
-        <div class="tag">확인 수준: 중간</div>
-      </article>
+    <article>
+      <h2>1. 디스플레이 / 업무</h2>
+      <div class="body">
+        <p>QA 흐름은 AI가 테스트 케이스, 테스트 데이터, 스크립트 초안까지 맡고 사람은 품질 기준과 리스크 판단에 더 집중하는 방향으로 이동 중이다. 자율형 테스트, self-healing, 변경 영향 우선 테스트가 사실상 표준처럼 자리 잡는 분위기다.</p>
+        <p>실무적으로는 “AI를 붙였다”보다 <b>회귀 테스트 유지비 절감</b>, <b>변경 영향 우선순위화</b>, <b>품질지표 자동화</b>로 번역해야 더 쓸모가 있다.</p>
+      </div>
+      <div class="refs">참조 링크 · <a href="https://zdnet.co.kr/view/?no=20260319154649" target="_blank">LG디스플레이 OLED</a> <a href="https://www.gttkorea.com/news/articleView.html?idxno=24959" target="_blank">AI 테스트 자동화</a></div>
+      <div class="meta">확인 수준: 중간</div>
+    </article>
 
-      <article class="card section">
-        <h2>2. 교육 / 양육</h2>
-        <div class="bullets">
-          <div class="bullet">학교 현장에서는 스마트폰 제한, 사회정서교육 확대, 실행기능/집중력 관리가 더 강조되는 흐름이야.</div>
-          <div class="bullet">민건은 “왜 그런지 끝까지 설명해보기”, 민결은 “준비물·순서·도움 요청” 루틴 반복이 더 직접적인 효과를 줄 가능성이 높아.</div>
-        </div>
-        <div class="links">
-          <a class="link-item" href="https://www.koreaherald.com/article/10563208" target="_blank">예비초 준비: 생활 습관 / 학교 적응 중심</a>
-          <a class="link-item" href="https://kids.donga.com/news/articleView.html?idxno=166669" target="_blank">초등 저학년 학습 습관 가이드</a>
-        </div>
-        <div class="tag">확인 수준: 중간</div>
-      </article>
+    <article>
+      <h2>2. 교육 / 양육</h2>
+      <div class="body">
+        <p>학교 현장에서는 스마트폰 제한, 사회정서교육 확대, 실행기능과 집중력 관리가 더 강조되는 흐름이다. 민건은 “왜 그런지 끝까지 설명해보기”, 민결은 “준비물·순서·도움 요청” 루틴 반복이 더 직접적인 효과를 줄 가능성이 높다.</p>
+      </div>
+      <div class="refs">참조 링크 · <a href="https://www.koreaherald.com/article/10563208" target="_blank">예비초 준비</a> <a href="https://kids.donga.com/news/articleView.html?idxno=166669" target="_blank">초등 학습 습관</a></div>
+      <div class="meta">확인 수준: 중간</div>
+    </article>
 
-      <article class="card section">
-        <h2>3. 경제 / 과학 / 기술</h2>
-        <div class="bullets">
-          <div class="bullet">서울 핵심지 아파트 가격 확산 가능성과 가계대출 부담을 경계하는 시각이 이어지고 있어.</div>
-          <div class="bullet">가격은 높고 심리는 둔해지는 혼합 국면이어서, 방향성보다 체력전과 비중 관리가 더 중요해 보여.</div>
-          <div class="bullet">기술 쪽은 모델 경쟁보다 전력·센터·GPU 확보 같은 인프라 경쟁이 더 현실적인 포인트야.</div>
-        </div>
-        <div class="links">
-          <a class="link-item" href="https://www.yna.co.kr/view/AKR20260319130900009" target="_blank">원달러 환율 1500원대 부담</a>
-          <a class="link-item" href="https://www.donga.com/news/Economy/article/all/20260320/133567014/2" target="_blank">서울 부동산 상승 둔화 / 지역별 차별화</a>
-        </div>
-        <div class="tag">확인 수준: 중간</div>
-      </article>
+    <article>
+      <h2>3. 경제 / 과학 / 기술</h2>
+      <div class="body">
+        <p>서울 핵심지 아파트 가격 확산 가능성과 가계대출 부담을 경계하는 시각이 이어지고 있다. 가격은 높고 심리는 둔해지는 혼합 국면이어서, 방향성보다 체력전과 비중 관리가 더 중요해 보인다. 기술 쪽은 모델 경쟁보다 전력, 센터, GPU 확보 같은 인프라 경쟁이 더 현실적인 포인트다.</p>
+      </div>
+      <div class="refs">참조 링크 · <a href="https://www.yna.co.kr/view/AKR20260319130900009" target="_blank">환율</a> <a href="https://www.donga.com/news/Economy/article/all/20260320/133567014/2" target="_blank">서울 부동산</a></div>
+      <div class="meta">확인 수준: 중간</div>
+    </article>
 
-      <article class="card section">
-        <h2>4. 손경제</h2>
-        <div class="bullets">
-          <div class="bullet">3/19 방송 축은 원유 공급 쇼크와 자본시장 개혁이야.</div>
-          <div class="bullet">에너지 가격과 제도 변화가 같이 움직이는 날이라, 단기 변동성보다 규칙 변화에 주목하는 게 좋아.</div>
-        </div>
-        <div class="links">
-          <a class="link-item" href="https://www.youtube.com/watch?v=7n96y0egfgY" target="_blank">[손경제] 3/19(목) 원유 공급 쇼크 | 자본시장 개혁</a>
-          <a class="link-item" href="http://minicast.imbc.com/podcast/pod.aspx?code=1000671100000100000" target="_blank">MBC 공식 팟캐스트</a>
-        </div>
-        <div class="tag">확인 수준: 중간</div>
-      </article>
+    <article>
+      <h2>4. 손경제</h2>
+      <div class="body">
+        <p>3월 19일 방송 축은 원유 공급 쇼크와 자본시장 개혁이다. 에너지 가격과 제도 변화가 같이 움직이는 날이라, 단기 변동성보다 규칙 변화에 주목하는 쪽이 더 적절하다.</p>
+      </div>
+      <div class="refs">참조 링크 · <a href="https://www.youtube.com/watch?v=7n96y0egfgY" target="_blank">3/19 방송</a> <a href="http://minicast.imbc.com/podcast/pod.aspx?code=1000671100000100000" target="_blank">MBC 팟캐스트</a></div>
+      <div class="meta">확인 수준: 중간</div>
+    </article>
 
-      <article class="card section">
-        <h2>5. 과학 사고 질문</h2>
-        <div class="science">
-          <div class="bullets">
-            <div class="bullet">질문: 로켓을 더 강하게 만드는 것과, 문제가 생길 부분을 미리 찾는 것 중 뭐가 더 중요할까?</div>
-            <div class="bullet">민건 포인트: 작은 전선 문제나 가스 누출이 왜 전체 임무를 바꿀 수 있는지 설명해보기.</div>
-            <div class="bullet">민결 포인트: 장난감 자동차도 바퀴 하나가 흔들리면 왜 멀리 못 가는지 생활 예시로 말해보기.</div>
-          </div>
-          <img src="../assets/science-question-2026-03-20.svg.png" alt="과학 사고 질문 그림"/>
-        </div>
-      </article>
+    <article>
+      <h2>5. 과학 사고 질문</h2>
+      <div class="body">
+        <p><b>질문:</b> 로켓을 더 강하게 만드는 것과, 문제가 생길 부분을 미리 찾는 것 중 뭐가 더 중요할까?</p>
+        <p><b>민건 포인트:</b> 작은 전선 문제나 가스 누출이 왜 전체 임무를 바꿀 수 있는지 설명해보기.</p>
+        <p><b>민결 포인트:</b> 장난감 자동차도 바퀴 하나가 흔들리면 왜 멀리 못 가는지 생활 예시로 말해보기.</p>
+      </div>
+      <div class="science-img"><img src="../assets/science-question-2026-03-20.svg.png" alt="과학 사고 질문 그림"/></div>
+    </article>
 
-      <article class="card section">
-        <h2>6. 이번 주 추천: 영흥도</h2>
-        <div class="bullets">
-          <div class="bullet">이번 주는 가장 화려한 곳보다 <b>가족 4인이 실제로 편하게 다녀올 확률이 높은 곳</b>이 더 중요해 보여. 그래서 1순위는 영흥도야.</div>
-          <div class="bullet">접근성, 피로도, 철수 용이성, 바다 산책 만족도를 같이 보면 지금 제일 균형이 좋아.</div>
-        </div>
-        <div class="links">
-          <a class="link-item" href="../apps/weekend-trip-yeongheungdo-2026-03-20.html">영흥도 여행 앱 열기</a>
-          <a class="link-item" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%97%AC%ED%96%89" target="_blank">영흥도 여행 정보</a>
-        </div>
-        <div class="tag">확인 수준: 중간</div>
-      </article>
-    </section>
+    <article>
+      <h2>6. 이번 주 추천: 제부도</h2>
+      <div class="body">
+        <p>이번 주는 가장 화려한 곳보다 <b>1박 2일 차에서 잘 수 있는 현실성</b>이 중요하다. 그 기준에선 제부도가 더 낫다. 공영주차장과 화장실 정보가 비교적 명확하고, 바닷길·케이블카·갯벌 체험 같은 가족형 액티비티를 붙이기 쉽다.</p>
+      </div>
+      <div class="refs">참조 링크 · <a href="../apps/weekend-trip-jebudo-2026-03-20.html">제부도 1박2일 앱</a> <a href="https://tour.hscity.go.kr/NEW/1tour/nature1.jsp" target="_blank">제부도 관광 정보</a></div>
+      <div class="meta">확인 수준: 중간</div>
+    </article>
 
-    <div class="footer">
-      <div>OpenClaw × Wanee</div>
-      <div>Monochrome layout with single accent</div>
-    </div>
+    <div class="footer">읽기 우선의 신문형 레이아웃 · white paper / black type / one accent</div>
   </div>
 </body>
 </html>
