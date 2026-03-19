@@ -1,101 +1,76 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Weekend Trip App | 영흥도</title>
   <style>
     :root{
-      --bg:#0a0e16;--panel:#101625cc;--panel2:#161d2ecc;--line:#283149;--text:#f5f7fb;--muted:#98a2b3;--soft:#d9dfeb;
-      --accent:#8b9cff;--accent2:#73e3d4;--accent3:#ffd37b;--good:#8ff0aa;--radius:24px;--shadow:0 24px 80px rgba(0,0,0,.34)
+      --bg:#0b0b0c; --bg2:#111214; --panel:#141518; --line:#27292e; --text:#f4f4f2; --muted:#a4a7ad; --sub:#d7d9dd; --accent:#9eff57;
+      --radius:22px; --max:1200px; --shadow:0 18px 70px rgba(0,0,0,.34);
     }
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif;color:var(--text);background:
-      radial-gradient(1000px 500px at -10% -10%, rgba(139,156,255,.18), transparent 50%),
-      radial-gradient(900px 500px at 100% 0%, rgba(115,227,212,.12), transparent 42%),
-      linear-gradient(180deg,#0a0e16 0%,#0f1523 100%)}
-    a{text-decoration:none;color:inherit} .wrap{max-width:1280px;margin:0 auto;padding:28px 20px 90px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-    .pill{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#c8d3ea;font-size:13px}
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
-    .hero-main{padding:30px} .hero-side{padding:24px}
-    h1{font-size:52px;line-height:1.02;letter-spacing:-.04em;margin:14px 0 12px} .lead{font-size:18px;line-height:1.75;color:var(--soft);max-width:760px}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.chip{padding:10px 12px;border-radius:999px;border:1px solid #2d3650;background:rgba(255,255,255,.03);color:#d9e1f2;font-size:13px}
-    .score{display:grid;gap:12px}.score .big{font-size:68px;font-weight:800;letter-spacing:-.04em}.score .sub{color:var(--muted)}
-    .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.stat{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02)} .stat .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.stat .v{margin-top:8px;font-size:18px;font-weight:700}
-    .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}.span-8{grid-column:span 8}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}
-    .section{padding:24px}.section h2{margin:0 0 14px;font-size:22px;letter-spacing:-.02em}.timeline{display:grid;gap:12px}.step{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:15px 16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02)}.time{font-size:22px;font-weight:800;color:var(--accent)}.desc{line-height:1.7;color:#e5ebf6}
-    .list{display:grid;gap:12px}.item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);line-height:1.7}.badge{display:inline-flex;padding:8px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.03);margin-right:8px}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:16px;font-weight:700;border:1px solid #334163}.btn.primary{background:linear-gradient(135deg,var(--accent),#657fff);color:white}.btn.secondary{background:rgba(255,255,255,.03);color:#e8eefb}
-    .notice{padding:16px 18px;border-radius:18px;border:1px solid #5a4723;background:rgba(255,211,123,.08);color:#ffe7b7;line-height:1.7}
-    .footer{margin-top:18px;color:var(--muted);font-size:13px}
-    @media (max-width:980px){.hero{grid-template-columns:1fr}.span-8,.span-6,.span-4,.span-12{grid-column:span 12}h1{font-size:40px}.step{grid-template-columns:72px 1fr}}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:var(--text);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 90px}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.pill{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px;background:rgba(255,255,255,.015)}
+    .hero{padding:28px 0 24px;border-bottom:1px solid var(--line)} h1{margin:10px 0 14px;font-size:clamp(36px,5vw,64px);line-height:.98;letter-spacing:-.05em;font-weight:800;max-width:860px}.lead{max-width:760px;color:var(--sub);font-size:17px;line-height:1.85}.accent{color:var(--accent)}
+    .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.box{padding:16px;border-radius:16px;background:#101114;border:1px solid var(--line)}.k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.v{margin-top:10px;font-size:18px;font-weight:740}
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.section{padding:24px}.section h2{margin:0 0 14px;font-size:24px;letter-spacing:-.03em}
+    .timeline{display:grid;gap:12px}.step{display:grid;grid-template-columns:82px 1fr;gap:14px;padding:15px 16px;border-radius:16px;border:1px solid var(--line);background:#101114}.time{font-size:20px;font-weight:800;color:var(--accent)}.desc{line-height:1.75;color:#e8e9eb}
+    .list{display:grid;gap:12px}.item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#101114;line-height:1.75;color:#e8e9eb}.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:#101114;color:#f4f4f2;font-weight:700}.btn.primary{border-color:#507038;color:#101114;background:var(--accent)}
+    .notice{padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:#101114;line-height:1.8;color:#eceeed}.footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}.meta{grid-template-columns:1fr 1fr}} @media (max-width:640px){.meta{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="nav">
       <a class="pill" href="../index.html">← Dashboard</a>
-      <div class="pill">Weekend Trip App | 2026-03-20</div>
+      <div class="pill">Weekend Trip App</div>
     </div>
 
     <section class="hero">
-      <div class="card hero-main">
-        <div class="pill">🌊 Weekend Planner · Family of 4 · Ioniq 9</div>
-        <h1>영흥도,<br/>이번 주말의 가장 현실적인 정답.</h1>
-        <div class="lead">이번 주는 “가장 특별한 곳”보다 <b>실제로 무리 없이 다녀오고 만족할 확률</b>이 더 중요해. 영흥도는 접근성, 피로도, 철수 유연성, 바다 산책 만족도를 함께 봤을 때 가장 균형이 좋았어.</div>
-        <div class="chips">
-          <div class="chip">마곡 출발</div>
-          <div class="chip">가족 4인</div>
-          <div class="chip">당일치기 or 라이트 1박</div>
-          <div class="chip">바다 산책 중심</div>
-          <div class="chip">화장실 접근성 우선</div>
-        </div>
-        <div class="cta">
-          <a class="btn primary" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%97%AC%ED%96%89" target="_blank">영흥도 여행 정보</a>
-          <a class="btn secondary" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%8B%AD%EB%A6%AC%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank">십리포해수욕장 보기</a>
-        </div>
+      <div class="pill">Weekend recommendation · one place only</div>
+      <h1>영흥도,<br/><span class="accent">이번 주말의 가장 현실적인 선택</span>.</h1>
+      <div class="lead">이번 주는 멀리 가는 화려함보다, <b>가족 4인이 실제로 편하게 다녀올 확률</b>이 중요해. 영흥도는 접근성, 피로도, 철수 용이성, 바다 산책 만족도를 함께 봤을 때 지금 제일 밸런스가 좋아.</div>
+      <div class="meta">
+        <div class="box"><div class="k">출발</div><div class="v">마곡</div></div>
+        <div class="box"><div class="k">유형</div><div class="v">당일치기 or 1박</div></div>
+        <div class="box"><div class="k">핵심</div><div class="v">실행성</div></div>
+        <div class="box"><div class="k">주의</div><div class="v">바람</div></div>
       </div>
-      <div class="card hero-side">
-        <div class="score">
-          <div class="sub">추천 점수</div>
-          <div class="big">9.1</div>
-          <div class="sub">실행성 · 피로도 · 아이동반 편의 · 철수 용이성 기준</div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="k">접근성</div><div class="v">매우 좋음</div></div>
-          <div class="stat"><div class="k">피로도</div><div class="v">낮음</div></div>
-          <div class="stat"><div class="k">활동성</div><div class="v">좋음</div></div>
-          <div class="stat"><div class="k">플랜 B</div><div class="v">복귀 쉬움</div></div>
-        </div>
+      <div class="cta">
+        <a class="btn primary" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%97%AC%ED%96%89" target="_blank">영흥도 정보 보기</a>
+        <a class="btn" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%8B%AD%EB%A6%AC%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank">십리포해수욕장 보기</a>
       </div>
     </section>
 
-    <section class="bento">
-      <article class="card section span-8">
+    <section class="grid">
+      <article class="card section">
         <h2>추천 일정</h2>
         <div class="timeline">
-          <div class="step"><div class="time">09:00</div><div class="desc"><b>마곡 출발</b><br/>차 안 간식과 물 챙기기. 아이들에겐 “오늘 바다 보고, 조금 걷고, 맛있는 거 먹고 돌아오는 날” 정도로 기대치 설정.</div></div>
-          <div class="step"><div class="time">10:30</div><div class="desc"><b>영흥도 도착 · 바다 산책</b><br/>모래/바람 상황에 따라 체류 시간 조절. 첫 목적은 오래 버티기보다 기분 좋게 걷는 것.</div></div>
-          <div class="step"><div class="time">12:00</div><div class="desc"><b>점심</b><br/>아이 메뉴 실패 확률 낮은 식당 우선. 웨이팅 길면 근처 카페/편의점 활용해서 리듬 유지.</div></div>
-          <div class="step"><div class="time">13:30</div><div class="desc"><b>사진 / 휴식</b><br/>가족 사진, 간단 간식, 자유시간. 바람이 강하면 빠르게 플랜 압축.</div></div>
-          <div class="step"><div class="time">15:00</div><div class="desc"><b>복귀 or 1박 분기</b><br/>컨디션 좋으면 카페 한 곳 더. 피곤하면 바로 철수. 1박은 “가능하면”이지 “반드시”가 아님.</div></div>
-          <div class="step"><div class="time">17:30</div><div class="desc"><b>마곡 복귀 예상</b><br/>저녁 전 귀가하면 월요일 피로도 관리에 유리.</div></div>
+          <div class="step"><div class="time">09:00</div><div class="desc"><b>마곡 출발</b><br/>차 안 간식과 물 준비. 오늘 목표는 오래 버티기보다 기분 좋게 다녀오는 것.</div></div>
+          <div class="step"><div class="time">10:30</div><div class="desc"><b>영흥도 도착 · 바다 산책</b><br/>모래와 바람 상태에 따라 체류 시간을 유연하게 조절.</div></div>
+          <div class="step"><div class="time">12:00</div><div class="desc"><b>점심</b><br/>아이 메뉴 실패 확률 낮은 식당 우선. 웨이팅 길면 빠르게 플랜 B.</div></div>
+          <div class="step"><div class="time">13:30</div><div class="desc"><b>사진 / 휴식</b><br/>짧게 쉬고 가족 사진. 날씨가 애매하면 일정 압축.</div></div>
+          <div class="step"><div class="time">15:00</div><div class="desc"><b>복귀 or 1박 분기</b><br/>컨디션 좋으면 한 곳 더, 아니면 바로 철수.</div></div>
         </div>
       </article>
 
-      <article class="card section span-4">
+      <article class="card section">
         <h2>왜 이곳인가</h2>
         <div class="list">
           <div class="item">장거리 강원권보다 <b>출발 장벽이 낮음</b></div>
-          <div class="item">아이오닉9 기준 가족 이동이 편함</div>
-          <div class="item">식사·휴식·화장실 플랜 짜기 쉬움</div>
-          <div class="item">날씨 애매하면 <b>빠른 철수</b>가 가능</div>
-          <div class="item">당일치기와 1박 사이 선택이 유연함</div>
+          <div class="item">가족 4인 이동 기준으로 실패 확률이 낮음</div>
+          <div class="item">식사·휴식·화장실 플랜을 짜기 쉬움</div>
+          <div class="item">날씨 애매하면 빠르게 복귀 가능</div>
+          <div class="item">이번 주는 화려함보다 <b>실행 가능성</b>이 더 중요함</div>
         </div>
-        <div class="footer"><span class="badge">실행성 높음</span><span class="badge">바람 체크 필요</span></div>
       </article>
+    </section>
 
-      <article class="card section span-6">
+    <section class="grid" style="margin-top:18px">
+      <article class="card section">
         <h2>준비물 체크</h2>
         <div class="list">
           <div class="item">바람막이 / 얇은 담요</div>
@@ -103,25 +78,27 @@
           <div class="item">아이 간식 + 물</div>
           <div class="item">물티슈 / 손 세정</div>
           <div class="item">휴대용 충전기</div>
-          <div class="item">모래/바람 대비 신발</div>
         </div>
       </article>
-
-      <article class="card section span-6">
+      <article class="card section">
         <h2>주의 포인트</h2>
         <div class="list">
-          <div class="item">서해권은 <b>바람</b>이 만족도를 크게 좌우해</div>
+          <div class="item">서해권은 <b>바람</b>이 만족도를 크게 좌우함</div>
           <div class="item">아이 컨디션 떨어지면 일정 압축이 쉬운 게 장점</div>
-          <div class="item">차박은 현장 판단으로, 무리해 확정하지 않기</div>
-          <div class="item">일몰 욕심보다 오후 복귀가 더 현실적일 수 있음</div>
+          <div class="item">차박은 현장 판단으로 무리해서 확정하지 않기</div>
         </div>
       </article>
-
-      <article class="card section span-12">
-        <h2>한 줄 결론</h2>
-        <div class="notice">이번 주말은 <b>영흥도</b>가 제일 좋아 보여. 이유는 제일 화려해서가 아니라, <b>가족 4인이 실제로 편하게 다녀올 확률이 가장 높은 카드</b>이기 때문이야.</div>
-      </article>
     </section>
+
+    <section class="card section" style="margin-top:18px">
+      <h2>한 줄 결론</h2>
+      <div class="notice">이번 주말은 <b>영흥도</b>가 제일 좋아 보여. 이유는 가장 특별해서가 아니라, <b>가족 4인이 실제로 편하게 다녀올 확률이 가장 높은 카드</b>이기 때문이야.</div>
+    </section>
+
+    <div class="footer">
+      <div>Weekend Trip App</div>
+      <div>Monochrome system with a single accent</div>
+    </div>
   </div>
 </body>
 </html>

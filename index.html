@@ -1,135 +1,109 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>OpenClaw Daily Briefing</title>
   <style>
     :root{
-      --bg:#0a0d14;
-      --panel:#111522cc;
-      --panel-2:#151b2bcc;
-      --line:#232b40;
-      --text:#f5f7fb;
-      --muted:#98a2b3;
-      --soft:#c7d0dd;
-      --accent:#8b9cff;
-      --accent-2:#78e6d5;
-      --accent-3:#ffd37a;
-      --radius:24px;
-      --shadow:0 24px 80px rgba(0,0,0,.34);
-      --max:1240px;
+      --bg:#0b0b0c; --bg2:#111214; --panel:#141518; --line:#27292e; --line-soft:#1d1f24;
+      --text:#f4f4f2; --muted:#a4a7ad; --sub:#d7d9dd; --accent:#9eff57; --accent-soft:#d8ffbd;
+      --max:1200px; --radius:22px; --shadow:0 18px 70px rgba(0,0,0,.34);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:
-      radial-gradient(1100px 600px at 0% -10%, rgba(108,132,255,.18), transparent 50%),
-      radial-gradient(800px 400px at 100% 0%, rgba(120,230,213,.10), transparent 42%),
-      linear-gradient(180deg,#0a0d14 0%,#0f1421 100%);
-      color:var(--text);
-      font-family:Inter, Pretendard, Apple SD Gothic Neo, Arial, sans-serif;
-    }
-    a{color:inherit;text-decoration:none}
+    *{box-sizing:border-box} html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:var(--text);font-family:Inter, Pretendard, Apple SD Gothic Neo, Arial, sans-serif}
+    a{text-decoration:none;color:inherit} img{max-width:100%;display:block}
     .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 80px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#c8d4ef;font-size:13px}
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:8px}
-    .card{background:linear-gradient(180deg,var(--panel),var(--panel-2));backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero-main{padding:30px}
-    h1{font-size:52px;line-height:1.02;margin:10px 0 14px;letter-spacing:-0.04em}
-    .hero p{margin:0;color:var(--soft);font-size:17px;line-height:1.75;max-width:760px}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-    .chip{padding:10px 12px;border-radius:999px;border:1px solid #2a334c;background:rgba(255,255,255,.03);color:#d6def0;font-size:13px}
-    .hero-side{padding:24px;display:grid;gap:14px}
-    .stat{padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}
-    .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-    .stat .value{font-size:28px;font-weight:750;margin-top:8px}
-    .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}
-    .span-8{grid-column:span 8}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-12{grid-column:span 12}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+    .pill{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px;letter-spacing:.02em;background:rgba(255,255,255,.015)}
+    .hero{padding:28px 0 26px;border-bottom:1px solid var(--line)}
+    .hero h1{margin:10px 0 14px;font-size:clamp(38px,6vw,72px);line-height:.96;letter-spacing:-.05em;font-weight:800;max-width:900px}
+    .hero p{max-width:760px;margin:0;color:var(--sub);font-size:17px;line-height:1.85}
+    .accent{color:var(--accent)}
+    .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:26px}
+    .panel{background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .panel.invert{background:#f4f4f2;color:#111214;border-color:#f4f4f2}
     .section{padding:24px}
-    .section h2{margin:0 0 14px;font-size:22px;letter-spacing:-.02em}
-    .muted{color:var(--muted)}
-    .list{display:grid;gap:12px}
-    .item{display:block;padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:.18s ease transform,.18s ease border-color,.18s ease background}
-    .item:hover{transform:translateY(-2px);border-color:#334062;background:rgba(255,255,255,.04)}
-    .item .title{font-size:17px;font-weight:700;letter-spacing:-.01em}
-    .item .meta{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
-    .summary{display:grid;gap:12px}
-    .summary .row{padding:14px 16px;border-left:3px solid var(--accent);background:rgba(255,255,255,.02);border-radius:14px;color:#e4eaf5;line-height:1.7}
-    .grid-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
-    .mini .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-    .mini .v{margin-top:8px;font-size:18px;font-weight:700;line-height:1.5}
-    .footer{margin-top:18px;color:var(--muted);font-size:13px}
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}.span-8,.span-6,.span-4,.span-12{grid-column:span 12} h1{font-size:40px}
-    }
+    .kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+    .title-lg{font-size:30px;line-height:1.05;letter-spacing:-.03em;font-weight:750;margin:0 0 10px}
+    .desc{color:var(--sub);line-height:1.75;font-size:15px}
+    .stack{display:grid;gap:12px}
+    .item{padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:#101114;transition:.18s ease border-color,.18s ease transform}
+    .item:hover{border-color:#3a3d44;transform:translateY(-2px)}
+    .item .name{font-size:18px;font-weight:700;letter-spacing:-.02em}
+    .item .meta{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.65}
+    .summary{display:grid;gap:12px}.summary .row{padding:14px 16px;border-left:2px solid var(--accent);background:#0f1012;border-radius:14px;line-height:1.75;color:#e8e9eb}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{padding:16px;border:1px solid var(--line);border-radius:16px}.stat .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.stat .v{margin-top:10px;font-size:20px;font-weight:740;letter-spacing:-.02em}
+    .archive{margin-top:18px;display:grid;gap:12px}
+    .archive a{padding:14px 16px;border-bottom:1px solid var(--line);color:var(--sub)}
+    .archive a:last-child{border-bottom:none}
+    .footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="pill">🌿 OpenClaw Daily Briefing</div>
-      <div class="pill">Updated 2026-03-20</div>
+    <div class="top">
+      <div class="pill">OPENCLAW DAILY BRIEFING</div>
+      <div class="pill">PRIMARY SURFACE · HTML DASHBOARD</div>
     </div>
 
     <section class="hero">
-      <div class="card hero-main">
-        <div class="pill">Daily Dashboard · Bento UI · Calm Dark Mode</div>
-        <h1>Wanee Briefing,<br/>가독성 좋게 다시.</h1>
-        <p>
-          이제 브리핑은 긴 텔레그램 본문보다 <b>읽기 좋은 대시보드형 사이트</b>로 보는 흐름으로 간다.
-          핵심은 <b>한눈에 스캔 가능한 카드</b>, <b>모던한 여백</b>, <b>주말 추천의 앱형 경험</b>이야.
-        </p>
-        <div class="chips">
-          <div class="chip">Minimal Cards</div>
-          <div class="chip">Bento Layout</div>
-          <div class="chip">Editorial Hierarchy</div>
-          <div class="chip">Readable Typography</div>
-        </div>
-      </div>
-      <div class="card hero-side">
-        <div class="stat"><div class="label">Primary Surface</div><div class="value">HTML Dashboard</div></div>
-        <div class="stat"><div class="label">Archive</div><div class="value">Daily Briefings + Trip Apps</div></div>
-        <div class="stat"><div class="label">Notifier</div><div class="value">Telegram Link Only</div></div>
-      </div>
+      <div class="pill">calm / readable / editorial / minimal</div>
+      <h1>Daily Briefing,<br/>읽는 화면부터 <span class="accent">다시 설계</span>.</h1>
+      <p>브리핑은 이제 문서 백업보다 <b>실제로 읽는 표면</b>이 중요해. 긴 채팅 대신, 스캔이 빠르고 피로도가 낮은 카드형 대시보드와 상세 페이지 구조로 본다. 주말 추천 1곳은 별도 앱형 HTML로 분리해 바로 활용 가능하게 간다.</p>
     </section>
 
-    <section class="bento">
-      <article class="card section span-8">
-        <h2>오늘의 브리핑</h2>
+    <section class="grid">
+      <article class="panel section">
+        <div class="kicker">Today</div>
+        <h2 class="title-lg">오늘의 브리핑</h2>
         <div class="summary">
-          <div class="row">OLED와 AI 테스트 자동화 흐름은 모두 “기능 확장”보다 <b>검증 품질과 운영 안정성</b>이 더 중요해지는 쪽으로 움직이고 있어.</div>
-          <div class="row">아이들 쪽은 선행보다 <b>생활 루틴 · 자기조절 · 이유 설명</b>이 지금 더 직접적인 효과를 주는 축이야.</div>
-          <div class="row">오늘은 환율·유가 부담이 커서 예측보다 <b>비중 관리와 실행 가능성</b>을 우선하는 쪽이 맞아.</div>
+          <div class="row">OLED와 AI 테스트 자동화는 둘 다 기능 과시보다 <b>검증 품질과 운영 안정성</b>이 핵심이야.</div>
+          <div class="row">아이들 쪽은 선행보다 <b>루틴, 자기조절, 이유 설명</b>이 직접적인 우선순위야.</div>
+          <div class="row">경제는 방향 예측보다 <b>비중 관리와 실행 가능성</b>이 더 중요해 보여.</div>
         </div>
-        <div class="footer">브리핑은 카드형 상세 페이지로 분리하고, 메인에서는 3줄 요약 중심으로 보여준다.</div>
-      </article>
-
-      <article class="card section span-4">
-        <h2>Quick Access</h2>
-        <div class="list">
-          <a class="item" href="apps/weekend-trip-yeongheungdo-2026-03-20.html"><div class="title">weekend-trip-yeongheungdo-2026-03-20</div><div class="meta">주말 여행 앱</div></a></div>
-      </article>
-
-      <article class="card section span-6">
-        <h2>디자인 방향</h2>
-        <div class="grid-mini">
-          <div class="mini"><div class="k">Typography</div><div class="v">큰 제목, 짧은 문장, 스캔 우선</div></div>
-          <div class="mini"><div class="k">Spacing</div><div class="v">넉넉한 여백으로 피로도 감소</div></div>
-          <div class="mini"><div class="k">Cards</div><div class="v">정보를 모듈형으로 분리</div></div>
-          <div class="mini"><div class="k">Bento</div><div class="v">비대칭 그리드로 빠른 시선 유도</div></div>
+        <div class="archive" style="margin-top:18px">
+          <a href="briefings/2026-03-20.html">2026-03-20 Daily Briefing →</a>
         </div>
       </article>
 
-      <article class="card section span-6">
-        <h2>운영 원칙</h2>
-        <div class="list">
-          <div class="item"><div class="title">06:00 Fresh Generation</div><div class="meta">그날 최신 공개 정보 기준으로 새 브리핑 생성</div></div>
-          <div class="item"><div class="title">07:00 Publish</div><div class="meta">HTML/Notion 저장 후 텔레그램엔 링크만 전달</div></div>
-          <div class="item"><div class="title">Weekend Pick as App</div><div class="meta">주말 추천 1곳은 항상 앱형 HTML로 별도 제공</div></div>
+      <aside class="panel section invert">
+        <div class="kicker" style="color:#5c605f">Quick Access</div>
+        <h2 class="title-lg">이번 주말 추천</h2>
+        <div class="desc" style="color:#30343a">이번 주 추천 1곳은 영흥도. 이유는 가장 화려해서가 아니라, 가족 4인이 실제로 편하게 다녀올 확률이 높기 때문.</div>
+        <div class="archive" style="margin-top:18px">
+          <a href="apps/weekend-trip-yeongheungdo-2026-03-20.html" style="color:#111214;border-color:#d9d9d4">영흥도 Weekend Trip App →</a>
+          <a href="https://www.notion.so/2026-03-20-328b2169ba7c819ea24bfcdfa70c86fd" style="color:#111214;border-color:#d9d9d4">Notion Backup →</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid" style="margin-top:18px">
+      <article class="panel section">
+        <div class="kicker">System</div>
+        <h2 class="title-lg">운영 방식</h2>
+        <div class="stats">
+          <div class="stat"><div class="k">06:00</div><div class="v">Fresh Generation</div></div>
+          <div class="stat"><div class="k">07:00</div><div class="v">Publish & Deploy</div></div>
+          <div class="stat"><div class="k">Archive</div><div class="v">Briefings + Trip Apps</div></div>
+          <div class="stat"><div class="k">Notifier</div><div class="v">Telegram Link Only</div></div>
+        </div>
+      </article>
+
+      <article class="panel section">
+        <div class="kicker">Archive</div>
+        <h2 class="title-lg">최근 페이지</h2>
+        <div class="stack">
+          <a class="item" href="briefings/2026-03-20.html"><div class="name">2026-03-20 Briefing</div><div class="meta">카드형 상세 브리핑</div></a>
+          <a class="item" href="apps/weekend-trip-yeongheungdo-2026-03-20.html"><div class="name">Yeongheungdo App</div><div class="meta">주말 여행 추천 앱</div></a>
         </div>
       </article>
     </section>
+
+    <div class="footer">
+      <div>OpenClaw × Wanee</div>
+      <div>Black & White core + one accent color</div>
+    </div>
   </div>
 </body>
 </html>
