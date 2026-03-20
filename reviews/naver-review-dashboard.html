@@ -19,8 +19,9 @@
     .panel h2 { margin:0 0 10px; font-size:18px; }
     .panel p, .panel li { color:var(--muted); line-height:1.6; }
     .toolbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
-    .btn { display:inline-block; text-decoration:none; color:white; background:#3b82f6; padding:10px 14px; border-radius:10px; font-weight:600; }
+    .btn { display:inline-block; text-decoration:none; color:white; background:#3b82f6; padding:10px 14px; border-radius:10px; font-weight:600; border:none; }
     .btn.secondary { background:#374151; }
+    .btn.success { background:#15803d; }
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px; }
     .card { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.18); }
     .topline { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; }
@@ -33,7 +34,7 @@
     .draft-title { margin:0; font-weight:700; }
     pre { white-space:pre-wrap; background:#0f172a; border:1px solid #233052; color:#e5e7eb; padding:12px; border-radius:12px; font-size:13px; line-height:1.6; max-height:280px; overflow:auto; }
     .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:var(--muted); }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
   </style>
 </head>
 <body>
@@ -52,7 +53,7 @@
           <li>3) Notion에서 <b>approved</b> 또는 <b>needs_edit</b> 로 상태 변경</li>
           <li>4) 업로드 잡이 approved 항목만 자동 처리</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T18:52:19+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T19:08:56+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -69,5 +70,27 @@
     </div>
     <div class="grid"><p>현재 표시할 항목이 없습니다.</p></div>
   </div>
+  <script>
+    const ACTION_API_BASE_URL = "";
+    async function reviewAction(slug, action) {
+      if (!ACTION_API_BASE_URL) {
+        alert('아직 직접 승인 API가 연결되지 않았어. 지금은 Notion에서 상태를 바꿔야 해.');
+        return;
+      }
+      const memo = window.prompt('메모가 있으면 적고, 없으면 그대로 확인을 눌러줘.', '') || '';
+      const res = await fetch(ACTION_API_BASE_URL.replace(/\/$/, '') + '/review-actions', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({slug, action, memo})
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        alert('처리 실패: ' + (data.error || res.statusText));
+        return;
+      }
+      alert('상태가 변경됐어: ' + data.new_status + '
+새로고침해서 반영 상태를 확인해줘.');
+    }
+  </script>
 </body>
 </html>
