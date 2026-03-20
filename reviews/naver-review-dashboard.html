@@ -36,6 +36,7 @@
     pre { white-space:pre-wrap; background:#0f172a; border:1px solid #233052; color:#e5e7eb; padding:12px; border-radius:12px; font-size:13px; line-height:1.6; max-height:280px; overflow:auto; }
     .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:var(--muted); }
     .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
+    .top-actions { margin-top:0; margin-bottom:12px; position:sticky; top:8px; z-index:2; padding-bottom:6px; background:linear-gradient(180deg, rgba(20,27,52,.98), rgba(20,27,52,.88)); }
     .editor { margin-top:16px; padding:14px; border:1px solid var(--line); border-radius:14px; background:#0f172a; }
     .editor label { display:block; margin:10px 0 6px; color:#c7d2fe; font-size:13px; }
     .editor textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #334155; background:#111827; color:#e5e7eb; }
@@ -59,7 +60,7 @@
           <li>2) 수정요청/본문 수정 가능</li>
           <li>3) 상단 숫자도 같이 갱신</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T22:46:08+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T22:56:23+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -69,15 +70,15 @@
     <div class="stats">
       <div class="stat"><div>전체</div><div class="n" id="stat-total">15</div></div>
       <div class="stat"><div>승인 대기</div><div class="n" id="stat-awaiting_approval">6</div></div>
-      <div class="stat"><div>승인됨</div><div class="n" id="stat-approved">9</div></div>
+      <div class="stat"><div>승인됨</div><div class="n" id="stat-approved">8</div></div>
       <div class="stat"><div>업로드 완료</div><div class="n" id="stat-uploaded">0</div></div>
-      <div class="stat"><div>수정 요청</div><div class="n" id="stat-needs_edit">0</div></div>
+      <div class="stat"><div>수정 요청</div><div class="n" id="stat-needs_edit">1</div></div>
       <div class="stat"><div>오류</div><div class="n" id="stat-error">0</div></div>
     </div>
     <div class="grid">
-        <article class="card good" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="approved">
+        <article class="card bad" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="needs_edit">
           <div class="topline">
-            <span class="badge good" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">승인됨</span>
+            <span class="badge bad" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">수정요청</span>
             <span class="dday">D-26</span>
           </div>
           <h2>오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L</h2>
@@ -86,7 +87,7 @@
           <div class="meta-line"><b>포인트</b> 최대 150원</div>
           <div class="meta-line"><b>이벤트</b> 없음</div>
           <div class="meta-line"><b>마감</b> 2026.04.15.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-20T22:45:02</span></div>
+          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-20T22:50:59</span></div>
           <div class="meta-line"><b>옵션</b> 색상 선택: 아이보리</div>
           <h3>초안 제목</h3>
           <p class="draft-title" id="title-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">무난하게 만족했던 실사용 후기</p>
@@ -105,7 +106,7 @@
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/25L-329b2169ba7c81d9958efad930826992" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인대기로</button>
+            <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "needs_edit")'>수정요청</button>
             <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>본문 수정</button>
