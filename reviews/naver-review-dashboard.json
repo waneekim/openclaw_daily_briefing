@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T21:47:27+09:00",
+    "generated_at": "2026-03-20T21:57:41+09:00",
     "counts": {
       "total": 15,
-      "awaiting_approval": 12,
-      "approved": 3,
+      "awaiting_approval": 11,
+      "approved": 4,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
@@ -527,7 +527,7 @@
       "purchase_confirmed_at": "26.01.16.",
       "due_date": "2026.04.15.",
       "d_day": "D-26",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
@@ -546,7 +546,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "한달사용 리뷰 | 전동드릴 광택패드 80mm 7종 세트 광택작업",

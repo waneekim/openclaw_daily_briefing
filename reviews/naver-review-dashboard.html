@@ -59,7 +59,7 @@
           <li>3) 처리 직후 카드 상태와 내용이 바로 반영됨</li>
           <li>4) 업로드 잡은 approved 항목만 자동 처리</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T21:47:27+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T21:57:41+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -68,8 +68,8 @@
     </div>
     <div class="stats">
       <div class="stat"><div>전체</div><div class="n">15</div></div>
-      <div class="stat"><div>승인 대기</div><div class="n">12</div></div>
-      <div class="stat"><div>승인됨</div><div class="n">3</div></div>
+      <div class="stat"><div>승인 대기</div><div class="n">11</div></div>
+      <div class="stat"><div>승인됨</div><div class="n">4</div></div>
       <div class="stat"><div>업로드 완료</div><div class="n">0</div></div>
       <div class="stat"><div>수정 요청</div><div class="n">0</div></div>
       <div class="stat"><div>오류</div><div class="n">0</div></div>
@@ -107,6 +107,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/25L-329b2169ba7c81d9958efad930826992" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>본문 수정</button>
             </div>
           
@@ -169,6 +170,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>본문 수정</button>
             </div>
           
@@ -231,6 +233,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>본문 수정</button>
             </div>
           
@@ -293,6 +296,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>본문 수정</button>
             </div>
           
@@ -355,6 +359,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>본문 수정</button>
             </div>
           
@@ -417,6 +422,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>본문 수정</button>
             </div>
           
@@ -479,6 +485,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/9-LED-329b2169ba7c8137a42acd0a9d0f5a76" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>본문 수정</button>
             </div>
           
@@ -541,6 +548,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>본문 수정</button>
             </div>
           
@@ -603,6 +611,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>본문 수정</button>
             </div>
           
@@ -665,6 +674,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>본문 수정</button>
             </div>
           
@@ -727,6 +737,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>본문 수정</button>
             </div>
           
@@ -789,6 +800,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>본문 수정</button>
             </div>
           
@@ -851,6 +863,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>본문 수정</button>
             </div>
           
@@ -881,9 +894,9 @@
             
         </article>
         
-        <article class="card warn" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">
+        <article class="card good" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">
           <div class="topline">
-            <span class="badge warn" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인대기</span>
+            <span class="badge good" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인됨</span>
             <span class="dday">D-26</span>
           </div>
           <h2>벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼</h2>
@@ -913,6 +926,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>본문 수정</button>
             </div>
           
@@ -975,6 +989,7 @@
           <div class="actions"><a class="btn" href="https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
             <button class="btn success" onclick='reviewAction("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", "approved")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", "needs_edit")'>수정요청</button>
+            <button class="btn secondary" onclick='refreshItem("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>본문 수정</button>
             </div>
           
@@ -1106,6 +1121,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (!ACTION_API_BASE_URL || !getActionToken()) return;
       setTimeout(() => { syncAllNow().catch(() => {}); }, 700);
+      setInterval(() => { syncAllNow().catch(() => {}); }, 15000);
     });
   </script>
 </body>
