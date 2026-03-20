@@ -1,17 +1,17 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T21:34:47+09:00",
+    "generated_at": "2026-03-20T21:47:27+09:00",
     "counts": {
       "total": 15,
-      "awaiting_approval": 13,
-      "approved": 2,
+      "awaiting_approval": 12,
+      "approved": 3,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
     "action_mode": "action-api",
-    "action_api_base_url": "https://marks-widely-supporting-wifi.trycloudflare.com"
+    "action_api_base_url": "https://induction-secrets-proud-climbing.trycloudflare.com"
   },
   "items": [
     {
@@ -221,7 +221,7 @@
       "purchase_confirmed_at": "26.02.21.",
       "due_date": "2026.03.22.",
       "d_day": "D-2",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
@@ -240,7 +240,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "최근구매 리뷰 | 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED",
