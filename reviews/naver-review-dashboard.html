@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Naver Review Dashboard</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#141b34; --text:#eef2ff; --muted:#b9c2e2; --line:#2a355f; --good:#1f9d63; --warn:#d69e2e; --bad:#d64545; --done:#2563eb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:linear-gradient(180deg,#0b1020,#11182f); color:var(--text); }
+    .wrap { max-width:1200px; margin:0 auto; padding:24px; }
+    h1 { margin:0 0 10px; font-size:32px; }
+    p.lead { color:var(--muted); margin:0 0 20px; }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:16px 0 24px; }
+    .stat { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:16px; padding:16px; }
+    .stat .n { font-size:28px; font-weight:700; margin-top:6px; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
+    .btn { display:inline-block; text-decoration:none; color:white; background:#3b82f6; padding:10px 14px; border-radius:10px; font-weight:600; }
+    .btn.secondary { background:#374151; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px; }
+    .card { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.18); }
+    .topline { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; }
+    .badge { font-size:12px; font-weight:700; padding:6px 10px; border-radius:999px; }
+    .badge.normal { background:#334155; } .badge.warn { background:#92400e; } .badge.good { background:#166534; } .badge.bad { background:#991b1b; } .badge.done { background:#1d4ed8; }
+    .dday { color:#fca5a5; font-weight:700; }
+    .meta-line { color:var(--muted); margin:6px 0; font-size:14px; }
+    h2 { font-size:20px; margin:8px 0 12px; line-height:1.4; }
+    h3 { font-size:14px; color:#c7d2fe; margin:16px 0 8px; }
+    .draft-title { margin:0; font-weight:700; }
+    pre { white-space:pre-wrap; background:#0f172a; border:1px solid #233052; color:#e5e7eb; padding:12px; border-radius:12px; font-size:13px; line-height:1.6; max-height:280px; overflow:auto; }
+    .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:var(--muted); }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>네이버 리뷰 승인 대시보드</h1>
+    <p class="lead">Notion은 승인/상태 저장용, 이 페이지는 빠르게 검토하는 읽기 좋은 화면이야.</p>
+    <div class="toolbar">
+      <a class="btn" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드 열기</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div>전체</div><div class="n">0</div></div>
+      <div class="stat"><div>승인 대기</div><div class="n">0</div></div>
+      <div class="stat"><div>승인됨</div><div class="n">0</div></div>
+      <div class="stat"><div>업로드 완료</div><div class="n">0</div></div>
+      <div class="stat"><div>수정 요청</div><div class="n">0</div></div>
+      <div class="stat"><div>오류</div><div class="n">0</div></div>
+    </div>
+    <div class="grid"><p>현재 표시할 항목이 없습니다.</p></div>
+  </div>
+</body>
+</html>
