@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T18:34:43+09:00",
+    "generated_at": "2026-03-20T18:52:19+09:00",
     "counts": {
       "total": 0,
       "awaiting_approval": 0,
@@ -9,7 +9,8 @@
       "needs_edit": 0,
       "error": 0
     },
-    "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1"
+    "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
+    "action_mode": "notion-first"
   },
   "items": []
 }

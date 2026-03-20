@@ -14,6 +14,10 @@
     .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:16px 0 24px; }
     .stat { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:16px; padding:16px; }
     .stat .n { font-size:28px; font-weight:700; margin-top:6px; }
+    .hero { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:20px; }
+    .panel { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:16px; padding:16px; }
+    .panel h2 { margin:0 0 10px; font-size:18px; }
+    .panel p, .panel li { color:var(--muted); line-height:1.6; }
     .toolbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
     .btn { display:inline-block; text-decoration:none; color:white; background:#3b82f6; padding:10px 14px; border-radius:10px; font-weight:600; }
     .btn.secondary { background:#374151; }
@@ -35,9 +39,25 @@
 <body>
   <div class="wrap">
     <h1>네이버 리뷰 승인 대시보드</h1>
-    <p class="lead">Notion은 승인/상태 저장용, 이 페이지는 빠르게 검토하는 읽기 좋은 화면이야.</p>
+    <p class="lead">Notion은 승인/상태 저장용, 이 페이지는 빠르게 비교 검토하는 읽기 좋은 화면이야.</p>
     <div class="toolbar">
       <a class="btn" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드 열기</a>
+    </div>
+    <div class="hero">
+      <section class="panel">
+        <h2>사용 방법</h2>
+        <ul>
+          <li>1) 이 페이지에서 초안을 빠르게 읽고 비교</li>
+          <li>2) 카드의 <b>Notion 카드 열기</b> 또는 <b>승인 보드 열기</b>로 이동</li>
+          <li>3) Notion에서 <b>approved</b> 또는 <b>needs_edit</b> 로 상태 변경</li>
+          <li>4) 업로드 잡이 approved 항목만 자동 처리</li>
+        </ul>
+        <p>마지막 갱신: <b>2026-03-20T18:52:19+09:00</b></p>
+      </section>
+      <section class="panel">
+        <h2>긴급 검토 항목</h2>
+        <ul><li>긴급 검토 항목 없음</li></ul>
+      </section>
     </div>
     <div class="stats">
       <div class="stat"><div>전체</div><div class="n">0</div></div>
