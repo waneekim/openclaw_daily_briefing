@@ -47,7 +47,8 @@
     <div class="toolbar">
       <a class="btn" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드 열기</a>
       <button class="btn secondary" onclick="setActionToken()">액션 토큰 설정</button>
-      <button class="btn secondary" onclick="location.reload()">새로고침</button>
+      <button class="btn secondary" onclick="syncAllNow()">상태 다시 불러오기</button>
+      <button class="btn secondary" onclick="location.reload()">페이지 새로고침</button>
     </div>
     <div class="hero">
       <section class="panel">
@@ -58,7 +59,7 @@
           <li>3) 처리 직후 카드 상태와 내용이 바로 반영됨</li>
           <li>4) 업로드 잡은 approved 항목만 자동 처리</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T20:40:07+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T21:03:03+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -1089,13 +1090,22 @@
       toggleEdit(slug);
       alert('초안 저장 완료');
     }
-    window.addEventListener('load', async () => {
-      if (!ACTION_API_BASE_URL || !getActionToken()) return;
-      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 30);
+    async function syncAllNow() {
+      if (!ACTION_API_BASE_URL) {
+        alert('액션 API URL이 아직 연결되지 않았어.');
+        return;
+      }
+      if (!getActionToken()) setActionToken();
+      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 50);
       for (const card of cards) {
         const slug = card.getAttribute('data-slug');
-        try { await refreshItem(slug); } catch (e) {}
+        try { await refreshItem(slug); } catch (e) { console.error('refresh failed', slug, e); }
       }
+      alert('최신 상태를 다시 불러왔어.');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!ACTION_API_BASE_URL || !getActionToken()) return;
+      setTimeout(() => { syncAllNow().catch(() => {}); }, 700);
     });
   </script>
 </body>
