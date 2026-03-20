@@ -5,71 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Science App | 지구와 달 점프 실험</title>
   <style>
-    :root{--bg:#f7fbff;--ink:#17324d;--soft:#5b748c;--line:#d8e7f2;--card:#ffffff;--accent:#4f8cff;--max:980px}
+    :root{--bg:#f7fbff;--ink:#17324d;--soft:#5b748c;--line:#d8e7f2;--card:#ffffff;--accent:#4f8cff;--good:#2aa772;--warn:#ff9f43;--max:980px}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef7ff 100%);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif;color:var(--ink)}
     .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 80px}.hero,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 40px rgba(70,110,160,.08)}
     .hero{padding:28px}.pill{display:inline-flex;padding:10px 14px;border-radius:999px;border:1px solid var(--line);color:var(--soft);font-size:12px;background:#fff}h1{margin:12px 0 12px;font-size:clamp(34px,5vw,52px);line-height:1.03;letter-spacing:-.04em}.lead{max-width:700px;line-height:1.85;color:#46627b}
     .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}.card{padding:22px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.btn{padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;cursor:pointer}.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
-    .scene{position:relative;height:320px;border-radius:20px;background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 74%,#dcefd7 74%,#dcefd7 100%);overflow:hidden;border:1px solid var(--line)}
-    .person{position:absolute;left:90px;bottom:52px;width:54px;height:110px;transition:bottom .9s cubic-bezier(.2,.8,.2,1)}
-    .head{width:34px;height:34px;border-radius:50%;background:#ffd8b8;margin:0 auto 2px}.body{width:22px;height:46px;background:#4f8cff;margin:0 auto;border-radius:12px}.legs{display:flex;justify-content:center;gap:8px}.leg{width:8px;height:28px;background:#17324d;border-radius:8px}
-    .planet{position:absolute;right:56px;top:36px;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}.earth{background:#d6f3e3;color:#246c4a;border:3px solid #7dc89f}.moon{background:#fff4c4;color:#8b6a00;border:3px solid #e4d58f}
-    .status{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8fbff;border:1px dashed var(--line);line-height:1.75}
-    .panel-list{display:grid;gap:12px}.item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .scene{position:relative;height:320px;border-radius:20px;background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 78%,#dcefd7 78%,#dcefd7 100%);overflow:hidden;border:1px solid var(--line)}
+    .rocket{position:absolute;left:70px;bottom:40px;width:54px;height:120px;transition:transform .7s ease, left .7s ease, bottom .7s ease}.rocket .nose{width:0;height:0;border-left:27px solid transparent;border-right:27px solid transparent;border-bottom:34px solid #ff7b54;margin:0 auto}.rocket .body{width:54px;height:58px;background:#8cc4ff;border:3px solid #3d6fa3;border-radius:10px;margin:0 auto;position:relative}.rocket .window{position:absolute;left:17px;top:12px;width:14px;height:14px;border-radius:50%;background:white;border:2px solid #3d6fa3}.rocket .finL,.rocket .finR{position:absolute;bottom:-12px;width:12px;height:24px;background:#ff7b54}.rocket .finL{left:-8px;transform:skewY(22deg)}.rocket .finR{right:-8px;transform:skewY(-22deg)}
+    .moon{position:absolute;right:70px;top:42px;width:92px;height:92px;border-radius:50%;background:#fff4c4;border:3px solid #e4d58f}.moon:before,.moon:after{content:'';position:absolute;border-radius:50%;background:#eadfae}.moon:before{width:18px;height:18px;left:20px;top:28px}.moon:after{width:12px;height:12px;right:20px;top:18px}
+    .panel-list{display:grid;gap:12px}.item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}.status{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8fbff;border:1px dashed var(--line);line-height:1.75}.good{color:var(--good);font-weight:700}.warn{color:var(--warn);font-weight:700}
     @media (max-width:920px){.grid{grid-template-columns:1fr}.scene{height:280px}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <div class="pill">science mini app · gravity thinking</div>
-      <h1>지구와 달에서는 왜 점프 높이가 다를까?</h1>
-      <div class="lead">버튼을 눌러서 같은 사람이 지구와 달에서 얼마나 다르게 점프하는지 비교해봐. 힘이 같아도 중력이 다르면 결과가 달라진다는 걸 직관적으로 느끼게 하는 간단한 앱이야.</div>
+      <div class="pill">science mini app · interactive thinking</div>
+      <h1>지구와 달에서는 왜 점프 높이가 달라질까?</h1>
+      <div class="lead">버튼을 눌러 보면서 중력이 다르면 같은 힘으로 뛰어도 높이와 체감이 어떻게 달라지는지 바로 비교해볼 수 있는 미니 앱이야. 민건이는 원리 설명으로, 민결이는 몸이 가벼워지는 느낌 상상으로 이어가기 좋게 만들었어.</div>
     </section>
+
     <section class="grid">
       <article class="card">
-        <h2>점프 비교</h2>
+        <h2>로켓 발사 실험</h2>
         <div class="scene" id="scene">
-          <div class="planet earth" id="planet">지구</div>
-          <div class="person" id="person">
-            <div class="head"></div><div class="body"></div><div class="legs"><div class="leg"></div><div class="leg"></div></div>
+          <div class="moon"></div>
+          <div class="rocket" id="rocket">
+            <div class="nose"></div>
+            <div class="body"><div class="window"></div><div class="finL"></div><div class="finR"></div></div>
           </div>
         </div>
         <div class="controls">
-          <button class="btn" onclick="jump('earth')">지구에서 점프</button>
-          <button class="btn primary" onclick="jump('moon')">달에서 점프</button>
-          <button class="btn" onclick="resetJump()">다시 보기</button>
+          <button class="btn" onclick="choose('power')">로켓만 더 강하게</button>
+          <button class="btn primary" onclick="choose('inspect')">문제 먼저 점검하기</button>
+          <button class="btn" onclick="resetGame()">다시 해보기</button>
         </div>
-        <div class="status" id="status">같은 사람도 지구와 달에서 점프 높이가 달라져. 버튼을 눌러 비교해봐.</div>
+        <div class="status" id="status">버튼을 눌러서 어떤 선택이 더 안전한지 확인해봐.</div>
       </article>
+
       <article class="card">
         <h2>생각 포인트</h2>
         <div class="panel-list">
-          <div class="item"><b>민건 질문</b> 힘을 똑같이 줬는데 왜 달에서 더 높이 올라갈까?</div>
-          <div class="item"><b>민결 질문</b> 똑같이 뛰었는데 왜 달에선 몸이 더 가볍게 느껴질까?</div>
-          <div class="item"><b>핵심</b> 중력이 작을수록 아래로 끌어당기는 힘이 작아서 더 높이 뜰 수 있어.</div>
+          <div class="item"><b>선택 1</b> 로켓 힘만 키우기 — 빨라 보이지만, 작은 고장이 남아 있으면 중간에 멈출 수 있어.</div>
+          <div class="item"><b>선택 2</b> 문제 먼저 찾기 — 조금 느려 보여도, 더 멀리 안정적으로 갈 가능성이 커져.</div>
+          <div class="item"><b>민건 질문</b> 왜 작은 전선 하나가 전체 임무를 바꿀 수 있을까?</div>
+          <div class="item"><b>민결 질문</b> 장난감 자동차도 바퀴 하나가 흔들리면 왜 멀리 못 갈까?</div>
         </div>
       </article>
     </section>
   </div>
   <script>
-    const person=document.getElementById('person');
-    const status=document.getElementById('status');
-    const planet=document.getElementById('planet');
-    function resetJump(){person.style.bottom='52px';planet.textContent='지구';planet.className='planet earth';status.textContent='같은 사람도 지구와 달에서 점프 높이가 달라져. 버튼을 눌러 비교해봐.';}
-    function jump(where){
-      person.style.bottom='52px';
-      setTimeout(()=>{
-        if(where==='earth'){
-          planet.textContent='지구';planet.className='planet earth';
-          person.style.bottom='130px';
-          status.innerHTML='지구에서는 꽤 높이 뛰었지만, 중력이 커서 금방 다시 내려와.';
-        }else{
-          planet.textContent='달';planet.className='planet moon';
-          person.style.bottom='210px';
-          status.innerHTML='달에서는 아래로 끌어당기는 힘이 더 작아서, 같은 힘으로도 더 높이 점프할 수 있어!';
-        }
-      },40);
+    const rocket = document.getElementById('rocket');
+    const statusBox = document.getElementById('status');
+    function resetGame(){
+      rocket.style.left='70px'; rocket.style.bottom='40px'; rocket.style.transform='translate(0,0) rotate(0deg)';
+      statusBox.textContent='버튼을 눌러서 어떤 선택이 더 안전한지 확인해봐.';
+    }
+    function choose(mode){
+      if(mode==='power'){
+        rocket.style.left='190px'; rocket.style.bottom='170px'; rocket.style.transform='rotate(-18deg)';
+        statusBox.innerHTML='<span class="warn">결과:</span> 로켓은 빠르게 출발했지만, 점검하지 않은 문제가 남아서 달까지 가지 못했어. <b>힘만 세다고 성공하는 건 아니야.</b>';
+      } else {
+        rocket.style.left='610px'; rocket.style.bottom='210px'; rocket.style.transform='rotate(0deg)';
+        statusBox.innerHTML='<span class="good">결과:</span> 출발 전에 문제를 먼저 찾아서, 로켓이 더 안정적으로 달 쪽으로 날아갔어. <b>문제를 미리 찾는 게 더 중요할 때가 많아.</b>';
+      }
     }
   </script>
 </body>

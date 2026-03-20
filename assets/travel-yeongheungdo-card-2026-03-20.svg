@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0F4C81"/>
+    <stop offset="100%" stop-color="#101820"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="700" fill="url(#g)" rx="36"/>
+<circle cx="1020" cy="140" r="120" fill="rgba(255,255,255,0.08)"/>
+<circle cx="150" cy="560" r="180" fill="rgba(255,255,255,0.05)"/>
+<text x="80" y="120" font-size="34" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#D9E6F2">Wanee Travel Pick</text>
+<text x="80" y="280" font-size="68" font-weight="700" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="white">영흥도 십리포해수욕장</text>
+<text x="80" y="360" font-size="34" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#F7D774">근거리 1박 · 종합 8.4 · 1위</text>
+<text x="80" y="470" font-size="32" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#EAF2F8">바다 산책·소사나무길·카페 동선이 좋고</text>
+<text x="80" y="520" font-size="32" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#EAF2F8">이번 주말 밸런스가 가장 좋음</text>
+</svg>

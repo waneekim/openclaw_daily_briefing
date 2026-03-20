@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#355C7D"/>
+    <stop offset="100%" stop-color="#101820"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="700" fill="url(#g)" rx="36"/>
+<circle cx="1020" cy="140" r="120" fill="rgba(255,255,255,0.08)"/>
+<circle cx="150" cy="560" r="180" fill="rgba(255,255,255,0.05)"/>
+<text x="80" y="120" font-size="34" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#D9E6F2">Wanee Travel Pick</text>
+<text x="80" y="280" font-size="68" font-weight="700" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="white">강화도 동막해변</text>
+<text x="80" y="360" font-size="34" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#F7D774">근처 차박지 · 종합 8.0</text>
+<text x="80" y="470" font-size="32" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#EAF2F8">가장 가까워서 부담이 적고</text>
+<text x="80" y="520" font-size="32" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" fill="#EAF2F8">갯벌·노을·짧은 1박 카드로 안정적</text>
+</svg>

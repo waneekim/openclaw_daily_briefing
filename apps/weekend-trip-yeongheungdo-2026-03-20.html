@@ -3,102 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Weekend Trip App | 영흥도</title>
+  <title>Weekend Trip App | 영흥도 1박 2일</title>
   <style>
-    :root{
-      --bg:#0b0b0c; --bg2:#111214; --panel:#141518; --line:#27292e; --text:#f4f4f2; --muted:#a4a7ad; --sub:#d7d9dd; --accent:#9eff57;
-      --radius:22px; --max:1200px; --shadow:0 18px 70px rgba(0,0,0,.34);
-    }
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:var(--text);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif}
-    a{text-decoration:none;color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 90px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.pill{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px;background:rgba(255,255,255,.015)}
-    .hero{padding:28px 0 24px;border-bottom:1px solid var(--line)} h1{margin:10px 0 14px;font-size:clamp(36px,5vw,64px);line-height:.98;letter-spacing:-.05em;font-weight:800;max-width:860px}.lead{max-width:760px;color:var(--sub);font-size:17px;line-height:1.85}.accent{color:var(--accent)}
-    .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.box{padding:16px;border-radius:16px;background:#101114;border:1px solid var(--line)}.k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.v{margin-top:10px;font-size:18px;font-weight:740}
-    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.section{padding:24px}.section h2{margin:0 0 14px;font-size:24px;letter-spacing:-.03em}
-    .timeline{display:grid;gap:12px}.step{display:grid;grid-template-columns:82px 1fr;gap:14px;padding:15px 16px;border-radius:16px;border:1px solid var(--line);background:#101114}.time{font-size:20px;font-weight:800;color:var(--accent)}.desc{line-height:1.75;color:#e8e9eb}
-    .list{display:grid;gap:12px}.item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#101114;line-height:1.75;color:#e8e9eb}.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:#101114;color:#f4f4f2;font-weight:700}.btn.primary{border-color:#507038;color:#101114;background:var(--accent)}
-    .notice{padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:#101114;line-height:1.8;color:#eceeed}.footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-    @media (max-width:920px){.grid{grid-template-columns:1fr}.meta{grid-template-columns:1fr 1fr}} @media (max-width:640px){.meta{grid-template-columns:1fr}}
+    :root{--bg:#fffaf5; --paper:#fffefc; --panel:#fff7ef; --line:#eadfce; --text:#2c2a28; --muted:#7e766f; --mint:#dff4ea; --blue:#e7eefc; --yellow:#fff3c9; --peach:#ffe4d8; --accent:#6e8b6b; --max:1080px;}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#fffaf5 0%,#fffefb 100%);color:var(--text);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif}
+    a{text-decoration:none;color:inherit}.wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 80px}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.pill{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:12px}
+    .hero{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 12px 40px rgba(90,70,40,.08)} h1{margin:10px 0 12px;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-.05em}.lead{max-width:720px;color:#4a463f;line-height:1.9;font-size:17px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.chip{padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;color:#5e5952}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.card{border:1px solid var(--line);border-radius:22px;padding:22px;background:var(--paper)} .mint{background:var(--mint)} .blue{background:var(--blue)} .yellow{background:var(--yellow)} .peach{background:var(--peach)}
+    h2{margin:0 0 14px;font-size:24px;letter-spacing:-.03em}.timeline{display:grid;gap:12px}.step{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:14px 16px;border-radius:16px;background:#ffffffa8;border:1px solid #efe4d7}.time{font-size:20px;font-weight:800;color:var(--accent)}.desc{line-height:1.75}
+    .list{display:grid;gap:10px}.item{padding:13px 14px;border-radius:14px;background:#ffffffa8;border:1px solid #efe4d7;line-height:1.75}.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 15px;border-radius:14px;border:1px solid var(--line);background:white;font-weight:700;color:#4d4943}.footer{margin-top:24px;color:var(--muted);font-size:13px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="nav">
-      <a class="pill" href="../index.html">← Dashboard</a>
-      <div class="pill">Weekend Trip App</div>
-    </div>
-
+    <div class="nav"><a class="pill" href="../index.html">← Dashboard</a><div class="pill">Pastel Weekend Trip App</div></div>
     <section class="hero">
-      <div class="pill">Weekend recommendation · one place only</div>
-      <h1>영흥도,<br/><span class="accent">이번 주말의 가장 현실적인 선택</span>.</h1>
-      <div class="lead">이번 주는 멀리 가는 화려함보다, <b>가족 4인이 실제로 편하게 다녀올 확률</b>이 중요해. 영흥도는 접근성, 피로도, 철수 용이성, 바다 산책 만족도를 함께 봤을 때 지금 제일 밸런스가 좋아.</div>
-      <div class="meta">
-        <div class="box"><div class="k">출발</div><div class="v">마곡</div></div>
-        <div class="box"><div class="k">유형</div><div class="v">당일치기 or 1박</div></div>
-        <div class="box"><div class="k">핵심</div><div class="v">실행성</div></div>
-        <div class="box"><div class="k">주의</div><div class="v">바람</div></div>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%97%AC%ED%96%89" target="_blank">영흥도 정보 보기</a>
-        <a class="btn" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%8B%AD%EB%A6%AC%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank">십리포해수욕장 보기</a>
-      </div>
+      <div class="pill">1박 2일 · 차에서 자기 쉬운 곳 우선</div>
+      <h1>영흥도 1박 2일, 가족 차박/짧은 여행 밸런스 최상 플랜</h1>
+      <div class="lead">근처 차박지·근거리·장거리 후보를 거리, 아이들 유익성, 새로운 경험, 액티비티, 비용, 계절/날씨로 나눠 비교했을 때 이번 주말은 영흥도가 가장 균형이 좋았어. 이동 피로는 과하지 않으면서도 바다·숲길·갯벌·카페 동선을 묶기 쉬워 가족 4인 주말 카드로 안정적이야.</div>
+      <div class="chips"><div class="chip">종합 1위: 영흥도</div><div class="chip">맑음 / 강수확률 낮음</div><div class="chip">1박 2일 기준</div><div class="chip">바다 산책 / 소사나무길 / 카페 / 갯벌</div></div>
+      <div class="links"><a class="btn" href="https://eng-itour.incheon.go.kr/cmn/board/BBSMSTR_000000000080/5041bbsDetail.do" target="_blank">인천관광 영흥도 참고</a><a class="btn" href="https://search.naver.com/search.naver?query=%EC%98%81%ED%9D%A5%EB%8F%84+%EC%8B%AD%EB%A6%AC%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank">십리포해수욕장 검색</a></div>
     </section>
-
     <section class="grid">
-      <article class="card section">
-        <h2>추천 일정</h2>
-        <div class="timeline">
-          <div class="step"><div class="time">09:00</div><div class="desc"><b>마곡 출발</b><br/>차 안 간식과 물 준비. 오늘 목표는 오래 버티기보다 기분 좋게 다녀오는 것.</div></div>
-          <div class="step"><div class="time">10:30</div><div class="desc"><b>영흥도 도착 · 바다 산책</b><br/>모래와 바람 상태에 따라 체류 시간을 유연하게 조절.</div></div>
-          <div class="step"><div class="time">12:00</div><div class="desc"><b>점심</b><br/>아이 메뉴 실패 확률 낮은 식당 우선. 웨이팅 길면 빠르게 플랜 B.</div></div>
-          <div class="step"><div class="time">13:30</div><div class="desc"><b>사진 / 휴식</b><br/>짧게 쉬고 가족 사진. 날씨가 애매하면 일정 압축.</div></div>
-          <div class="step"><div class="time">15:00</div><div class="desc"><b>복귀 or 1박 분기</b><br/>컨디션 좋으면 한 곳 더, 아니면 바로 철수.</div></div>
-        </div>
-      </article>
-
-      <article class="card section">
-        <h2>왜 이곳인가</h2>
-        <div class="list">
-          <div class="item">장거리 강원권보다 <b>출발 장벽이 낮음</b></div>
-          <div class="item">가족 4인 이동 기준으로 실패 확률이 낮음</div>
-          <div class="item">식사·휴식·화장실 플랜을 짜기 쉬움</div>
-          <div class="item">날씨 애매하면 빠르게 복귀 가능</div>
-          <div class="item">이번 주는 화려함보다 <b>실행 가능성</b>이 더 중요함</div>
-        </div>
-      </article>
+      <article class="card mint"><h2>1일차</h2><div class="timeline"><div class="step"><div class="time">13:30</div><div class="desc">마곡 출발 — 너무 일찍보다 점심 후 출발이 아이들 컨디션 관리에 좋아</div></div><div class="step"><div class="time">15:20</div><div class="desc">영흥도 도착 — 먼저 화장실/주차/바다 접근성 확인</div></div><div class="step"><div class="time">16:00</div><div class="desc">십리포해수욕장 산책 — 소사나무길과 해변 걷기</div></div><div class="step"><div class="time">17:30</div><div class="desc">노을 시간대 카페 또는 해변 머무르기 — 바람 세기 확인</div></div><div class="step"><div class="time">18:30</div><div class="desc">저녁 — 칼국수/해산물 계열로 무리 없는 메뉴 선택</div></div><div class="step"><div class="time">20:30</div><div class="desc">차박/숙소 준비 — 바닷바람 대비 방풍, 밤 기온 체크</div></div></div></article>
+      <article class="card blue"><h2>2일차</h2><div class="timeline"><div class="step"><div class="time">08:00</div><div class="desc">가벼운 아침 — 차 안 간단식 또는 근처 카페 활용</div></div><div class="step"><div class="time">09:30</div><div class="desc">아이들 활동 — 해변 관찰, 조개껍데기/파도/바람 이야기하기</div></div><div class="step"><div class="time">11:00</div><div class="desc">선재도 연계 또는 전망 좋은 카페 이동</div></div><div class="step"><div class="time">12:30</div><div class="desc">점심 후 복귀 — 서울 복귀 시간을 너무 늦추지 않는 게 좋아</div></div></div></article>
     </section>
-
     <section class="grid" style="margin-top:18px">
-      <article class="card section">
-        <h2>준비물 체크</h2>
-        <div class="list">
-          <div class="item">바람막이 / 얇은 담요</div>
-          <div class="item">여벌 옷 + 수건</div>
-          <div class="item">아이 간식 + 물</div>
-          <div class="item">물티슈 / 손 세정</div>
-          <div class="item">휴대용 충전기</div>
-        </div>
-      </article>
-      <article class="card section">
-        <h2>주의 포인트</h2>
-        <div class="list">
-          <div class="item">서해권은 <b>바람</b>이 만족도를 크게 좌우함</div>
-          <div class="item">아이 컨디션 떨어지면 일정 압축이 쉬운 게 장점</div>
-          <div class="item">차박은 현장 판단으로 무리해서 확정하지 않기</div>
-        </div>
-      </article>
+      <article class="card yellow"><h2>차박 기준 포인트</h2><div class="list"><div class="item">주차/정차: 해변 접근성 좋은 포인트 먼저 확인</div><div class="item">편의: 화장실과 세면 동선이 명확한 곳 우선</div><div class="item">주의: 바닷바람이 강하면 체감온도가 낮아져 방풍 준비 필수</div><div class="item">핵심: 차박 허용 여부는 현장 규정 기준으로 보수적으로 판단</div></div></article>
+      <article class="card peach"><h2>주변 액티비티 + 맛집</h2><div class="list"><div class="item">액티비티: 해변 산책, 소사나무 숲길, 갯벌/바다 관찰, 카페</div><div class="item">아이들 포인트: 파도/조수/바람/해변 생물 이야기로 연결하기 좋음</div><div class="item">식사 후보: 바지락칼국수, 해산물 식당, 카페 브런치 라인</div><div class="item">비용 감각: 장거리보다 유류/식사/체력 부담이 낮아 실패 확률이 낮아</div></div></article>
     </section>
-
-    <section class="card section" style="margin-top:18px">
-      <h2>한 줄 결론</h2>
-      <div class="notice">이번 주말은 <b>영흥도</b>가 제일 좋아 보여. 이유는 가장 특별해서가 아니라, <b>가족 4인이 실제로 편하게 다녀올 확률이 가장 높은 카드</b>이기 때문이야.</div>
-    </section>
-
-    <div class="footer">
-      <div>Weekend Trip App</div>
-      <div>Monochrome system with a single accent</div>
-    </div>
+    <div class="footer">Pastel travel planner · practical overnight parking first · toilet-aware selection</div>
   </div>
 </body>
 </html>
