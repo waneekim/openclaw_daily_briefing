@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T19:22:57+09:00",
+    "generated_at": "2026-03-20T19:52:07+09:00",
     "counts": {
       "total": 15,
       "awaiting_approval": 15,
@@ -10,8 +10,8 @@
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
-    "action_mode": "notion-first",
-    "action_api_base_url": ""
+    "action_mode": "action-api",
+    "action_api_base_url": "https://marks-widely-supporting-wifi.trycloudflare.com"
   },
   "items": [
     {
