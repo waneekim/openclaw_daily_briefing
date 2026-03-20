@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T22:25:44+09:00",
+    "generated_at": "2026-03-20T22:32:46+09:00",
     "counts": {
       "total": 15,
-      "awaiting_approval": 7,
-      "approved": 8,
+      "awaiting_approval": 4,
+      "approved": 11,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
@@ -299,12 +299,12 @@
       "purchase_confirmed_at": "26.02.13.",
       "due_date": "2026.05.13.",
       "d_day": "D-54",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T22:10:30",
+      "last_synced_at": "2026-03-20T22:27:28",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "3M 클레이바 낙진제거제 1EA을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -313,12 +313,12 @@
       "pro_note": "사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.",
       "con_note": "아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.",
       "helpful_tip": "처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.",
-      "approval_memo": "reset to awaiting_approval for dashboard retest",
+      "approval_memo": "",
       "uploader_result": "",
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "한달사용 리뷰 | 버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)",
@@ -338,12 +338,12 @@
       "purchase_confirmed_at": "26.02.13.",
       "due_date": "2026.05.13.",
       "d_day": "D-54",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T19:22:09",
+      "last_synced_at": "2026-03-20T22:30:12",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -357,7 +357,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "한달사용 리뷰 | 마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개",
@@ -566,12 +566,12 @@
       "purchase_confirmed_at": "26.01.07.",
       "due_date": "2026.04.06.",
       "d_day": "D-17",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T22:10:30",
+      "last_synced_at": "2026-03-20T22:29:20",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "전동드릴 광택패드 80mm 7종 세트 광택작업을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -580,12 +580,12 @@
       "pro_note": "사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.",
       "con_note": "아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.",
       "helpful_tip": "처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.",
-      "approval_memo": "reset to awaiting_approval for dashboard retest",
+      "approval_memo": "",
       "uploader_result": "",
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     }
   ]
 }
