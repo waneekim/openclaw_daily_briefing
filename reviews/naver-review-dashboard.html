@@ -58,7 +58,7 @@
           <li>3) 처리 직후 카드 상태와 내용이 바로 반영됨</li>
           <li>4) 업로드 잡은 approved 항목만 자동 처리</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T20:28:28+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T20:40:07+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -1060,6 +1060,14 @@
       applyItem(slug, data.item);
       alert('상태 변경 완료: ' + data.new_status);
     }
+    async function refreshItem(slug) {
+      if (!ACTION_API_BASE_URL) return;
+      const res = await fetch(ACTION_API_BASE_URL.replace(/\\/$/, '') + '/review-item?slug=' + encodeURIComponent(slug), {
+        method: 'GET', headers: apiHeaders()
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) applyItem(slug, data.item);
+    }
     async function saveDraft(slug) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
       if (!getActionToken()) setActionToken();
@@ -1081,6 +1089,14 @@
       toggleEdit(slug);
       alert('초안 저장 완료');
     }
+    window.addEventListener('load', async () => {
+      if (!ACTION_API_BASE_URL || !getActionToken()) return;
+      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 30);
+      for (const card of cards) {
+        const slug = card.getAttribute('data-slug');
+        try { await refreshItem(slug); } catch (e) {}
+      }
+    });
   </script>
 </body>
 </html>
