@@ -43,7 +43,7 @@
 <body>
   <div class="wrap">
     <h1>네이버 리뷰 승인 대시보드</h1>
-    <p class="lead">승인/수정/본문 편집을 이 화면에서 처리하는 v2 실험 중이야. 상태 저장은 여전히 Notion을 기준으로 동기화돼.</p>
+    <p class="lead">승인/수정/본문 편집을 이 화면에서 처리하는 v2 실험 중이야.</p>
     <div class="toolbar">
       <a class="btn" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드 열기</a>
       <button class="btn secondary" onclick="setActionToken()">액션 토큰 설정</button>
@@ -54,12 +54,11 @@
       <section class="panel">
         <h2>사용 방법</h2>
         <ul>
-          <li>1) 이 페이지에서 초안을 읽고 필요하면 수정</li>
-          <li>2) 승인 또는 수정요청 버튼으로 상태 변경</li>
-          <li>3) 처리 직후 카드 상태와 내용이 바로 반영됨</li>
-          <li>4) 업로드 잡은 approved 항목만 자동 처리</li>
+          <li>1) 카드에서 승인/승인대기로 토글</li>
+          <li>2) 수정요청/본문 수정 가능</li>
+          <li>3) 상단 숫자도 같이 갱신</li>
         </ul>
-        <p>마지막 갱신: <b>2026-03-20T22:32:46+09:00</b></p>
+        <p>마지막 갱신: <b>2026-03-20T22:35:49+09:00</b></p>
       </section>
       <section class="panel">
         <h2>긴급 검토 항목</h2>
@@ -67,12 +66,12 @@
       </section>
     </div>
     <div class="stats">
-      <div class="stat"><div>전체</div><div class="n">15</div></div>
-      <div class="stat"><div>승인 대기</div><div class="n">4</div></div>
-      <div class="stat"><div>승인됨</div><div class="n">11</div></div>
-      <div class="stat"><div>업로드 완료</div><div class="n">0</div></div>
-      <div class="stat"><div>수정 요청</div><div class="n">0</div></div>
-      <div class="stat"><div>오류</div><div class="n">0</div></div>
+      <div class="stat"><div>전체</div><div class="n" id="stat-total">15</div></div>
+      <div class="stat"><div>승인 대기</div><div class="n" id="stat-awaiting_approval">4</div></div>
+      <div class="stat"><div>승인됨</div><div class="n" id="stat-approved">11</div></div>
+      <div class="stat"><div>업로드 완료</div><div class="n" id="stat-uploaded">0</div></div>
+      <div class="stat"><div>수정 요청</div><div class="n" id="stat-needs_edit">0</div></div>
+      <div class="stat"><div>오류</div><div class="n" id="stat-error">0</div></div>
     </div>
     <div class="grid">
         <article class="card good" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="approved">
@@ -105,9 +104,9 @@
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/25L-329b2169ba7c81d9958efad930826992" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>본문 수정</button>
             </div>
           
@@ -168,9 +167,9 @@
             <div><b>팁</b> <span id="tip-친수코팅제-물때방지코팅제-100ml-욕실청소">도포 전에 유리 표면 물기를 완전히 없애고 얇게 펴 바른 뒤 마른 천으로 정리하면 얼룩이 덜 남습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='toggleApproval("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>본문 수정</button>
             </div>
           
@@ -231,9 +230,9 @@
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>본문 수정</button>
             </div>
           
@@ -294,9 +293,9 @@
             <div><b>팁</b> <span id="tip-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" onclick='toggleApproval("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>본문 수정</button>
             </div>
           
@@ -357,9 +356,9 @@
             <div><b>팁</b> <span id="tip-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='toggleApproval("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>본문 수정</button>
             </div>
           
@@ -420,9 +419,9 @@
             <div><b>팁</b> <span id="tip-터닝메카드-카울중고">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>본문 수정</button>
             </div>
           
@@ -483,9 +482,9 @@
             <div><b>팁</b> <span id="tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/9-LED-329b2169ba7c8137a42acd0a9d0f5a76" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='toggleApproval("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>본문 수정</button>
             </div>
           
@@ -546,9 +545,9 @@
             <div><b>팁</b> <span id="tip-3m-클레이바-낙진제거제-1ea">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-3m-클레이바-낙진제거제-1ea" onclick='toggleApproval("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>본문 수정</button>
             </div>
           
@@ -609,9 +608,9 @@
             <div><b>팁</b> <span id="tip-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" onclick='toggleApproval("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>본문 수정</button>
             </div>
           
@@ -672,9 +671,9 @@
             <div><b>팁</b> <span id="tip-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>본문 수정</button>
             </div>
           
@@ -735,9 +734,9 @@
             <div><b>팁</b> <span id="tip-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" onclick='toggleApproval("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>본문 수정</button>
             </div>
           
@@ -798,9 +797,9 @@
             <div><b>팁</b> <span id="tip-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>본문 수정</button>
             </div>
           
@@ -861,9 +860,9 @@
             <div><b>팁</b> <span id="tip-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" onclick='toggleApproval("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>본문 수정</button>
             </div>
           
@@ -924,9 +923,9 @@
             <div><b>팁</b> <span id="tip-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='toggleApproval("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>승인</button>
             <button class="btn secondary" onclick='reviewAction("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>본문 수정</button>
             </div>
           
@@ -987,9 +986,9 @@
             <div><b>팁</b> <span id="tip-전동드릴-광택패드-80mm-7종-세트-광택작업">처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.</span></div>
           </div>
           <div class="actions"><a class="btn" href="https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a>
-            <button class="btn success" onclick='reviewAction("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", "approved")'>승인</button>
+            <button class="btn success" id="action-primary-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='toggleApproval("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>승인대기로</button>
             <button class="btn secondary" onclick='reviewAction("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>상태 확인</button>
+            <button class="btn secondary" onclick='refreshItem("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>본문 수정</button>
             </div>
           
@@ -1042,7 +1041,7 @@
     }
     function updateStats() {
       const cards = Array.from(document.querySelectorAll('[data-slug]'));
-      const counts = {total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0};
+      const counts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
         if (Object.prototype.hasOwnProperty.call(counts, status)) counts[status] += 1;
@@ -1061,8 +1060,9 @@
       const primary = document.getElementById('action-primary-' + slug);
       if (!badge || !card) return;
       badge.textContent = label || status;
-      badge.className = 'badge ' + ({awaiting_approval:'warn', approved:'good', uploaded:'done', needs_edit:'bad', error:'bad', rejected:'normal'}[status] || 'normal');
-      card.className = 'card ' + ({awaiting_approval:'warn', approved:'good', uploaded:'done', needs_edit:'bad', error:'bad', rejected:'normal'}[status] || 'normal');
+      const cls = ({awaiting_approval:'warn', approved:'good', uploaded:'done', needs_edit:'bad', error:'bad', rejected:'normal'}[status] || 'normal');
+      badge.className = 'badge ' + cls;
+      card.className = 'card ' + cls;
       card.setAttribute('data-status', status);
       if (primary) primary.textContent = (status === 'approved') ? '승인대기로' : '승인';
       updateStats();
@@ -1070,49 +1070,46 @@
     function applyItem(slug, item) {
       if (!item) return;
       setStatusUI(slug, item.status, item.status_label);
-      const ids = {
-        title: 'title-', body: 'body-', design: 'design-', pro: 'pro-', con: 'con-', tip: 'tip-', synced: 'synced-'
-      };
-      if (document.getElementById(ids.title + slug)) document.getElementById(ids.title + slug).textContent = item.review_draft_title || '';
-      if (document.getElementById(ids.body + slug)) document.getElementById(ids.body + slug).textContent = item.review_draft_body || '';
-      if (document.getElementById(ids.design + slug)) document.getElementById(ids.design + slug).textContent = item.design_note || '';
-      if (document.getElementById(ids.pro + slug)) document.getElementById(ids.pro + slug).textContent = item.pro_note || '';
-      if (document.getElementById(ids.con + slug)) document.getElementById(ids.con + slug).textContent = item.con_note || '';
-      if (document.getElementById(ids.tip + slug)) document.getElementById(ids.tip + slug).textContent = item.helpful_tip || '';
-      if (document.getElementById(ids.synced + slug)) document.getElementById(ids.synced + slug).textContent = item.last_synced_at || '';
+      const setText = (id, val) => { const el = document.getElementById(id + slug); if (el) el.textContent = val || ''; };
+      setText('title-', item.review_draft_title);
+      setText('body-', item.review_draft_body);
+      setText('design-', item.design_note);
+      setText('pro-', item.pro_note);
+      setText('con-', item.con_note);
+      setText('tip-', item.helpful_tip);
+      setText('synced-', item.last_synced_at);
     }
     function toggleEdit(slug) {
       const el = document.getElementById('editor-' + slug);
       if (!el) return;
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
-    async function toggleApproval(slug) {
-      const card = document.getElementById('card-' + slug);
-      const current = card ? (card.getAttribute('data-status') || 'awaiting_approval') : 'awaiting_approval';
-      const next = (current === 'approved') ? 'awaiting_approval' : 'approved';
-      await reviewAction(slug, next);
+      el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none';
     }
     async function reviewAction(slug, action) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
       if (!getActionToken()) { setActionToken(); return; }
       const res = await fetch(baseApiUrl() + '/review-actions', {
-        method: 'POST', headers: apiHeaders(), body: JSON.stringify({slug, action, memo: ''})
+        method: 'POST', headers: apiHeaders(), body: JSON.stringify({ slug, action, memo: '' })
       });
       const data = await res.json();
       if (!res.ok || !data.ok) { alert('처리 실패: ' + (data.error || res.statusText)); return; }
       applyItem(slug, data.item);
     }
-    async function refreshItem(slug) {
-      if (!ACTION_API_BASE_URL) return;
-      const res = await fetch(baseApiUrl() + '/review-item?slug=' + encodeURIComponent(slug), {
-        method: 'GET', headers: apiHeaders()
-      });
+    async function toggleApproval(slug) {
+      const card = document.getElementById('card-' + slug);
+      const current = card ? (card.getAttribute('data-status') || 'awaiting_approval') : 'awaiting_approval';
+      const next = current === 'approved' ? 'awaiting_approval' : 'approved';
+      await reviewAction(slug, next);
+    }
+    async function refreshItem(slug, notify=false) {
+      if (!ACTION_API_BASE_URL || !getActionToken()) return;
+      const res = await fetch(baseApiUrl() + '/review-item?slug=' + encodeURIComponent(slug), { method: 'GET', headers: apiHeaders() });
       const data = await res.json();
       if (res.ok && data.ok) applyItem(slug, data.item);
+      if (notify) alert('상태 동기화 완료');
     }
     async function saveDraft(slug) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
-      if (!getActionToken()) setActionToken();
+      if (!getActionToken()) { setActionToken(); return; }
       const payload = {
         slug,
         review_draft_title: document.getElementById('edit-title-' + slug).value,
@@ -1122,9 +1119,7 @@
         con_note: document.getElementById('edit-con-' + slug).value,
         helpful_tip: document.getElementById('edit-tip-' + slug).value,
       };
-      const res = await fetch(baseApiUrl() + '/review-draft-update', {
-        method: 'POST', headers: apiHeaders(), body: JSON.stringify(payload)
-      });
+      const res = await fetch(baseApiUrl() + '/review-draft-update', { method: 'POST', headers: apiHeaders(), body: JSON.stringify(payload) });
       const data = await res.json();
       if (!res.ok || !data.ok) { alert('저장 실패: ' + (data.error || res.statusText)); return; }
       applyItem(slug, data.item);
@@ -1132,22 +1127,17 @@
       alert('초안 저장 완료');
     }
     async function syncAllNow(notify=false) {
-      if (!ACTION_API_BASE_URL) {
-        if (notify) alert('액션 API URL이 아직 연결되지 않았어.');
-        return;
-      }
-      if (!getActionToken()) {
-        if (notify) setActionToken();
-        return;
-      }
+      if (!ACTION_API_BASE_URL) { if (notify) alert('액션 API URL이 아직 연결되지 않았어.'); return; }
+      if (!getActionToken()) { if (notify) setActionToken(); return; }
       const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 50);
       for (const card of cards) {
         const slug = card.getAttribute('data-slug');
-        try { await refreshItem(slug); } catch (e) { console.error('refresh failed', slug, e); }
+        try { await refreshItem(slug, false); } catch (e) { console.error('refresh failed', slug, e); }
       }
-      if (notify) alert('최신 상태를 다시 불러왔어.');
+      if (notify) alert('상태 동기화 완료');
     }
     document.addEventListener('DOMContentLoaded', () => {
+      updateStats();
       if (!ACTION_API_BASE_URL || !getActionToken()) return;
       setTimeout(() => { syncAllNow(false).catch(() => {}); }, 700);
     });
