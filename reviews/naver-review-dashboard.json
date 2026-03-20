@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-03-20T22:17:57+09:00",
+    "generated_at": "2026-03-20T22:25:44+09:00",
     "counts": {
       "total": 15,
-      "awaiting_approval": 10,
-      "approved": 5,
+      "awaiting_approval": 7,
+      "approved": 8,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
@@ -221,12 +221,12 @@
       "purchase_confirmed_at": "26.02.21.",
       "due_date": "2026.03.22.",
       "d_day": "D-2",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T22:10:30",
+      "last_synced_at": "2026-03-20T22:18:56",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "터닝메카드 카울[중고]을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -235,12 +235,12 @@
       "pro_note": "사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.",
       "con_note": "아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.",
       "helpful_tip": "처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.",
-      "approval_memo": "reset to awaiting_approval for dashboard retest",
+      "approval_memo": "",
       "uploader_result": "",
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "최근구매 리뷰 | 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED",
@@ -262,12 +262,12 @@
       "purchase_confirmed_at": "26.02.19.",
       "due_date": "2026.03.20.",
       "d_day": "D-0",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T22:10:30",
+      "last_synced_at": "2026-03-20T22:21:47",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -276,12 +276,12 @@
       "pro_note": "사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.",
       "con_note": "아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.",
       "helpful_tip": "처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다.",
-      "approval_memo": "reset to awaiting_approval for dashboard retest",
+      "approval_memo": "",
       "uploader_result": "",
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/9-LED-329b2169ba7c8137a42acd0a9d0f5a76",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "한달사용 리뷰 | 3M 클레이바 낙진제거제 1EA",
@@ -375,12 +375,12 @@
       "purchase_confirmed_at": "26.02.12.",
       "due_date": "2026.05.12.",
       "d_day": "D-53",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-20T19:21:00+09:00",
-      "last_synced_at": "2026-03-20T19:22:09",
+      "last_synced_at": "2026-03-20T22:22:58",
       "review_url": "",
       "review_draft_title": "무난하게 만족했던 실사용 후기",
       "review_draft_body": "마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개을 실제로 사용해보니 전반적으로 무난하게 만족스러웠습니다.\n\n구성이 복잡하지 않아 처음 써도 부담이 적었습니다. 특히 사용 목적에 맞는 기본 기능은 안정적으로 해주는 편이었습니다.\n\n다만 아주 강한 체감 변화보다는 꾸준히 써야 장점이 느껴지는 편입니다.\n\n팁으로는 처음에는 좁은 구간부터 사용해보면 제품 특성을 파악하기 쉽습니다. 비슷한 용도로 찾는 분들에게는 무난하게 추천할 만합니다.",
@@ -394,7 +394,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a",
-      "status_label": "승인대기"
+      "status_label": "승인됨"
     },
     {
       "title": "한달사용 리뷰 | 비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기",
