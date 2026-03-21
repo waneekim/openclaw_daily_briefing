@@ -92,7 +92,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T14:41:41+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T14:44:17+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -2145,8 +2145,7 @@ https://..."></textarea>
     let currentFilter = 'all';
 
     function parseMultilineUrls(text) {
-      return (text || '').split('
-').map(x => x.trim()).filter(Boolean);
+      return (text || '').split('\n').map(x => x.trim()).filter(Boolean);
     }
 
     function baseApiUrl() {
@@ -2274,10 +2273,8 @@ https://..."></textarea>
       setVal('exp-', item.user_experience_note || '');
       setVal('intent-', item.user_intent_note || '');
       setVal('rewrite-', item.rewrite_request_note || '');
-      setVal('images-', (item.media_image_urls || []).join('
-'));
-      setVal('videos-', (item.media_video_urls || []).join('
-'));
+      setVal('images-', (item.media_image_urls || []).join('\n'));
+      setVal('videos-', (item.media_video_urls || []).join('\n'));
       refreshSaveButton(slug);
       refreshWorkbenchButton(slug);
     }
