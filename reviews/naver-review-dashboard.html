@@ -16,8 +16,6 @@
     h1 { margin:0 0 6px; font-size:28px; }
     .lead { color:var(--muted); margin:0; line-height:1.5; }
     .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 18px; }
-    .compact-toolbar { margin:0 0 12px; }
-    .compact-toolbar select { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:white; color:#111827; font-weight:700; }
     .filter-strip { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
     .filter-chip { border:1px solid var(--line); background:white; color:var(--text); border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer; }
     .filter-chip.active { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
@@ -68,6 +66,8 @@
     .bottom-left, .bottom-right { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .bottom-left { overflow-x:auto; flex-wrap:nowrap; padding-bottom:2px; }
     .bottom-left::-webkit-scrollbar { height:6px; }
+    .bottom-controls { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .bottom-controls select { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:white; color:#111827; font-weight:700; }
     .summary-pill { border:none; background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:10px 12px; min-width:92px; cursor:pointer; text-align:left; }
     .summary-pill.active { background:#eff6ff; border-color:#93c5fd; }
     .summary-pill .k { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
@@ -92,23 +92,9 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T14:49:46+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T14:55:54+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
-
-    <div class="toolbar compact-toolbar">
-      <select id="point-filter" onchange="applySort()">
-        <option value="all">포인트 전체</option>
-        <option value="lte_200">200원 이하</option>
-        <option value="201_999">201~999원</option>
-        <option value="ge_1000">1000원 이상</option>
-      </select>
-      <select id="sort-mode" onchange="applySort()">
-        <option value="default">기본 순서</option>
-        <option value="point_desc">포인트 높은 순</option>
-        <option value="dday_asc">마감 임박순</option>
-      </select>
-    </div>
 
     <div class="empty-state" id="empty-state">
       <div class="title">현재 필터에 맞는 항목이 없어</div>
@@ -2123,16 +2109,29 @@ https://..."></textarea>
     <div class="bottom-inner">
       <div class="bottom-top">
         <div class="bottom-left">
-          <button type="button" class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">29</span></button>
-          <button type="button" class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">28</span></button>
-          <button type="button" class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">0</span></button>
-          <button type="button" class="summary-pill" data-filter="needs_edit" onclick="setFilter('needs_edit')"><span class="k">수정요청</span><span class="v" id="stat-needs_edit">1</span></button>
-          <button type="button" class="summary-pill" data-filter="uploaded" onclick="setFilter('uploaded')"><span class="k">업로드완료</span><span class="v" id="stat-uploaded">0</span></button>
-          <button type="button" class="summary-pill" data-filter="error" onclick="setFilter('error')"><span class="k">오류</span><span class="v" id="stat-error">0</span></button>
+          <button type="button" class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">29/29</span></button>
+          <button type="button" class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">28/28</span></button>
+          <button type="button" class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">0/0</span></button>
+          <button type="button" class="summary-pill" data-filter="needs_edit" onclick="setFilter('needs_edit')"><span class="k">수정요청</span><span class="v" id="stat-needs_edit">1/1</span></button>
+          <button type="button" class="summary-pill" data-filter="uploaded" onclick="setFilter('uploaded')"><span class="k">업로드완료</span><span class="v" id="stat-uploaded">0/0</span></button>
+          <button type="button" class="summary-pill" data-filter="error" onclick="setFilter('error')"><span class="k">오류</span><span class="v" id="stat-error">0/0</span></button>
         </div>
         <div class="bottom-right">
-          <button type="button" class="btn small secondary" onclick="scrollTo({top:0,behavior:'smooth'})">맨 위</button>
-          <button type="button" class="btn small" onclick="bulkApproveVisible()">보이는 항목 일괄 승인</button>
+          <div class="bottom-controls">
+            <select id="point-filter" onchange="applySort()">
+              <option value="all">포인트 전체</option>
+              <option value="lte_200">200원 이하</option>
+              <option value="201_999">201~999원</option>
+              <option value="ge_1000">1000원 이상</option>
+            </select>
+            <select id="sort-mode" onchange="applySort()">
+              <option value="default">기본 순서</option>
+              <option value="point_desc">포인트 높은 순</option>
+              <option value="dday_asc">마감 임박순</option>
+            </select>
+            <button type="button" class="btn small secondary" onclick="scrollTo({top:0,behavior:'smooth'})">맨 위</button>
+            <button type="button" class="btn small" onclick="bulkApproveVisible()">보이는 항목 일괄 승인</button>
+          </div>
         </div>
       </div>
       <div class="status-message" id="status-message">현재 필터: 전체 보기</div>
@@ -2166,20 +2165,23 @@ https://..."></textarea>
     function visibleCards() {
       return Array.from(document.querySelectorAll('article.review-card[data-slug]')).filter(card => !card.classList.contains('hidden'));
     }
+    let totalCounts = { total: 0, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+    function renderStatRatios(visibleCounts) {
+      const set = (id, visible, total) => { const el = document.getElementById(id); if (el) el.textContent = `${visible}/${total}`; };
+      set('stat-total', visibleCounts.total, totalCounts.total);
+      set('stat-awaiting_approval', visibleCounts.awaiting_approval, totalCounts.awaiting_approval);
+      set('stat-approved', visibleCounts.approved, totalCounts.approved);
+      set('stat-uploaded', visibleCounts.uploaded, totalCounts.uploaded);
+      set('stat-needs_edit', visibleCounts.needs_edit, totalCounts.needs_edit);
+      set('stat-error', visibleCounts.error, totalCounts.error);
+    }
     function updateStats() {
       const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
-      const counts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+      totalCounts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
-        if (Object.prototype.hasOwnProperty.call(counts, status)) counts[status] += 1;
+        if (Object.prototype.hasOwnProperty.call(totalCounts, status)) totalCounts[status] += 1;
       }
-      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = String(val); };
-      set('stat-total', counts.total);
-      set('stat-awaiting_approval', counts.awaiting_approval);
-      set('stat-approved', counts.approved);
-      set('stat-uploaded', counts.uploaded);
-      set('stat-needs_edit', counts.needs_edit);
-      set('stat-error', counts.error);
       applyFilter();
     }
     function filterLabel(filter) {
@@ -2203,10 +2205,17 @@ https://..."></textarea>
       document.querySelectorAll('.summary-pill[data-filter]').forEach(el => {
         el.classList.toggle('active', el.getAttribute('data-filter') === currentFilter);
       });
-      const visible = visibleCards().length;
+      const visibleCardsList = visibleCards();
+      const visibleCounts = { total: visibleCardsList.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+      for (const card of visibleCardsList) {
+        const status = card.getAttribute('data-status') || 'awaiting_approval';
+        if (Object.prototype.hasOwnProperty.call(visibleCounts, status)) visibleCounts[status] += 1;
+      }
+      renderStatRatios(visibleCounts);
+      const visible = visibleCounts.total;
       const msg = document.getElementById('status-message');
       const pointFilterLabel = document.getElementById('point-filter')?.selectedOptions?.[0]?.textContent || '포인트 전체';
-      if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} / ${pointFilterLabel} · 보이는 항목 ${visible}개`;
+      if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} / ${pointFilterLabel}`;
       const empty = document.getElementById('empty-state');
       const list = document.getElementById('review-list');
       if (empty) empty.classList.toggle('show', visible === 0);
