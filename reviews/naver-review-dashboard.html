@@ -57,6 +57,10 @@
     .tips b { color:#111827; margin-right:6px; }
     .workbench-box { margin-top:14px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; padding:12px; }
     .wb-title { font-size:14px; font-weight:800; margin-bottom:10px; }
+    .media-ai-status { margin:-2px 0 10px; font-size:12px; color:#475569; line-height:1.5; }
+    .media-ai-status.ok { color:#15803d; font-weight:700; }
+    .media-ai-status.err { color:#b91c1c; font-weight:700; }
+    .media-ai-status.muted { color:#64748b; }
     .workbench-box label { display:block; margin:10px 0 6px; color:#334155; font-size:13px; font-weight:700; }
     .wb-textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #cbd5e1; background:white; color:#111827; resize:vertical; }
     .media-file-input { width:100%; border:1px dashed #94a3b8; background:white; border-radius:10px; padding:12px; }
@@ -104,7 +108,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T20:13:13+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-22T01:05:33+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -131,7 +135,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">2026-03-21T20:12:59</span></span>
+              <span class="synced-text">동기화 <span id="synced-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">2026-03-22T00:32:54</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" onclick='toggleApproval("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")'>승인</button>
@@ -163,6 +167,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘">나는 이 메모리폰 베개에 완전히 반했어. 앞으로 차박이 너무 기대돼. 나는 원래 1개만 샀었는데 이걸 1개 더 샀어. 한번 배워보니까 이제 다른 베개는 차박에 못 가져갈 것 같아.</textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -171,6 +176,7 @@
             <div class="media-panel" id="media-panel-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" onclick='saveWorkbench("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개"></div>
             </div>
@@ -195,7 +201,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge bad" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">수정요청</span>
-              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-21T20:06:43</span></span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-22T00:33:26</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인</button>
@@ -227,6 +233,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -235,6 +242,7 @@
             <div class="media-panel" id="media-panel-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='saveWorkbench("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l"></div>
             </div>
@@ -291,6 +299,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-친수코팅제-물때방지코팅제-100ml-욕실청소"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘">이 친수 코팅 되는 데가 벌써 세 번째 재구매한 제품입니다. 유리가 거의 안 보일 정도로 깨끗하게 코팅이 되고 물도 완전히 폭포수처럼 유일에 붙어서 흘러내려서 물을 뿌렸는지 안 뿌렸는지 모를 정도로 굉장히 친수화된 코팅제입니다</textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -299,6 +308,7 @@
             <div class="media-panel" id="media-panel-친수코팅제-물때방지코팅제-100ml-욕실청소"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='saveWorkbench("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-친수코팅제-물때방지코팅제-100ml-욕실청소"></div>
             </div>
@@ -323,7 +333,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T20:13:12</span></span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-22T00:33:41</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>승인</button>
@@ -355,6 +365,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘">나는 평소에 세차용품을 차에다가 많이 싣고 다니는데 프렁크가 굉장히 정리를 하려고 노력을 많이 했지만 다른 가방들을 열심히 쌓아두고 정리를 하려고 해도 잘 정리가 되지 않았어. 나는 목적별로 정리를 하는 걸 좋아하는데. 이 박스 하나가 모든 것을 해결해 줬어. 나는 이 박스로 많은 종류의 목적이 되는 그런 케미컬들을 다 정리를 했고 그리고 버킷도 두 개를 가지고 다니고 있지만 트렁크가 완전히 정리가 잘 될 정도로 이 박스 하나에 그게 커 역할이 커</textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -363,6 +374,7 @@
             <div class="media-panel" id="media-panel-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='saveWorkbench("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l"></div>
             </div>
@@ -419,6 +431,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-루미너스-아쿠아-습식코팅제-고농축-원액-500ml"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -427,6 +440,7 @@
             <div class="media-panel" id="media-panel-루미너스-아쿠아-습식코팅제-고농축-원액-500ml"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" onclick='saveWorkbench("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-루미너스-아쿠아-습식코팅제-고농축-원액-500ml"></div>
             </div>
@@ -483,6 +497,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -491,6 +506,7 @@
             <div class="media-panel" id="media-panel-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" onclick='saveWorkbench("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml"></div>
             </div>
@@ -547,6 +563,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -555,6 +572,7 @@
             <div class="media-panel" id="media-panel-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='saveWorkbench("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정"></div>
             </div>
@@ -611,6 +629,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-클린-양면-드라잉타월-듀오-대형-세차타월"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-클린-양면-드라잉타월-듀오-대형-세차타월" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -619,6 +638,7 @@
             <div class="media-panel" id="media-panel-클린-양면-드라잉타월-듀오-대형-세차타월"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-클린-양면-드라잉타월-듀오-대형-세차타월" onclick='saveWorkbench("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-클린-양면-드라잉타월-듀오-대형-세차타월"></div>
             </div>
@@ -675,6 +695,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-클린-양면-드라잉타월-듀오-미니"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-클린-양면-드라잉타월-듀오-미니" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -683,6 +704,7 @@
             <div class="media-panel" id="media-panel-클린-양면-드라잉타월-듀오-미니"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-클린-양면-드라잉타월-듀오-미니" onclick='saveWorkbench("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-클린-양면-드라잉타월-듀오-미니"></div>
             </div>
@@ -739,6 +761,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-터닝메카드-카울중고"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-터닝메카드-카울중고" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -747,6 +770,7 @@
             <div class="media-panel" id="media-panel-터닝메카드-카울중고"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-터닝메카드-카울중고" onclick='saveWorkbench("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-터닝메카드-카울중고"></div>
             </div>
@@ -803,6 +827,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -811,6 +836,7 @@
             <div class="media-panel" id="media-panel-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제"></div>
             </div>
@@ -867,6 +893,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -875,6 +902,7 @@
             <div class="media-panel" id="media-panel-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='saveWorkbench("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led"></div>
             </div>
@@ -931,6 +959,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -939,6 +968,7 @@
             <div class="media-panel" id="media-panel-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" onclick='saveWorkbench("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약"></div>
             </div>
@@ -995,6 +1025,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-3m-클레이바-낙진제거제-1ea"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-3m-클레이바-낙진제거제-1ea" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1003,6 +1034,7 @@
             <div class="media-panel" id="media-panel-3m-클레이바-낙진제거제-1ea"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-3m-클레이바-낙진제거제-1ea" onclick='saveWorkbench("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-3m-클레이바-낙진제거제-1ea"></div>
             </div>
@@ -1059,6 +1091,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1067,6 +1100,7 @@
             <div class="media-panel" id="media-panel-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" onclick='saveWorkbench("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm"></div>
             </div>
@@ -1123,6 +1157,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1131,6 +1166,7 @@
             <div class="media-panel" id="media-panel-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" onclick='saveWorkbench("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml"></div>
             </div>
@@ -1187,6 +1223,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1195,6 +1232,7 @@
             <div class="media-panel" id="media-panel-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개"></div>
             </div>
@@ -1251,6 +1289,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1259,6 +1298,7 @@
             <div class="media-panel" id="media-panel-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" onclick='saveWorkbench("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기"></div>
             </div>
@@ -1315,6 +1355,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1323,6 +1364,7 @@
             <div class="media-panel" id="media-panel-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거"></div>
             </div>
@@ -1379,6 +1421,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1387,6 +1430,7 @@
             <div class="media-panel" id="media-panel-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" onclick='saveWorkbench("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제"></div>
             </div>
@@ -1443,6 +1487,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1451,6 +1496,7 @@
             <div class="media-panel" id="media-panel-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" onclick='saveWorkbench("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개"></div>
             </div>
@@ -1507,6 +1553,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1515,6 +1562,7 @@
             <div class="media-panel" id="media-panel-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='saveWorkbench("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침"></div>
             </div>
@@ -1571,6 +1619,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1579,6 +1628,7 @@
             <div class="media-panel" id="media-panel-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='saveWorkbench("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼"></div>
             </div>
@@ -1635,6 +1685,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1643,6 +1694,7 @@
             <div class="media-panel" id="media-panel-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveWorkbench("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
             </div>
@@ -1699,6 +1751,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1707,6 +1760,7 @@
             <div class="media-panel" id="media-panel-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" onclick='saveWorkbench("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식"></div>
             </div>
@@ -1763,6 +1817,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1771,6 +1826,7 @@
             <div class="media-panel" id="media-panel-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" onclick='saveWorkbench("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml"></div>
             </div>
@@ -1827,6 +1883,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-전동드릴-광택패드-80mm-7종-세트-광택작업"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1835,6 +1892,7 @@
             <div class="media-panel" id="media-panel-전동드릴-광택패드-80mm-7종-세트-광택작업"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='saveWorkbench("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-전동드릴-광택패드-80mm-7종-세트-광택작업"></div>
             </div>
@@ -1891,6 +1949,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1899,6 +1958,7 @@
             <div class="media-panel" id="media-panel-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" onclick='saveWorkbench("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x"></div>
             </div>
@@ -1955,6 +2015,7 @@
 
           <div class="workbench-box">
             <div class="wb-title">리뷰 작업 메모</div>
+            <div class="media-ai-status" id="media-ai-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
             <label>자유 메모</label>
             <textarea class="wb-textarea" id="worknote-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="5" placeholder="내 경험, 의도, 강조 포인트, 추가로 반영하고 싶은 내용을 자유롭게 적어줘"></textarea>
             <label>사진/영상 업로드 (최대 10개)</label>
@@ -1963,6 +2024,7 @@
             <div class="media-panel" id="media-panel-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"><div class="media-empty">선택한 사진/영상이 아직 없어</div></div>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn secondary" id="wb-save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveWorkbench("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn" onclick='generateMediaCaptions("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>사진 한줄평 생성</button>
               <button class="btn bad" onclick='sendRewriteRequest("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>메모 반영해서 수정요청</button>
               <div class="save-status" id="wb-save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
             </div>
@@ -2010,7 +2072,7 @@
     const TOKEN_KEY = 'reviewActionToken';
     const MAX_MEDIA_ITEMS = 10;
     const selectedMedia = {};
-    const uploadedMedia = {"캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개": [{"name": "1000028332.jpg", "mime_type": "image/jpeg", "size": 214247, "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-193926-4ded9ea9.jpg", "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-193926-4ded9ea9.jpg", "kind": "image", "caption": ""}], "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l": [{"name": "1000028318.jpg", "mime_type": "image/jpeg", "size": 244475, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-200610-f696ac2d.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-200610-f696ac2d.jpg", "kind": "image", "caption": ""}, {"name": "1000028334.jpg", "mime_type": "image/jpeg", "size": 154559, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-200642-e1574ca5.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-200642-e1574ca5.jpg", "kind": "image", "caption": ""}], "친수코팅제-물때방지코팅제-100ml-욕실청소": [], "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l": [{"name": "1000028335.jpg", "mime_type": "image/jpeg", "size": 209195, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l/20260321-201025-10efeede.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-48l/20260321-201025-10efeede.jpg", "kind": "image", "caption": ""}], "루미너스-아쿠아-습식코팅제-고농축-원액-500ml": [], "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml": [], "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정": [], "클린-양면-드라잉타월-듀오-대형-세차타월": [], "클린-양면-드라잉타월-듀오-미니": [], "터닝메카드-카울중고": [], "마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제": [], "벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led": [], "우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약": [], "3m-클레이바-낙진제거제-1ea": [], "버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm": [], "불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml": [], "마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개": [], "비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기": [], "마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거": [], "d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제": [], "줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개": [], "닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침": [], "벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼": [], "나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소": [], "크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식": [], "불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml": [], "전동드릴-광택패드-80mm-7종-세트-광택작업": [], "소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x": []};
+    const uploadedMedia = {"캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개": [{"name": "1000028332.jpg", "mime_type": "image/jpeg", "size": 214247, "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-193926-4ded9ea9.jpg", "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-193926-4ded9ea9.jpg", "kind": "image", "caption": "차박 매트 위에 베개를 나란히 세팅해두니 사이즈도 넉넉하고 아주 깔끔하네요."}], "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l": [{"name": "1000028318.jpg", "mime_type": "image/jpeg", "size": 244475, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-200610-f696ac2d.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-200610-f696ac2d.jpg", "kind": "image", "caption": "자주 쓰는 세차 타월과 약품들을 한데 모아 정리하니 트렁크가 한결 깔끔해졌어요."}, {"name": "1000028334.jpg", "mime_type": "image/jpeg", "size": 154559, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-200642-e1574ca5.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-200642-e1574ca5.jpg", "kind": "image", "caption": "차량 실내에 두어도 베이지 색상이 튀지 않고 자연스럽게 잘 어울리네요."}], "친수코팅제-물때방지코팅제-100ml-욕실청소": [], "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l": [{"name": "1000028335.jpg", "mime_type": "image/jpeg", "size": 209195, "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l/20260321-201025-10efeede.jpg", "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-48l/20260321-201025-10efeede.jpg", "kind": "image", "caption": "48L 대용량이라 큼직하고 프렁크 공간에도 여유 있게 잘 들어가는 사이즈예요."}], "루미너스-아쿠아-습식코팅제-고농축-원액-500ml": [], "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml": [], "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정": [], "클린-양면-드라잉타월-듀오-대형-세차타월": [], "클린-양면-드라잉타월-듀오-미니": [], "터닝메카드-카울중고": [], "마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제": [], "벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led": [], "우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약": [], "3m-클레이바-낙진제거제-1ea": [], "버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm": [], "불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml": [], "마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개": [], "비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기": [], "마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거": [], "d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제": [], "줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개": [], "닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침": [], "벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼": [], "나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소": [], "크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식": [], "불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml": [], "전동드릴-광택패드-80mm-7종-세트-광택작업": [], "소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x": []};
     const mediaPickerScroll = {};
     let currentFilter = 'all';
 
@@ -2233,11 +2295,31 @@
       const changed = !!(note && note.value !== (note.dataset.original || ''));
       btn.disabled = !changed;
     }
+    function renderMediaAiStatus(slug, item) {
+      const el = document.getElementById('media-ai-status-' + slug);
+      if (!el) return;
+      const status = item?.caption_generation_status || '';
+      const error = item?.caption_generation_error || '';
+      const model = item?.caption_generation_model || '';
+      if (status === 'done') {
+        el.className = 'media-ai-status ok';
+        el.textContent = `사진 한줄평은 AI 이미지 분석으로 생성됨${model ? ' · ' + model : ''}`;
+        return;
+      }
+      if (status === 'failed') {
+        el.className = 'media-ai-status err';
+        el.textContent = `AI 이미지 분석 실패${error ? ' · ' + error : ''}`;
+        return;
+      }
+      el.className = 'media-ai-status muted';
+      el.textContent = '사진 한줄평은 이미지가 있을 때만 AI 분석으로 생성됨';
+    }
     function applyWorkbenchItem(slug, item, options = {}) {
       if (!item) return;
       setStatusUI(slug, item.status, item.status_label, { skipListRefresh: true });
       const setText = (id, val) => { const el = document.getElementById(id + slug); if (el) el.textContent = val || ''; };
       setText('synced-', item.last_synced_at);
+      renderMediaAiStatus(slug, item);
       const workStatusEl = document.getElementById('wb-save-status-' + slug);
       if (workStatusEl) { workStatusEl.className = 'save-status'; workStatusEl.textContent = ''; }
       const noteEl = document.getElementById('worknote-' + slug);
@@ -2447,6 +2529,26 @@
         const msg = errorMessage(e, '삭제 실패');
         if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '삭제 실패: ' + msg; }
         alert('삭제 실패: ' + msg);
+      }
+    }
+    async function generateMediaCaptions(slug) {
+      if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
+      if (!getActionToken()) { setActionToken(); return; }
+      blurActiveElement();
+      const restoreScroll = keepCardPosition(slug);
+      const statusEl = document.getElementById('wb-save-status-' + slug);
+      try {
+        if (statusEl) { statusEl.className = 'save-status'; statusEl.textContent = '사진 한줄평 생성 중...'; }
+        const res = await fetch(baseApiUrl() + '/review-media-generate-captions', { method: 'POST', headers: apiHeaders(), body: JSON.stringify({ slug }) });
+        const data = await parseApiJsonSafe(res);
+        if (!res.ok || !data.ok) throw new Error(data.error || res.statusText || '생성 실패');
+        applyWorkbenchItem(slug, data.item);
+        if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '사진 한줄평 생성 완료'; }
+        requestAnimationFrame(restoreScroll);
+      } catch (e) {
+        const msg = errorMessage(e, '생성 실패');
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '생성 실패: ' + msg; }
+        alert('사진 한줄평 생성 실패: ' + msg);
       }
     }
     async function sendRewriteRequest(slug) {
