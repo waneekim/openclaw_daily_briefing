@@ -104,7 +104,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T19:51:56+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T20:02:13+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -323,7 +323,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge bad" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">수정요청</span>
-              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T19:46:41</span></span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T19:59:55</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>승인</button>
@@ -2021,6 +2021,12 @@
       const el = document.activeElement;
       if (el && typeof el.blur === 'function') el.blur();
     }
+    function errorMessage(err, fallback = '알 수 없는 오류') {
+      if (!err) return fallback;
+      if (typeof err === 'string') return err;
+      if (typeof err.message === 'string' && err.message) return err.message;
+      try { return JSON.stringify(err); } catch { return fallback; }
+    }
     function rememberMediaScroll(slug) {
       mediaPickerScroll[slug] = window.scrollY || window.pageYOffset || 0;
     }
@@ -2334,8 +2340,9 @@
         applyWorkbenchItem(slug, data.item);
         if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '메모 저장 완료'; }
       } catch (e) {
-        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '저장 실패: ' + e.message; }
-        alert('메모 저장 실패: ' + e.message);
+        const msg = errorMessage(e, '메모 저장 실패');
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '저장 실패: ' + msg; }
+        alert('메모 저장 실패: ' + msg);
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = '메모 저장'; }
         refreshWorkbenchButton(slug);
@@ -2437,8 +2444,9 @@
         if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '업로드된 미디어 삭제 완료'; }
         requestAnimationFrame(restoreScroll);
       } catch (e) {
-        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '삭제 실패: ' + e.message; }
-        alert('삭제 실패: ' + e.message);
+        const msg = errorMessage(e, '삭제 실패');
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '삭제 실패: ' + msg; }
+        alert('삭제 실패: ' + msg);
       }
     }
     async function sendRewriteRequest(slug) {
@@ -2452,8 +2460,9 @@
         await reviewAction(slug, 'needs_edit');
         if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '수정요청 완료'; }
       } catch (e) {
-        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '처리 실패: ' + e.message; }
-        alert('수정요청 처리 실패: ' + e.message);
+        const msg = errorMessage(e, '수정요청 처리 실패');
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '처리 실패: ' + msg; }
+        alert('수정요청 처리 실패: ' + msg);
       } finally {
         requestAnimationFrame(restoreScroll);
       }
@@ -2481,8 +2490,9 @@
         applyItem(slug, data.item);
         if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '저장 완료'; }
       } catch (e) {
-        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '저장 실패: ' + e.message; }
-        alert('저장 실패: ' + e.message);
+        const msg = errorMessage(e, '저장 실패');
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '저장 실패: ' + msg; }
+        alert('저장 실패: ' + msg);
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = '수정완료'; }
         refreshSaveButton(slug);
