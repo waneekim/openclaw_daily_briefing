@@ -16,6 +16,8 @@
     h1 { margin:0 0 6px; font-size:28px; }
     .lead { color:var(--muted); margin:0; line-height:1.5; }
     .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 18px; }
+    .compact-toolbar { margin:0 0 12px; }
+    .compact-toolbar select { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:white; color:#111827; font-weight:700; }
     .filter-strip { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
     .filter-chip { border:1px solid var(--line); background:white; color:var(--text); border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer; }
     .filter-chip.active { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
@@ -55,10 +57,11 @@
     .btn:disabled { opacity:.45; cursor:not-allowed; }
     .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:#374151; }
     .tips b { color:#111827; margin-right:6px; }
-    .footer-links { margin-top:12px; }
-    .editor { margin-top:14px; padding:14px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; }
-    .editor label { display:block; margin:10px 0 6px; color:#334155; font-size:13px; font-weight:700; }
-    .editor textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #cbd5e1; background:white; color:#111827; }
+    .workbench-box { margin-top:14px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; padding:12px; }
+    .wb-title { font-size:14px; font-weight:800; margin-bottom:10px; }
+    .workbench-box label { display:block; margin:10px 0 6px; color:#334155; font-size:13px; font-weight:700; }
+    .wb-textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #cbd5e1; background:white; color:#111827; resize:vertical; }
+    .wb-textarea.mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
     .bottom-bar { position:fixed; left:0; right:0; bottom:0; z-index:50; background:rgba(255,255,255,.96); border-top:1px solid var(--line); backdrop-filter:blur(12px); box-shadow:0 -8px 30px rgba(15,23,42,.08); }
     .bottom-inner { max-width:1180px; margin:0 auto; padding:10px 16px 12px; display:grid; gap:10px; }
     .bottom-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
@@ -89,9 +92,23 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T12:57:20+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T13:56:27+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
+
+    <div class="toolbar compact-toolbar">
+      <select id="point-filter" onchange="applyFilter()">
+        <option value="all">포인트 전체</option>
+        <option value="lte_200">200원 이하</option>
+        <option value="201_999">201~999원</option>
+        <option value="ge_1000">1000원 이상</option>
+      </select>
+      <select id="sort-mode" onchange="applySort()">
+        <option value="default">기본 순서</option>
+        <option value="point_desc">포인트 높은 순</option>
+        <option value="dday_asc">마감 임박순</option>
+      </select>
+    </div>
 
     <div class="empty-state" id="empty-state">
       <div class="title">현재 필터에 맞는 항목이 없어</div>
@@ -99,7 +116,76 @@
       <button class="btn" onclick="setFilter('all')">전체 보기로 돌아가기</button>
     </div>
     <div class="list" id="review-list">
-        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-slug="캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-status="awaiting_approval" data-point="650" data-point-bucket="201_999" data-dday="D-27">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220404_145/1649061135328gDQs1_JPEG/50197031056878283_591998712.jpg?type=f170_170" alt="캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개</div>
+              <div class="product-sub">캠핑슬립</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 650원</span>
+                <span class="meta-pill due">2026.04.17. · D-27</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" onclick='toggleApproval("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">실사용 기준으로 무난하게 만족했습니다</div>
+            <textarea class="review-textarea" data-slug="캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" id="edit-body-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="9">캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 큰 불편 없이 쓰기 무난한 편이었습니다.
+
+디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
+
+다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
+
+팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" onclick='saveDraft("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
+            <div><b>장점</b> <span id="pro-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
+            <div><b>단점</b> <span id="con-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
+            <div><b>팁</b> <span id="tip-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" onclick='saveWorkbench("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ucea0\ud551\uc2ac\ub9bd-\uba54\ubaa8\ub9ac\ud3fc-\uc640\uc774\ub4dc-\ucc28\ubc15-\ud734\ub300\uc6a9-\ucea0\ud551\uc6a9-\ubca0\uac1c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-25">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241014_213/1728874174146PpWo5_JPEG/63007109293176082_1038306443.jpg?type=f170_170" alt="오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -116,7 +202,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-21T12:31:53</span></span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인</button>
@@ -146,9 +232,29 @@
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='saveWorkbench("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-24">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251216_211/1765830345117pWjyG_PNG/20526836233493435_929627864.png?type=f170_170" alt="친수코팅제 물때방지코팅제 100ml 욕실청소" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -165,7 +271,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-친수코팅제-물때방지코팅제-100ml-욕실청소">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-21T12:20:51</span></span>
+              <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='toggleApproval("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>승인</button>
@@ -195,9 +301,29 @@
             <div><b>팁</b> <span id="tip-친수코팅제-물때방지코팅제-100ml-욕실청소">욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-친수코팅제-물때방지코팅제-100ml-욕실청소" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='saveWorkbench("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-친수코팅제-물때방지코팅제-100ml-욕실청소"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-22">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241014_260/1728874146901BPNcR_JPEG/4492173361145230_258511921.jpg?type=f170_170" alt="오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -214,7 +340,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>승인</button>
@@ -244,9 +370,29 @@
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">큰 짐은 아래에, 자주 쓰는 파우치는 전면 도어 쪽에 두면 48L의 넓은 공간을 덜 헤매고 쓰기 좋습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='saveWorkbench("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card bad" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="needs_edit">
+        <article class="review-card bad" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="needs_edit" data-point="150" data-point-bucket="lte_200" data-dday="D-19">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20230519_77/1684453942659Im2AK_JPEG/2500467471898622_1587797073.jpg?type=f170_170" alt="루미너스 아쿠아 습식코팅제 고농축 원액 500ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -263,7 +409,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge bad" id="badge-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">수정요청</span>
-              <span class="synced-text">동기화 <span id="synced-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">2026-03-21T12:31:05</span></span>
+              <span class="synced-text">동기화 <span id="synced-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" onclick='toggleApproval("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>승인</button>
@@ -293,9 +439,98 @@
             <div><b>팁</b> <span id="tip-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" onclick='saveWorkbench("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-루미너스-아쿠아-습식코팅제-고농축-원액-500ml"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-slug="정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-status="awaiting_approval" data-point="2250" data-point-bucket="ge_1000" data-dday="D-17">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20240328_12/1711613430252f11tO_JPEG/112749328944685057_312215202.jpg?type=f170_170" alt="정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml</div>
+              <div class="product-sub">곰아워랩</div>
+              <div class="product-option">물때제거제: 500ml석회물세트</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 2,250원</span>
+                <span class="meta-pill due">2026.04.07. · D-17</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" onclick='toggleApproval("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">용도에 맞게 쓰면 괜찮은 편이었습니다</div>
+            <textarea class="review-textarea" data-slug="정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" id="edit-body-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="9">정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 물때제거제: 500ml석회물세트 기준으로 봤습니다.
+
+디자인이나 구성 쪽에서는 구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다. 실제로 써보면 용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.
+
+다만 한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.
+
+팁으로는 용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다. 전체적으로 정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" onclick='saveDraft("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다.</span></div>
+            <div><b>장점</b> <span id="pro-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.</span></div>
+            <div><b>단점</b> <span id="con-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" onclick='saveWorkbench("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc815\uc6b0\ucf00\ubbf8\uce7c-\ubb3c\ub54c\uc81c\uac70\uc81c-\uc0e4\uc6cc\ubd80\uc2a4-\uc218\ub3c4\uaf2d\uc9c0-\uc218\uc804\uccad\uc18c-\uae30\ub984\ub54c-\uc81c\uac70-300ml")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-14">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250519_142/1747624435806BCQ4s_JPEG/92184324550034341_27457019.jpg?type=f170_170" alt="창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -312,7 +547,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-21T12:20:55</span></span>
+              <span class="synced-text">동기화 <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='toggleApproval("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>승인</button>
@@ -342,9 +577,167 @@
             <div><b>팁</b> <span id="tip-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='saveWorkbench("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-대형-세차타월" data-slug="클린-양면-드라잉타월-듀오-대형-세차타월" data-status="awaiting_approval" data-point="1150" data-point-bucket="ge_1000" data-dday="D-2">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250920_11/1758351631334BgANx_JPEG/42950283064471066_1795873852.jpeg?type=f170_170" alt="클린 양면 드라잉타월 듀오 대형 세차타월" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">클린 양면 드라잉타월 듀오 대형 세차타월</div>
+              <div class="product-sub">KLiN 클린</div>
+              <div class="product-option">색상: 옐로우[노란색]</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 1,150원</span>
+                <span class="meta-pill due">2026.03.23. · D-2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-클린-양면-드라잉타월-듀오-대형-세차타월">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-클린-양면-드라잉타월-듀오-대형-세차타월">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-클린-양면-드라잉타월-듀오-대형-세차타월" onclick='toggleApproval("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-클린-양면-드라잉타월-듀오-대형-세차타월">용도에 맞게 쓰면 괜찮은 편이었습니다</div>
+            <textarea class="review-textarea" data-slug="클린-양면-드라잉타월-듀오-대형-세차타월" id="edit-body-클린-양면-드라잉타월-듀오-대형-세차타월" rows="9">클린 양면 드라잉타월 듀오 대형 세차타월은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 색상: 옐로우[노란색] 기준으로 봤습니다.
+
+디자인이나 구성 쪽에서는 구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다. 실제로 써보면 용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.
+
+다만 한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.
+
+팁으로는 용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다. 전체적으로 클린 양면 드라잉타월 듀오 대형 세차타월은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-클린-양면-드라잉타월-듀오-대형-세차타월" onclick='saveDraft("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-클린-양면-드라잉타월-듀오-대형-세차타월"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-클린-양면-드라잉타월-듀오-대형-세차타월">구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다.</span></div>
+            <div><b>장점</b> <span id="pro-클린-양면-드라잉타월-듀오-대형-세차타월">용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.</span></div>
+            <div><b>단점</b> <span id="con-클린-양면-드라잉타월-듀오-대형-세차타월">한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-클린-양면-드라잉타월-듀오-대형-세차타월">용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-클린-양면-드라잉타월-듀오-대형-세차타월" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-클린-양면-드라잉타월-듀오-대형-세차타월" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-클린-양면-드라잉타월-듀오-대형-세차타월" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-클린-양면-드라잉타월-듀오-대형-세차타월" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-클린-양면-드라잉타월-듀오-대형-세차타월" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-클린-양면-드라잉타월-듀오-대형-세차타월" onclick='saveWorkbench("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ub300\ud615-\uc138\ucc28\ud0c0\uc6d4")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-클린-양면-드라잉타월-듀오-대형-세차타월"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-미니" data-slug="클린-양면-드라잉타월-듀오-미니" data-status="awaiting_approval" data-point="650" data-point-bucket="201_999" data-dday="D-2">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250921_260/17584500240292LkEC_JPEG/38362833902612809_1903135760.jpeg?type=f170_170" alt="클린 양면 드라잉타월 듀오 미니" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">클린 양면 드라잉타월 듀오 미니</div>
+              <div class="product-sub">KLiN 클린</div>
+              <div class="product-option">색상타입: 레드 [적색]</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 650원</span>
+                <span class="meta-pill due">2026.03.23. · D-2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-클린-양면-드라잉타월-듀오-미니">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-클린-양면-드라잉타월-듀오-미니">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-클린-양면-드라잉타월-듀오-미니" onclick='toggleApproval("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-클린-양면-드라잉타월-듀오-미니">실사용 기준으로 무난하게 만족했습니다</div>
+            <textarea class="review-textarea" data-slug="클린-양면-드라잉타월-듀오-미니" id="edit-body-클린-양면-드라잉타월-듀오-미니" rows="9">클린 양면 드라잉타월 듀오 미니은 큰 불편 없이 쓰기 무난한 편이었습니다. 옵션은 색상타입: 레드 [적색] 기준으로 봤습니다.
+
+디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
+
+다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
+
+팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 클린 양면 드라잉타월 듀오 미니은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-클린-양면-드라잉타월-듀오-미니" onclick='saveDraft("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-클린-양면-드라잉타월-듀오-미니"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-클린-양면-드라잉타월-듀오-미니">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
+            <div><b>장점</b> <span id="pro-클린-양면-드라잉타월-듀오-미니">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
+            <div><b>단점</b> <span id="con-클린-양면-드라잉타월-듀오-미니">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
+            <div><b>팁</b> <span id="tip-클린-양면-드라잉타월-듀오-미니">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-클린-양면-드라잉타월-듀오-미니" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-클린-양면-드라잉타월-듀오-미니" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-클린-양면-드라잉타월-듀오-미니" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-클린-양면-드라잉타월-듀오-미니" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-클린-양면-드라잉타월-듀오-미니" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-클린-양면-드라잉타월-듀오-미니" onclick='saveWorkbench("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ud074\ub9b0-\uc591\uba74-\ub4dc\ub77c\uc789\ud0c0\uc6d4-\ub4c0\uc624-\ubbf8\ub2c8")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-클린-양면-드라잉타월-듀오-미니"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-1">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220726_108/1658820686449vvzbm_JPEG/59956575043230375_648651445.jpg?type=f170_170" alt="터닝메카드 카울[중고]" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -361,7 +754,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-터닝메카드-카울중고">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-터닝메카드-카울중고">2026-03-21T12:21:04</span></span>
+              <span class="synced-text">동기화 <span id="synced-터닝메카드-카울중고">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인</button>
@@ -391,9 +784,29 @@
             <div><b>팁</b> <span id="tip-터닝메카드-카울중고">중고 완구는 도색 상태보다 결합부 헐거움과 작동감이 실제 만족도에 더 크게 남는 편이라 그쪽을 먼저 보는 게 낫습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-터닝메카드-카울중고" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-터닝메카드-카울중고" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-터닝메카드-카울중고" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-터닝메카드-카울중고" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-터닝메카드-카울중고" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-터닝메카드-카울중고" onclick='saveWorkbench("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-터닝메카드-카울중고"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-59">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20231205_36/1701744598967wI1iK_JPEG/15212098485237545_1568487973.jpg?type=f170_170" alt="마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -410,7 +823,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>승인</button>
@@ -440,9 +853,29 @@
             <div><b>팁</b> <span id="tip-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">크롬이나 틈새는 드라잉 타월로 먼저 정리해야 잔사 걱정이 줄어듭니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-59">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250407_94/17440143330162caqe_JPEG/26672132441149536_992522621.jpg?type=f170_170" alt="벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -459,7 +892,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">2026-03-21T12:21:12</span></span>
+              <span class="synced-text">동기화 <span id="synced-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='toggleApproval("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>승인</button>
@@ -468,14 +901,14 @@
           </div>
 
           <div class="review-body-wrap">
-            <div class="review-title-line" id="title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">무드등보다 야간 실사용 쪽 만족도가 더 컸습니다</div>
-            <textarea class="review-textarea" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" id="edit-body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="9">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED는 단순 무드등보다는 야간 실사용 쪽에서 만족도가 더 큰 제품이었습니다. 특히 밤에 짐 찾거나 아이들 물건 정리할 때 실내 조도가 애매한 상황에서 바로 체감이 오는 편이었습니다. 옵션은 아이오닉9 웜화이트 5m 기준으로 봤습니다.
+            <div class="review-title-line" id="title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">실내 분위기보다 활용성이 먼저 느껴졌습니다</div>
+            <textarea class="review-textarea" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" id="edit-body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="9">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 단순 무드등보다 야간 짐 정리나 차박 상황에서 실제 체감이 큰 편이었습니다. 옵션은 컬러: 아이오닉9 웜화이트 5m 기준으로 봤습니다.
 
-면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명합니다. 실제로는 차박이나 야간 정리처럼 손이 자주 가는 상황에서 활용성이 높아, 단순 장식용보다 실용 쪽 만족도가 더 컸습니다.
+디자인이나 구성 쪽에서는 면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다. 실제로 써보면 밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.
 
-다만 밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치를 잘 잡아야 합니다. 그래서 예쁘게 보이는 것보다 실제로 어디를 비출지 먼저 정하는 편이 결과가 좋았습니다.
+다만 밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.
 
-팁으로는 전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 훨씬 낫습니다. 배선은 먼저 고정하고 최종 점등 위치를 마지막에 조정해야 재작업도 줄어듭니다. 전체적으로 벤딕트 아이오닉9 식빵등은 튜닝용보다 실내 활용도 개선용으로 봤을 때 만족도가 더 높은 제품이었습니다.</textarea>
+팁으로는 차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다. 전체적으로 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
             <div class="actions compact-actions inline-edit-actions">
               <button class="btn" id="save-btn-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='saveDraft("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")' disabled>수정완료</button>
               <div class="save-status" id="save-status-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led"></div>
@@ -483,15 +916,35 @@
           </div>
 
           <div class="tips">
-            <div><b>디자인</b> <span id="design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명한 편입니다.</span></div>
-            <div><b>장점</b> <span id="pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리처럼 실내 조도가 아쉬운 상황에서 바로 체감이 와서, 단순 장식용보다 활용성 쪽 만족도가 높았습니다.</span></div>
-            <div><b>단점</b> <span id="con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치가 중요합니다.</span></div>
-            <div><b>팁</b> <span id="tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡고, 배선은 먼저 고정한 뒤 최종 점등 위치를 조정하는 편이 재작업이 적습니다.</span></div>
+            <div><b>디자인</b> <span id="design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다.</span></div>
+            <div><b>장점</b> <span id="pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.</span></div>
+            <div><b>단점</b> <span id="con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='saveWorkbench("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led"></div>
+            </div>
           </div>
 
         </article>
         
-        <article class="review-card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-57">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20210924_188/16324630582772AS1Y_JPEG/33598956981548887_124000510.jpg?type=f170_170" alt="우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -508,7 +961,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" onclick='toggleApproval("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>승인</button>
@@ -538,9 +991,29 @@
             <div><b>팁</b> <span id="tip-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" onclick='saveWorkbench("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-53">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220519_204/1652950058260LjqrH_JPEG/54085841976612320_1669221383.jpg?type=f170_170" alt="3M 클레이바 낙진제거제 1EA" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -557,7 +1030,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-3m-클레이바-낙진제거제-1ea">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-3m-클레이바-낙진제거제-1ea">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-3m-클레이바-낙진제거제-1ea">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-3m-클레이바-낙진제거제-1ea" onclick='toggleApproval("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>승인</button>
@@ -587,9 +1060,29 @@
             <div><b>팁</b> <span id="tip-3m-클레이바-낙진제거제-1ea">클레이 작업은 소리와 저항이 줄어드는 순간을 기준으로 멈추는 편이 과도한 문지름을 줄이기 좋았습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-3m-클레이바-낙진제거제-1ea" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-3m-클레이바-낙진제거제-1ea" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-3m-클레이바-낙진제거제-1ea" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-3m-클레이바-낙진제거제-1ea" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-3m-클레이바-낙진제거제-1ea" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-3m-클레이바-낙진제거제-1ea" onclick='saveWorkbench("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-3m-클레이바-낙진제거제-1ea"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval" data-point="100" data-point-bucket="lte_200" data-dday="D-53">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251230_7/1767056108620Ho1eP_PNG/30045274412463301_2122508918.png?type=f170_170" alt="버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -606,7 +1099,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" onclick='toggleApproval("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>승인</button>
@@ -636,9 +1129,29 @@
             <div><b>팁</b> <span id="tip-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">매끈한 바닥에서 체감이 더 크니 작업 공간 특성을 먼저 보는 편이 좋습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" onclick='saveWorkbench("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-52">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250509_139/1746771639667kmqUN_JPEG/1980697534074407_1136854346.jpg?type=f170_170" alt="[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -655,7 +1168,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" onclick='toggleApproval("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>승인</button>
@@ -685,9 +1198,29 @@
             <div><b>팁</b> <span id="tip-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" onclick='saveWorkbench("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval" data-point="160" data-point-bucket="lte_200" data-dday="D-52">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250401_125/1743496352230j7bhv_JPEG/31389848309219650_692316593.jpg?type=f170_170" alt="마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -704,7 +1237,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>승인</button>
@@ -734,9 +1267,29 @@
             <div><b>팁</b> <span id="tip-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">브러시 작업 전에 제품이 반응하는 짧은 시간만 주고 바로 문지르는 편이 갈변 제거 효율이 좋았습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-51">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250912_280/1757654959500whBsP_JPEG/91787769618132292_662564541.jpg?type=f170_170" alt="비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -753,7 +1306,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" onclick='toggleApproval("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>승인</button>
@@ -783,9 +1336,29 @@
             <div><b>팁</b> <span id="tip-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">흡입만 하는 건조 스트로크를 몇 번 더 해주면 체감 건조 시간이 확실히 줄어드는 편입니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" onclick='saveWorkbench("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-48">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241015_140/1728953030232ipeiL_JPEG/76617948276070059_1528498812.jpg?type=f170_170" alt="마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -802,7 +1375,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>승인</button>
@@ -832,9 +1405,29 @@
             <div><b>팁</b> <span id="tip-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">운전석 유리는 가로 방향, 조수석 쪽은 세로 방향으로 닦아두면 남은 자국 방향을 구분하기 편합니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" onclick='saveWorkbench("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-41">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20260119_20/1768812886389wTFsE_PNG/102945854517781197_140130200.png?type=f170_170" alt="D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -851,7 +1444,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" onclick='toggleApproval("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>승인</button>
@@ -881,9 +1474,167 @@
             <div><b>팁</b> <span id="tip-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">반응이 빠른 오염부터 먼저 테스트해보면 이 제품이 어디에 잘 맞는지 감이 더 빨리 옵니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" onclick='saveWorkbench("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-slug="줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-status="awaiting_approval" data-point="500" data-point-bucket="201_999" data-dday="D-32">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251202_134/1764659730165B9deB_JPEG/98792543302009687_1028583260.jpg?type=f170_170" alt="줄눈셀프시공 타일줄눈보수제 욕실 화장실 바닥용 화이트4개" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">줄눈셀프시공 타일줄눈보수제 욕실 화장실 바닥용 화이트4개</div>
+              <div class="product-sub">연프라텍</div>
+              <div class="product-option">제품 색상: 화이트 4개</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 500원</span>
+                <span class="meta-pill due">2026.04.22. · D-32</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" onclick='toggleApproval("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">과장 없이 보면 꽤 쓸 만했습니다</div>
+            <textarea class="review-textarea" data-slug="줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" id="edit-body-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="9">줄눈셀프시공 타일줄눈보수제 욕실 화장실 바닥용 화이트4개은 용도를 명확히 두고 쓰면 만족도가 나쁘지 않았습니다. 옵션은 제품 색상: 화이트 4개 기준으로 봤습니다.
+
+디자인이나 구성 쪽에서는 실사용 중심으로 보면 이해하기 쉬운 제품입니다. 실제로 써보면 무리한 기대만 하지 않으면 만족도가 나쁘지 않았습니다.
+
+다만 처음엔 제품 특성을 파악하는 시간이 조금 필요할 수 있습니다.
+
+팁으로는 한 번에 많이 쓰기보다 반응을 보며 범위를 넓히는 편이 낫습니다. 전체적으로 줄눈셀프시공 타일줄눈보수제 욕실 화장실 바닥용 화이트4개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" onclick='saveDraft("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">실사용 중심으로 보면 이해하기 쉬운 제품입니다.</span></div>
+            <div><b>장점</b> <span id="pro-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">무리한 기대만 하지 않으면 만족도가 나쁘지 않았습니다.</span></div>
+            <div><b>단점</b> <span id="con-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">처음엔 제품 특성을 파악하는 시간이 조금 필요할 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">한 번에 많이 쓰기보다 반응을 보며 범위를 넓히는 편이 낫습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" onclick='saveWorkbench("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc904\ub208\uc140\ud504\uc2dc\uacf5-\ud0c0\uc77c\uc904\ub208\ubcf4\uc218\uc81c-\uc695\uc2e4-\ud654\uc7a5\uc2e4-\ubc14\ub2e5\uc6a9-\ud654\uc774\ud2b84\uac1c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-slug="닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-status="awaiting_approval" data-point="500" data-point-bucket="201_999" data-dday="D-31">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251021_26/1761031677552oKfns_PNG/5275652049944343_1032764522.png?type=f170_170" alt="닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침</div>
+              <div class="product-sub">Dr.Circle</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 500원</span>
+                <span class="meta-pill due">2026.04.21. · D-31</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='toggleApproval("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">장거리 주행 때 목 받침 느낌이 꽤 괜찮았습니다</div>
+            <textarea class="review-textarea" data-slug="닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" id="edit-body-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="9">닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침은 과하게 푹신한 타입보다는 목 뒤 빈 공간을 채워주는 쪽 체감이 좋았습니다.
+
+디자인이나 구성 쪽에서는 메모리폼 계열이라 닿는 느낌이 단단하지 않고, 시트 톤과도 크게 이질감 없는 편입니다. 실제로 써보면 목을 세게 누르는 방식이 아니라 빈 공간을 받쳐주는 느낌이라 장시간 운전할 때 부담이 덜했습니다.
+
+다만 위치를 너무 높게 두면 오히려 목이 앞으로 밀리는 느낌이 날 수 있습니다.
+
+팁으로는 어깨선보다 약간 낮게 맞추고 시트 각도까지 같이 조정해야 편함이 더 잘 살아납니다. 전체적으로 닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='saveDraft("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">메모리폼 계열이라 닿는 느낌이 단단하지 않고, 시트 톤과도 크게 이질감 없는 편입니다.</span></div>
+            <div><b>장점</b> <span id="pro-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">목을 세게 누르는 방식이 아니라 빈 공간을 받쳐주는 느낌이라 장시간 운전할 때 부담이 덜했습니다.</span></div>
+            <div><b>단점</b> <span id="con-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">위치를 너무 높게 두면 오히려 목이 앞으로 밀리는 느낌이 날 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">어깨선보다 약간 낮게 맞추고 시트 각도까지 같이 조정해야 편함이 더 잘 살아납니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='saveWorkbench("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-25">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20240821_2/1724227703361pOA1L_JPEG/18615460340715699_196304166.jpg?type=f170_170" alt="벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -900,7 +1651,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">2026-03-21T12:21:17</span></span>
+              <span class="synced-text">동기화 <span id="synced-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='toggleApproval("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>승인</button>
@@ -930,9 +1681,98 @@
             <div><b>팁</b> <span id="tip-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">운전석만 먼저 써보고 맞는 높이를 찾은 뒤 조수석에도 맞추는 방식이 실패가 적습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='saveWorkbench("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-point="800" data-point-bucket="201_999" data-dday="D-23">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20190423_106/volkisoma@naver.com_1556024714406dYPS4_JPEG/38743573253971596_1102060613.jpg?type=f170_170" alt="나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소</div>
+              <div class="product-sub">나노클린</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 800원</span>
+                <span class="meta-pill due">2026.04.13. · D-23</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='toggleApproval("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">실사용 기준으로 무난하게 만족했습니다</div>
+            <textarea class="review-textarea" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" id="edit-body-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="9">나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소은 큰 불편 없이 쓰기 무난한 편이었습니다.
+
+디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
+
+다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
+
+팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveDraft("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
+            <div><b>장점</b> <span id="pro-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
+            <div><b>단점</b> <span id="con-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
+            <div><b>팁</b> <span id="tip-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveWorkbench("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval" data-point="350" data-point-bucket="201_999" data-dday="D-20">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251107_271/1762516972409TDAwd_JPEG/17192282403048257_780884709.jpg?type=f170_170" alt="크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -949,7 +1789,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" onclick='toggleApproval("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>승인</button>
@@ -979,9 +1819,29 @@
             <div><b>팁</b> <span id="tip-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" onclick='saveWorkbench("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-18">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250219_240/1739950389729qAdgF_JPEG/26767359592405083_81699949.jpg?type=f170_170" alt="[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -998,7 +1858,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">2026-03-21T09:05:13</span></span>
+              <span class="synced-text">동기화 <span id="synced-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" onclick='toggleApproval("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>승인</button>
@@ -1028,9 +1888,29 @@
             <div><b>팁</b> <span id="tip-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" onclick='saveWorkbench("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml"></div>
+            </div>
+          </div>
+
         </article>
         
-        <article class="review-card warn" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="awaiting_approval">
+        <article class="review-card warn" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-16">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20200603_20/1591176299849tH6AE_JPEG/28536134358733484_1708609491.jpg?type=f170_170" alt="전동드릴 광택패드 80mm 7종 세트 광택작업" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1047,7 +1927,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-전동드릴-광택패드-80mm-7종-세트-광택작업">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-전동드릴-광택패드-80mm-7종-세트-광택작업">2026-03-21T12:21:20</span></span>
+              <span class="synced-text">동기화 <span id="synced-전동드릴-광택패드-80mm-7종-세트-광택작업">2026-03-21T13:54:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='toggleApproval("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>승인</button>
@@ -1077,6 +1957,164 @@
             <div><b>팁</b> <span id="tip-전동드릴-광택패드-80mm-7종-세트-광택작업">처음부터 넓은 면보다 문 손잡이 주변이나 작은 패널부터 시작해야 패드 성격을 익히기 좋습니다.</span></div>
           </div>
 
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-전동드릴-광택패드-80mm-7종-세트-광택작업" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='saveWorkbench("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-전동드릴-광택패드-80mm-7종-세트-광택작업"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-slug="소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-status="awaiting_approval" data-point="600" data-point-bucket="201_999" data-dday="D-16">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250923_288/1758592450024aTNTb_JPEG/92725363146037568_538436387.jpg?type=f170_170" alt="소프트99 최고급 유리관리 3종 세트, 고성능 유막제거제 G73+장기지속 발수코팅제 G19+사이드미러 발수코팅제 G65X" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">소프트99 최고급 유리관리 3종 세트, 고성능 유막제거제 G73+장기지속 발수코팅제 G19+사이드미러 발수코팅제 G65X</div>
+              <div class="product-sub">소프트99</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 600원</span>
+                <span class="meta-pill due">2026.04.06. · D-16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" onclick='toggleApproval("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">빠르게 관리할 때 잘 맞는 습식코팅제였습니다</div>
+            <textarea class="review-textarea" data-slug="소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" id="edit-body-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="9">소프트99 최고급 유리관리 3종 세트, 고성능 유막제거제 G73+장기지속 발수코팅제 G19+사이드미러 발수코팅제 G65X은 풀코팅보다 유지관리용으로 접근하면 만족도가 괜찮고, 작업 속도가 빠른 편입니다.
+
+디자인이나 구성 쪽에서는 물기 있는 상태에서 바로 쓰는 흐름이라 작업 루틴에 자연스럽게 들어갑니다. 실제로 써보면 패널별로 짧게 작업하면 광택감과 드라잉 편의가 같이 오는 느낌이 있었습니다.
+
+다만 과하게 분사하면 잔사 정리가 번거로워질 수 있습니다.
+
+팁으로는 패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다. 전체적으로 소프트99 최고급 유리관리 3종 세트, 고성능 유막제거제 G73+장기지속 발수코팅제 G19+사이드미러 발수코팅제 G65X은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" onclick='saveDraft("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">물기 있는 상태에서 바로 쓰는 흐름이라 작업 루틴에 자연스럽게 들어갑니다.</span></div>
+            <div><b>장점</b> <span id="pro-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">패널별로 짧게 작업하면 광택감과 드라잉 편의가 같이 오는 느낌이 있었습니다.</span></div>
+            <div><b>단점</b> <span id="con-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">과하게 분사하면 잔사 정리가 번거로워질 수 있습니다.</span></div>
+            <div><b>팁</b> <span id="tip-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" onclick='saveWorkbench("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\uc18c\ud504\ud2b899-\ucd5c\uace0\uae09-\uc720\ub9ac\uad00\ub9ac-3\uc885-\uc138\ud2b8-\uace0\uc131\ub2a5-\uc720\ub9c9\uc81c\uac70\uc81c-g73\uc7a5\uae30\uc9c0\uc18d-\ubc1c\uc218\ucf54\ud305\uc81c-g19\uc0ac\uc774\ub4dc\ubbf8\ub7ec-\ubc1c\uc218\ucf54\ud305\uc81c-g65x")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x"></div>
+            </div>
+          </div>
+
+        </article>
+        
+        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-point="800" data-point-bucket="201_999" data-dday="D-16">
+          <div class="review-top">
+            <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20190423_106/volkisoma@naver.com_1556024714406dYPS4_JPEG/38743573253971596_1102060613.jpg?type=f170_170" alt="나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소" loading="lazy" referrerpolicy="no-referrer" /></div>
+            <div class="product-col">
+              <div class="product-name">나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소</div>
+              <div class="product-sub">나노클린</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 800원</span>
+                <span class="meta-pill due">2026.04.06. · D-16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">2026-03-21T13:54:32</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn success" id="action-primary-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='toggleApproval("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>승인</button>
+            <button class="btn bad" onclick='reviewAction("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c", "needs_edit")'>수정요청</button>
+            </div>
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">실사용 기준으로 무난하게 만족했습니다</div>
+            <textarea class="review-textarea" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" id="edit-body-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="9">나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소은 큰 불편 없이 쓰기 무난한 편이었습니다.
+
+디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
+
+다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
+
+팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn" id="save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveDraft("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>수정완료</button>
+              <div class="save-status" id="save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
+            </div>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
+            <div><b>장점</b> <span id="pro-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
+            <div><b>단점</b> <span id="con-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
+            <div><b>팁</b> <span id="tip-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
+          </div>
+
+          <div class="workbench-box">
+            <div class="wb-title">리뷰 작업 메모</div>
+            <label>나의 사용 경험</label>
+            <textarea class="wb-textarea" id="exp-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>강조하고 싶은 의도/포인트</label>
+            <textarea class="wb-textarea" id="intent-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>재작성 요청 메모</label>
+            <textarea class="wb-textarea" id="rewrite-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3"></textarea>
+            <label>이미지 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="images-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="3" placeholder="https://...
+https://..."></textarea>
+            <label>영상 링크들 (줄바꿈 구분)</label>
+            <textarea class="wb-textarea mono" id="videos-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" rows="2" placeholder="https://..."></textarea>
+            <div class="actions compact-actions inline-edit-actions">
+              <button class="btn secondary" id="wb-save-btn-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" onclick='saveWorkbench("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")' disabled>메모 저장</button>
+              <button class="btn bad" onclick='sendRewriteRequest("\ub098\ub178\ud074\ub9b0-\uc720\ub9ac\ub2e6\uc774-\uc5f0\ub9c8\uc81c-\uc2a4\ud380\uc9c0-\uc0e4\uc6cc\ubd80\uc2a4-\ud654\uc7a5\uc2e4\uc695\uc2e4-\uac70\uc6b8\ubb3c\ub54c-\uc81c\uac70\uccad\uc18c")'>메모 반영해서 수정요청</button>
+              <div class="save-status" id="wb-save-status-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소"></div>
+            </div>
+          </div>
+
         </article>
         </div>
   </div>
@@ -1085,8 +2123,8 @@
     <div class="bottom-inner">
       <div class="bottom-top">
         <div class="bottom-left">
-          <button class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">20</span></button>
-          <button class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">19</span></button>
+          <button class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">29</span></button>
+          <button class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">28</span></button>
           <button class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">0</span></button>
           <button class="summary-pill" data-filter="needs_edit" onclick="setFilter('needs_edit')"><span class="k">수정요청</span><span class="v" id="stat-needs_edit">1</span></button>
           <button class="summary-pill" data-filter="uploaded" onclick="setFilter('uploaded')"><span class="k">업로드완료</span><span class="v" id="stat-uploaded">0</span></button>
@@ -1105,6 +2143,11 @@
     const ACTION_API_BASE_URL = "https://induction-secrets-proud-climbing.trycloudflare.com";
     const TOKEN_KEY = 'reviewActionToken';
     let currentFilter = 'all';
+
+    function parseMultilineUrls(text) {
+      return (text || '').split('
+').map(x => x.trim()).filter(Boolean);
+    }
 
     function baseApiUrl() {
       return ACTION_API_BASE_URL.endsWith('/') ? ACTION_API_BASE_URL.slice(0, -1) : ACTION_API_BASE_URL;
@@ -1149,9 +2192,13 @@
     }
     function applyFilter() {
       const cards = Array.from(document.querySelectorAll('[data-slug]'));
+      const pointFilter = document.getElementById('point-filter')?.value || 'all';
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
-        const show = currentFilter === 'all' || status === currentFilter;
+        const pointBucket = card.getAttribute('data-point-bucket') || 'lte_200';
+        const statusOk = currentFilter === 'all' || status === currentFilter;
+        const pointOk = pointFilter === 'all' || pointBucket === pointFilter;
+        const show = statusOk && pointOk;
         card.classList.toggle('hidden', !show);
       }
       document.querySelectorAll('[data-filter]').forEach(el => {
@@ -1159,7 +2206,8 @@
       });
       const visible = visibleCards().length;
       const msg = document.getElementById('status-message');
-      if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} · 보이는 항목 ${visible}개`;
+      const pointFilterLabel = document.getElementById('point-filter')?.selectedOptions?.[0]?.textContent || '포인트 전체';
+      if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} / ${pointFilterLabel} · 보이는 항목 ${visible}개`;
       const empty = document.getElementById('empty-state');
       const list = document.getElementById('review-list');
       if (empty) empty.classList.toggle('show', visible === 0);
@@ -1188,6 +2236,17 @@
       const original = ta.dataset.original || '';
       btn.disabled = ta.value === original;
     }
+    function refreshWorkbenchButton(slug) {
+      const btn = document.getElementById('wb-save-btn-' + slug);
+      if (!btn) return;
+      const exp = document.getElementById('exp-' + slug);
+      const intent = document.getElementById('intent-' + slug);
+      const rewrite = document.getElementById('rewrite-' + slug);
+      const images = document.getElementById('images-' + slug);
+      const videos = document.getElementById('videos-' + slug);
+      const changed = [exp, intent, rewrite, images, videos].some(el => el && el.value !== (el.dataset.original || ''));
+      btn.disabled = !changed;
+    }
     function applyItem(slug, item) {
       if (!item) return;
       setStatusUI(slug, item.status, item.status_label);
@@ -1205,7 +2264,21 @@
       }
       const statusEl = document.getElementById('save-status-' + slug);
       if (statusEl) { statusEl.className = 'save-status'; statusEl.textContent = ''; }
+      const workStatusEl = document.getElementById('wb-save-status-' + slug);
+      if (workStatusEl) { workStatusEl.className = 'save-status'; workStatusEl.textContent = ''; }
+      const setVal = (id, value) => {
+        const el = document.getElementById(id + slug);
+        if (el) { el.value = value || ''; el.dataset.original = value || ''; }
+      };
+      setVal('exp-', item.user_experience_note || '');
+      setVal('intent-', item.user_intent_note || '');
+      setVal('rewrite-', item.rewrite_request_note || '');
+      setVal('images-', (item.media_image_urls || []).join('
+'));
+      setVal('videos-', (item.media_video_urls || []).join('
+'));
       refreshSaveButton(slug);
+      refreshWorkbenchButton(slug);
     }
     async function reviewAction(slug, action) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return false; }
@@ -1230,6 +2303,58 @@
       const data = await res.json();
       if (res.ok && data.ok) applyItem(slug, data.item);
       if (notify) alert('상태 동기화 완료');
+    }
+    function applySort() {
+      const list = document.getElementById('review-list');
+      if (!list) return;
+      const mode = document.getElementById('sort-mode')?.value || 'default';
+      const cards = Array.from(list.querySelectorAll('[data-slug]'));
+      cards.sort((a, b) => {
+        if (mode === 'point_desc') {
+          return Number(b.getAttribute('data-point') || -1) - Number(a.getAttribute('data-point') || -1);
+        }
+        if (mode === 'dday_asc') {
+          const ad = Number((a.getAttribute('data-dday') || 'D-999').replace('D-', ''));
+          const bd = Number((b.getAttribute('data-dday') || 'D-999').replace('D-', ''));
+          return ad - bd;
+        }
+        return 0;
+      });
+      for (const card of cards) list.appendChild(card);
+      applyFilter();
+    }
+    async function saveWorkbench(slug) {
+      if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
+      if (!getActionToken()) { setActionToken(); return; }
+      const btn = document.getElementById('wb-save-btn-' + slug);
+      const statusEl = document.getElementById('wb-save-status-' + slug);
+      if (btn) { btn.disabled = true; btn.textContent = '저장 중...'; }
+      if (statusEl) { statusEl.className = 'save-status'; statusEl.textContent = '메모 저장 중...'; }
+      const payload = {
+        slug,
+        user_experience_note: document.getElementById('exp-' + slug)?.value || '',
+        user_intent_note: document.getElementById('intent-' + slug)?.value || '',
+        rewrite_request_note: document.getElementById('rewrite-' + slug)?.value || '',
+        media_image_urls: parseMultilineUrls(document.getElementById('images-' + slug)?.value || ''),
+        media_video_urls: parseMultilineUrls(document.getElementById('videos-' + slug)?.value || ''),
+      };
+      try {
+        const res = await fetch(baseApiUrl() + '/review-workbench-update', { method: 'POST', headers: apiHeaders(), body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || res.statusText || '저장 실패');
+        applyItem(slug, data.item);
+        if (statusEl) { statusEl.className = 'save-status ok'; statusEl.textContent = '메모 저장 완료'; }
+      } catch (e) {
+        if (statusEl) { statusEl.className = 'save-status err'; statusEl.textContent = '저장 실패: ' + e.message; }
+        alert('메모 저장 실패: ' + e.message);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = '메모 저장'; }
+        refreshWorkbenchButton(slug);
+      }
+    }
+    async function sendRewriteRequest(slug) {
+      await saveWorkbench(slug);
+      await reviewAction(slug, 'needs_edit');
     }
     async function saveDraft(slug) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
@@ -1288,10 +2413,19 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateStats();
       setFilter('all');
+      applySort();
       document.querySelectorAll('.review-textarea').forEach((ta) => {
         ta.dataset.original = ta.value;
         ta.addEventListener('input', () => refreshSaveButton(ta.dataset.slug));
         refreshSaveButton(ta.dataset.slug);
+      });
+      ['exp-', 'intent-', 'rewrite-', 'images-', 'videos-'].forEach((prefix) => {
+        document.querySelectorAll(`[id^="${prefix}"]`).forEach((el) => {
+          const slug = el.id.slice(prefix.length);
+          el.dataset.original = el.value;
+          el.addEventListener('input', () => refreshWorkbenchButton(slug));
+          refreshWorkbenchButton(slug);
+        });
       });
       if (!ACTION_API_BASE_URL || !getActionToken()) return;
       setTimeout(() => { syncAllNow(false).catch(() => {}); }, 700);
