@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated_at": "2026-03-21T17:34:10+09:00",
+    "generated_at": "2026-03-21T17:44:44+09:00",
     "counts": {
       "total": 29,
-      "awaiting_approval": 20,
+      "awaiting_approval": 19,
       "approved": 0,
       "uploaded": 0,
-      "needs_edit": 9,
+      "needs_edit": 10,
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
@@ -38,7 +38,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:30:51",
+      "last_synced_at": "2026-03-21T17:41:57",
       "review_url": "",
       "review_draft_title": "실사용 기준으로 무난하게 만족했습니다",
       "review_draft_body": "캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 큰 불편 없이 쓰기 무난한 편이었습니다.\n\n디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\n\n다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.\n\n팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -53,35 +53,26 @@
           "name": "1000028554.jpg",
           "mime_type": "image/jpeg",
           "size": 114419,
-          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-172721-af74940a.jpg",
-          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-172721-af74940a.jpg",
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-174152-b03a9bde.jpg",
+          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-174152-b03a9bde.jpg",
           "kind": "image",
           "caption": ""
         },
         {
-          "name": "1000028550.jpg",
+          "name": "1000028561.jpg",
           "mime_type": "image/jpeg",
-          "size": 351037,
-          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-173041-1b37244e.jpg",
-          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-173041-1b37244e.jpg",
+          "size": 142099,
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-174153-c63a4fae.jpg",
+          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-174153-c63a4fae.jpg",
           "kind": "image",
           "caption": ""
         },
         {
-          "name": "1000028549.jpg",
+          "name": "1000028551.jpg",
           "mime_type": "image/jpeg",
-          "size": 402354,
-          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-173046-2d33371e.jpg",
-          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-173046-2d33371e.jpg",
-          "kind": "image",
-          "caption": ""
-        },
-        {
-          "name": "1000028548.jpg",
-          "mime_type": "image/jpeg",
-          "size": 278957,
-          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-173051-9c6ad904.jpg",
-          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-173051-9c6ad904.jpg",
+          "size": 199028,
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260321-174156-292ceda9.jpg",
+          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260321-174156-292ceda9.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -127,7 +118,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:31:00",
+      "last_synced_at": "2026-03-21T17:42:18",
       "review_url": "",
       "review_draft_title": "차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다",
       "review_draft_body": "오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 작은 용량이라도 트렁크 자잘한 짐을 나눠 담기 좋고, 세차용품 정리함으로 쓰기 괜찮았습니다. 옵션은 색상 선택: 아이보리 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 접어서 치울 수 있는데 펼쳤을 때는 생각보다 각이 잘 살아 있어 쓰기 편했습니다.\n\n다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.\n\n팁으로는 세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -166,11 +157,20 @@
           "caption": ""
         },
         {
-          "name": "1000028551.jpg",
+          "name": "1000028532.jpg",
           "mime_type": "image/jpeg",
-          "size": 199028,
-          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-173100-6dee7a21.jpg",
-          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-173100-6dee7a21.jpg",
+          "size": 152074,
+          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-174216-2b7766f1.jpg",
+          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-174216-2b7766f1.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028536.jpg",
+          "mime_type": "image/jpeg",
+          "size": 115450,
+          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-174217-38e5c1a1.jpg",
+          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-174217-38e5c1a1.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -214,7 +214,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:33:36",
+      "last_synced_at": "2026-03-21T17:36:28",
       "review_url": "",
       "review_draft_title": "유리 물때 관리용으로 접근하면 만족도가 괜찮았습니다",
       "review_draft_body": "친수코팅제 물때방지코팅제 100ml 욕실청소은 욕실 유리 관리 주기를 조금 늘려주는 보조 역할로 보면 괜찮았습니다.\n\n디자인이나 구성 쪽에서는 욕실 유리/거울 쪽 국소 관리용으로 접근하기 쉬운 구성이었습니다. 실제로 써보면 기존 물때를 정리한 뒤 쓰면 다음 청소 때 힘을 덜 쓰게 되는 쪽 체감이 있었습니다.\n\n다만 코팅 자체보다 도포 전 물때 제거 상태가 결과를 더 크게 좌우하는 타입이라 준비가 중요했습니다.\n\n팁으로는 욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다. 전체적으로 친수코팅제 물때방지코팅제 100ml 욕실청소은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -226,11 +226,38 @@
       "review_work_note": "",
       "media_items": [
         {
-          "name": "1000028510.jpg",
+          "name": "1000028551.jpg",
           "mime_type": "image/jpeg",
-          "size": 151658,
-          "stored_path": "친수코팅제-물때방지코팅제-100ml-욕실청소/20260321-173153-0437d43d.jpg",
-          "url": "/review-media/%EC%B9%9C%EC%88%98%EC%BD%94%ED%8C%85%EC%A0%9C-%EB%AC%BC%EB%95%8C%EB%B0%A9%EC%A7%80%EC%BD%94%ED%8C%85%EC%A0%9C-100ml-%EC%9A%95%EC%8B%A4%EC%B2%AD%EC%86%8C/20260321-173153-0437d43d.jpg",
+          "size": 199028,
+          "stored_path": "친수코팅제-물때방지코팅제-100ml-욕실청소/20260321-173437-fe1667be.jpg",
+          "url": "/review-media/%EC%B9%9C%EC%88%98%EC%BD%94%ED%8C%85%EC%A0%9C-%EB%AC%BC%EB%95%8C%EB%B0%A9%EC%A7%80%EC%BD%94%ED%8C%85%EC%A0%9C-100ml-%EC%9A%95%EC%8B%A4%EC%B2%AD%EC%86%8C/20260321-173437-fe1667be.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028554.jpg",
+          "mime_type": "image/jpeg",
+          "size": 114419,
+          "stored_path": "친수코팅제-물때방지코팅제-100ml-욕실청소/20260321-173440-16e334eb.jpg",
+          "url": "/review-media/%EC%B9%9C%EC%88%98%EC%BD%94%ED%8C%85%EC%A0%9C-%EB%AC%BC%EB%95%8C%EB%B0%A9%EC%A7%80%EC%BD%94%ED%8C%85%EC%A0%9C-100ml-%EC%9A%95%EC%8B%A4%EC%B2%AD%EC%86%8C/20260321-173440-16e334eb.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028561.jpg",
+          "mime_type": "image/jpeg",
+          "size": 142099,
+          "stored_path": "친수코팅제-물때방지코팅제-100ml-욕실청소/20260321-173442-838c3c17.jpg",
+          "url": "/review-media/%EC%B9%9C%EC%88%98%EC%BD%94%ED%8C%85%EC%A0%9C-%EB%AC%BC%EB%95%8C%EB%B0%A9%EC%A7%80%EC%BD%94%ED%8C%85%EC%A0%9C-100ml-%EC%9A%95%EC%8B%A4%EC%B2%AD%EC%86%8C/20260321-173442-838c3c17.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028522.jpg",
+          "mime_type": "image/jpeg",
+          "size": 72485,
+          "stored_path": "친수코팅제-물때방지코팅제-100ml-욕실청소/20260321-173621-b964fcbc.jpg",
+          "url": "/review-media/%EC%B9%9C%EC%88%98%EC%BD%94%ED%8C%85%EC%A0%9C-%EB%AC%BC%EB%95%8C%EB%B0%A9%EC%A7%80%EC%BD%94%ED%8C%85%EC%A0%9C-100ml-%EC%9A%95%EC%8B%A4%EC%B2%AD%EC%86%8C/20260321-173621-b964fcbc.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -276,7 +303,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:33:43",
+      "last_synced_at": "2026-03-21T17:36:41",
       "review_url": "",
       "review_draft_title": "차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다",
       "review_draft_body": "오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L은 48L라 생각보다 부피 있는 물건도 정리하기 좋고, 캠핑/차박 짐 나누기에도 여유가 있는 편입니다. 옵션은 색상 선택: 48L 베이지 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 용량이 넉넉해서 세차용품 외에도 담요나 비상용품까지 같이 넣기 수월했습니다.\n\n다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.\n\n팁으로는 큰 짐은 아래에, 자주 쓰는 파우치는 전면 도어 쪽에 두면 48L의 넓은 공간을 덜 헤매고 쓰기 좋습니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -288,20 +315,11 @@
       "review_work_note": "",
       "media_items": [
         {
-          "name": "1000028551.jpg",
+          "name": "1000028550.jpg",
           "mime_type": "image/jpeg",
-          "size": 199028,
-          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l/20260321-173034-6e11778a.jpg",
-          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-48l/20260321-173034-6e11778a.jpg",
-          "kind": "image",
-          "caption": ""
-        },
-        {
-          "name": "1000028554.jpg",
-          "mime_type": "image/jpeg",
-          "size": 114419,
-          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l/20260321-173035-ed640306.jpg",
-          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-48l/20260321-173035-ed640306.jpg",
+          "size": 351037,
+          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l/20260321-173641-595116d6.jpg",
+          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-48l/20260321-173641-595116d6.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -345,7 +363,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:32:13",
+      "last_synced_at": "2026-03-21T17:34:14",
       "review_url": "",
       "review_draft_title": "짧은 시간에 마무리하기 좋은 타입이었습니다",
       "review_draft_body": "루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 원액형이지만 희석해서 여러 번 나눠 쓰기 좋아 관리제 성격이 분명했고, 드라잉 보조 체감도 있는 편이었습니다.\n\n디자인이나 구성 쪽에서는 압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다. 실제로 써보면 희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.\n\n다만 시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.\n\n팁으로는 압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다. 전체적으로 루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -391,6 +409,15 @@
           "url": "/review-media/%EB%A3%A8%EB%AF%B8%EB%84%88%EC%8A%A4-%EC%95%84%EC%BF%A0%EC%95%84-%EC%8A%B5%EC%8B%9D%EC%BD%94%ED%8C%85%EC%A0%9C-%EA%B3%A0%EB%86%8D%EC%B6%95-%EC%9B%90%EC%95%A1-500ml/20260321-173211-1dc52a18.jpg",
           "kind": "image",
           "caption": ""
+        },
+        {
+          "name": "1000028503.jpg",
+          "mime_type": "image/jpeg",
+          "size": 14485,
+          "stored_path": "루미너스-아쿠아-습식코팅제-고농축-원액-500ml/20260321-173413-dbac6fae.jpg",
+          "url": "/review-media/%EB%A3%A8%EB%AF%B8%EB%84%88%EC%8A%A4-%EC%95%84%EC%BF%A0%EC%95%84-%EC%8A%B5%EC%8B%9D%EC%BD%94%ED%8C%85%EC%A0%9C-%EA%B3%A0%EB%86%8D%EC%B6%95-%EC%9B%90%EC%95%A1-500ml/20260321-173413-dbac6fae.jpg",
+          "kind": "image",
+          "caption": ""
         }
       ],
       "generated_photo_comments": [],
@@ -434,7 +461,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:09:11",
+      "last_synced_at": "2026-03-21T17:37:00",
       "review_url": "",
       "review_draft_title": "용도에 맞게 쓰면 괜찮은 편이었습니다",
       "review_draft_body": "정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 물때제거제: 500ml석회물세트 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다. 실제로 써보면 용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.\n\n다만 한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.\n\n팁으로는 용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다. 전체적으로 정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -455,20 +482,38 @@
           "caption": ""
         },
         {
-          "name": "1000028546.jpg",
+          "name": "1000028506.jpg",
           "mime_type": "image/jpeg",
-          "size": 124304,
-          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-172913-6bc2cc30.jpg",
-          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-172913-6bc2cc30.jpg",
+          "size": 305008,
+          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-173652-5f093891.jpg",
+          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-173652-5f093891.jpg",
           "kind": "image",
           "caption": ""
         },
         {
-          "name": "1000028542.jpg",
+          "name": "1000028507.jpg",
           "mime_type": "image/jpeg",
-          "size": 93865,
-          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-172914-8ffd5a7b.jpg",
-          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-172914-8ffd5a7b.jpg",
+          "size": 54497,
+          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-173653-905f252f.jpg",
+          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-173653-905f252f.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028508.jpg",
+          "mime_type": "image/jpeg",
+          "size": 151658,
+          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-173655-a50c8718.jpg",
+          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-173655-a50c8718.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028510.jpg",
+          "mime_type": "image/jpeg",
+          "size": 151658,
+          "stored_path": "정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml/20260321-173656-3250a56f.jpg",
+          "url": "/review-media/%EC%A0%95%EC%9A%B0%EC%BC%80%EB%AF%B8%EC%B9%BC-%EB%AC%BC%EB%95%8C%EC%A0%9C%EA%B1%B0%EC%A0%9C-%EC%83%A4%EC%9B%8C%EB%B6%80%EC%8A%A4-%EC%88%98%EB%8F%84%EA%BC%AD%EC%A7%80-%EC%88%98%EC%A0%84%EC%B2%AD%EC%86%8C-%EA%B8%B0%EB%A6%84%EB%95%8C-%EC%A0%9C%EA%B1%B0-300ml/20260321-173656-3250a56f.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -514,7 +559,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:31:23",
+      "last_synced_at": "2026-03-21T17:37:32",
       "review_url": "",
       "review_draft_title": "가볍게 보강하거나 테스트용으로 쓰기 괜찮았습니다",
       "review_draft_body": "창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 가격이 낮아서 완성형 제품보다는 보강용이나 소규모 테스트용으로 접근할 때 만족도가 맞는 편입니다. 옵션은 선택: 친수필름 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 친수필름 계열이라 화려한 제품보다 필요한 구간만 다뤄보는 실용형에 가깝습니다. 실제로 써보면 적은 비용으로 먼저 써보면서 필요한 곳에 맞는지 판단하기 좋았습니다.\n\n다만 한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.\n\n팁으로는 넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다. 전체적으로 창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -553,15 +598,6 @@
           "caption": ""
         },
         {
-          "name": "1000028415.jpg",
-          "mime_type": "image/jpeg",
-          "size": 151209,
-          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-172224-7c7ae61d.jpg",
-          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-172224-7c7ae61d.jpg",
-          "kind": "image",
-          "caption": "하하하"
-        },
-        {
           "name": "1000028536.jpg",
           "mime_type": "image/jpeg",
           "size": 115450,
@@ -571,20 +607,56 @@
           "caption": ""
         },
         {
-          "name": "1000028351.jpg",
+          "name": "1000028473.jpg",
           "mime_type": "image/jpeg",
-          "size": 376478,
-          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173119-458bffcb.jpg",
-          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173119-458bffcb.jpg",
+          "size": 226772,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173716-aedea90a.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173716-aedea90a.jpg",
           "kind": "image",
           "caption": ""
         },
         {
-          "name": "1000028352.jpg",
+          "name": "1000028474.jpg",
           "mime_type": "image/jpeg",
-          "size": 294109,
-          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173122-35f7b4ad.jpg",
-          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173122-35f7b4ad.jpg",
+          "size": 192777,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173720-dd5d20c3.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173720-dd5d20c3.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028475.jpg",
+          "mime_type": "image/jpeg",
+          "size": 207999,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173722-7d5a6606.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173722-7d5a6606.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028476.jpg",
+          "mime_type": "image/jpeg",
+          "size": 245256,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173726-f60a7740.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173726-f60a7740.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028472.jpg",
+          "mime_type": "image/jpeg",
+          "size": 218298,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173729-837c3c02.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173729-837c3c02.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028471.jpg",
+          "mime_type": "image/jpeg",
+          "size": 224586,
+          "stored_path": "창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정/20260321-173731-51cdde84.jpg",
+          "url": "/review-media/%EC%B0%BD%EA%B3%A0-%EC%A0%95%EB%A6%AC-%EB%8C%80%EB%B0%95-%EC%84%B8%EC%9D%BC-%EB%8B%A8%EB%8F%88-1000%EC%9B%90-1%EC%9D%B8%EB%8B%B9-%EC%B5%9C%EB%8C%80-%EA%B5%AC%EB%A7%A4%EC%88%98%EB%9F%89-3%EA%B0%9C-%ED%95%9C%EC%A0%95/20260321-173731-51cdde84.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -719,7 +791,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T17:31:30",
+      "last_synced_at": "2026-03-21T17:38:05",
       "review_url": "",
       "review_draft_title": "실사용 기준으로 무난하게 만족했습니다",
       "review_draft_body": "클린 양면 드라잉타월 듀오 미니은 큰 불편 없이 쓰기 무난한 편이었습니다. 옵션은 색상타입: 레드 [적색] 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\n\n다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.\n\n팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 클린 양면 드라잉타월 듀오 미니은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -736,6 +808,51 @@
           "size": 252515,
           "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173129-a1c25556.jpg",
           "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173129-a1c25556.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028442.jpg",
+          "mime_type": "image/jpeg",
+          "size": 226901,
+          "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173741-b20a00ce.jpg",
+          "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173741-b20a00ce.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028441.jpg",
+          "mime_type": "image/jpeg",
+          "size": 219450,
+          "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173743-69a38c40.jpg",
+          "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173743-69a38c40.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028443.jpg",
+          "mime_type": "image/jpeg",
+          "size": 213878,
+          "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173748-00b6178e.jpg",
+          "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173748-00b6178e.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028447.jpg",
+          "mime_type": "image/jpeg",
+          "size": 353241,
+          "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173754-6eae64d7.jpg",
+          "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173754-6eae64d7.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028446.jpg",
+          "mime_type": "image/jpeg",
+          "size": 357826,
+          "stored_path": "클린-양면-드라잉타월-듀오-미니/20260321-173801-1c29a41d.jpg",
+          "url": "/review-media/%ED%81%B4%EB%A6%B0-%EC%96%91%EB%A9%B4-%EB%93%9C%EB%9D%BC%EC%9E%89%ED%83%80%EC%9B%94-%EB%93%80%EC%98%A4-%EB%AF%B8%EB%8B%88/20260321-173801-1c29a41d.jpg",
           "kind": "image",
           "caption": ""
         }
@@ -930,12 +1047,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20210924_188/16324630582772AS1Y_JPEG/33598956981548887_124000510.jpg?type=f170_170",
       "due_date": "2026.05.17.",
       "d_day": "D-57",
-      "status": "awaiting_approval",
+      "status": "needs_edit",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T13:54:32",
+      "last_synced_at": "2026-03-21T17:35:14",
       "review_url": "",
       "review_draft_title": "용도에 맞게 쓰면 괜찮은 편이었습니다",
       "review_draft_body": "우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 종류: 9% 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다. 실제로 써보면 용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.\n\n다만 한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.\n\n팁으로는 용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다. 전체적으로 우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -945,7 +1062,17 @@
       "con_note": "한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.",
       "helpful_tip": "용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.",
       "review_work_note": "",
-      "media_items": [],
+      "media_items": [
+        {
+          "name": "1000028550.jpg",
+          "mime_type": "image/jpeg",
+          "size": 351037,
+          "stored_path": "우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약/20260321-173513-f82e77db.jpg",
+          "url": "/review-media/%EC%9A%B0%EC%8B%A0-%EC%98%A4%ED%88%AC-%EC%85%80%EB%A0%89%ED%84%B0-3-%EC%82%B0%ED%99%94%EC%A0%9C-1000g-%EC%97%BC%EC%83%89%EC%95%BD-%ED%83%88%EC%83%89%EC%95%BD/20260321-173513-f82e77db.jpg",
+          "kind": "image",
+          "caption": ""
+        }
+      ],
       "generated_photo_comments": [],
       "user_experience_note": "",
       "user_intent_note": "",
@@ -957,7 +1084,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5",
-      "status_label": "승인대기",
+      "status_label": "수정요청",
       "thumb_label": "🛍️"
     },
     {
