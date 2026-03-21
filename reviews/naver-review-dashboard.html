@@ -92,7 +92,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T14:44:17+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T14:46:21+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -2164,10 +2164,10 @@ https://..."></textarea>
       return headers;
     }
     function visibleCards() {
-      return Array.from(document.querySelectorAll('[data-slug]')).filter(card => !card.classList.contains('hidden'));
+      return Array.from(document.querySelectorAll('article.review-card[data-slug]')).filter(card => !card.classList.contains('hidden'));
     }
     function updateStats() {
-      const cards = Array.from(document.querySelectorAll('[data-slug]'));
+      const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
       const counts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
@@ -2190,7 +2190,7 @@ https://..."></textarea>
       applySort();
     }
     function applyFilter() {
-      const cards = Array.from(document.querySelectorAll('[data-slug]'));
+      const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
       const pointFilter = document.getElementById('point-filter')?.value || 'all';
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
@@ -2306,7 +2306,7 @@ https://..."></textarea>
       const list = document.getElementById('review-list');
       if (!list) return;
       const mode = document.getElementById('sort-mode')?.value || 'default';
-      const cards = Array.from(list.querySelectorAll('[data-slug]'));
+      const cards = Array.from(list.querySelectorAll('article.review-card[data-slug]'));
       cards.sort((a, b) => {
         if (mode === 'point_desc') {
           return Number(b.getAttribute('data-point') || -1) - Number(a.getAttribute('data-point') || -1);
@@ -2387,7 +2387,7 @@ https://..."></textarea>
     async function syncAllNow(notify=false) {
       if (!ACTION_API_BASE_URL) { if (notify) alert('액션 API URL이 아직 연결되지 않았어.'); return; }
       if (!getActionToken()) { if (notify) setActionToken(); return; }
-      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 80);
+      const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]')).slice(0, 80);
       for (const card of cards) {
         const slug = card.getAttribute('data-slug');
         try { await refreshItem(slug, false); } catch (e) { console.error('refresh failed', slug, e); }
