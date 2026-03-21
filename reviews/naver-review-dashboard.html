@@ -92,7 +92,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-21T14:55:54+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-21T15:01:44+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -2166,14 +2166,18 @@ https://..."></textarea>
       return Array.from(document.querySelectorAll('article.review-card[data-slug]')).filter(card => !card.classList.contains('hidden'));
     }
     let totalCounts = { total: 0, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
-    function renderStatRatios(visibleCounts) {
-      const set = (id, visible, total) => { const el = document.getElementById(id); if (el) el.textContent = `${visible}/${total}`; };
-      set('stat-total', visibleCounts.total, totalCounts.total);
-      set('stat-awaiting_approval', visibleCounts.awaiting_approval, totalCounts.awaiting_approval);
-      set('stat-approved', visibleCounts.approved, totalCounts.approved);
-      set('stat-uploaded', visibleCounts.uploaded, totalCounts.uploaded);
-      set('stat-needs_edit', visibleCounts.needs_edit, totalCounts.needs_edit);
-      set('stat-error', visibleCounts.error, totalCounts.error);
+    function renderStatRatios(filteredCounts, pointFilter) {
+      const set = (id, filtered, total) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = pointFilter === 'all' ? String(total) : `${filtered}/${total}`;
+      };
+      set('stat-total', filteredCounts.total, totalCounts.total);
+      set('stat-awaiting_approval', filteredCounts.awaiting_approval, totalCounts.awaiting_approval);
+      set('stat-approved', filteredCounts.approved, totalCounts.approved);
+      set('stat-uploaded', filteredCounts.uploaded, totalCounts.uploaded);
+      set('stat-needs_edit', filteredCounts.needs_edit, totalCounts.needs_edit);
+      set('stat-error', filteredCounts.error, totalCounts.error);
     }
     function updateStats() {
       const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
@@ -2194,25 +2198,24 @@ https://..."></textarea>
     function applyFilter() {
       const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
       const pointFilter = document.getElementById('point-filter')?.value || 'all';
+      const pointFilteredCounts = { total: 0, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
         const pointBucket = card.getAttribute('data-point-bucket') || 'lte_200';
-        const statusOk = currentFilter === 'all' || status === currentFilter;
         const pointOk = pointFilter === 'all' || pointBucket === pointFilter;
+        if (pointOk) {
+          pointFilteredCounts.total += 1;
+          if (Object.prototype.hasOwnProperty.call(pointFilteredCounts, status)) pointFilteredCounts[status] += 1;
+        }
+        const statusOk = currentFilter === 'all' || status === currentFilter;
         const show = statusOk && pointOk;
         card.classList.toggle('hidden', !show);
       }
       document.querySelectorAll('.summary-pill[data-filter]').forEach(el => {
         el.classList.toggle('active', el.getAttribute('data-filter') === currentFilter);
       });
-      const visibleCardsList = visibleCards();
-      const visibleCounts = { total: visibleCardsList.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
-      for (const card of visibleCardsList) {
-        const status = card.getAttribute('data-status') || 'awaiting_approval';
-        if (Object.prototype.hasOwnProperty.call(visibleCounts, status)) visibleCounts[status] += 1;
-      }
-      renderStatRatios(visibleCounts);
-      const visible = visibleCounts.total;
+      renderStatRatios(pointFilteredCounts, pointFilter);
+      const visible = visibleCards().length;
       const msg = document.getElementById('status-message');
       const pointFilterLabel = document.getElementById('point-filter')?.selectedOptions?.[0]?.textContent || '포인트 전체';
       if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} / ${pointFilterLabel}`;
