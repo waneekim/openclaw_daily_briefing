@@ -16,6 +16,10 @@
     .filter-strip { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
     .filter-chip { border:1px solid var(--line); background:white; color:var(--text); border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer; }
     .filter-chip.active { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
+    .empty-state { display:none; background:white; border:1px dashed #cbd5e1; border-radius:16px; padding:22px; color:#475569; text-align:center; }
+    .empty-state.show { display:block; }
+    .empty-state .title { font-size:16px; font-weight:800; color:#0f172a; margin-bottom:6px; }
+    .empty-state .desc { margin-bottom:12px; line-height:1.6; }
     .btn { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; color:white; background:var(--blue); padding:10px 14px; border-radius:10px; font-weight:700; border:none; cursor:pointer; gap:6px; }
     .btn.small { padding:8px 10px; font-size:13px; }
     .btn.secondary { background:#475569; }
@@ -52,6 +56,8 @@
     .bottom-inner { max-width:1180px; margin:0 auto; padding:10px 16px 12px; display:grid; gap:10px; }
     .bottom-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
     .bottom-left, .bottom-right { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .bottom-left { overflow-x:auto; flex-wrap:nowrap; padding-bottom:2px; }
+    .bottom-left::-webkit-scrollbar { height:6px; }
     .summary-pill { border:none; background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:10px 12px; min-width:92px; cursor:pointer; text-align:left; }
     .summary-pill.active { background:#eff6ff; border-color:#93c5fd; }
     .summary-pill .k { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
@@ -72,7 +78,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">네이버 리뷰 화면처럼 아래로 쭉 보면서 승인할 수 있게 바꾸는 중이야. 마지막 갱신: <b>2026-03-21T11:05:09+09:00</b></p>
+      <p class="lead">네이버 리뷰 화면처럼 아래로 쭉 보면서 승인할 수 있게 바꾸는 중이야. 마지막 갱신: <b>2026-03-21T11:14:43+09:00</b></p>
     </section>
 
     <div class="toolbar">
@@ -91,6 +97,11 @@
       <button class="filter-chip" data-filter="uploaded" onclick="setFilter('uploaded')">업로드완료만</button>
     </div>
 
+    <div class="empty-state" id="empty-state">
+      <div class="title">현재 필터에 맞는 항목이 없어</div>
+      <div class="desc">지금처럼 0개 상태로 비어 보이면 헷갈리니까, 여기서 바로 전체 보기로 돌아갈 수 있게 했어.</div>
+      <button class="btn" onclick="setFilter('all')">전체 보기로 돌아가기</button>
+    </div>
     <div class="list" id="review-list">
         <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval">
           <div class="review-top">
@@ -1633,6 +1644,10 @@
       const visible = visibleCards().length;
       const msg = document.getElementById('status-message');
       if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} · 보이는 항목 ${visible}개`;
+      const empty = document.getElementById('empty-state');
+      const list = document.getElementById('review-list');
+      if (empty) empty.classList.toggle('show', visible === 0);
+      if (list) list.style.display = visible === 0 ? 'none' : 'grid';
     }
     function setStatusUI(slug, status, label) {
       const badge = document.getElementById('badge-' + slug);
