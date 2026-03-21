@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated_at": "2026-03-21T16:19:48+09:00",
+    "generated_at": "2026-03-21T16:26:38+09:00",
     "counts": {
       "total": 29,
-      "awaiting_approval": 28,
+      "awaiting_approval": 26,
       "approved": 1,
       "uploaded": 0,
-      "needs_edit": 0,
+      "needs_edit": 2,
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
@@ -33,12 +33,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20220404_145/1649061135328gDQs1_JPEG/50197031056878283_591998712.jpg?type=f170_170",
       "due_date": "2026.04.17.",
       "d_day": "D-27",
-      "status": "awaiting_approval",
+      "status": "needs_edit",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T13:54:32",
+      "last_synced_at": "2026-03-21T16:24:52",
       "review_url": "",
       "review_draft_title": "실사용 기준으로 무난하게 만족했습니다",
       "review_draft_body": "캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 큰 불편 없이 쓰기 무난한 편이었습니다.\n\n디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\n\n다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.\n\n팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -60,7 +60,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/32ab2169ba7c817cabbef83faffa68fb",
-      "status_label": "승인대기",
+      "status_label": "수정요청",
       "thumb_label": "🛍️"
     },
     {
@@ -85,12 +85,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20241014_213/1728874174146PpWo5_JPEG/63007109293176082_1038306443.jpg?type=f170_170",
       "due_date": "2026.04.15.",
       "d_day": "D-25",
-      "status": "awaiting_approval",
+      "status": "needs_edit",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T13:05:45+09:00",
-      "last_synced_at": "2026-03-21T16:13:56",
+      "last_synced_at": "2026-03-21T16:24:46",
       "review_url": "",
       "review_draft_title": "차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다",
       "review_draft_body": "오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 작은 용량이라도 트렁크 자잘한 짐을 나눠 담기 좋고, 세차용품 정리함으로 쓰기 괜찮았습니다. 옵션은 색상 선택: 아이보리 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 접어서 치울 수 있는데 펼쳤을 때는 생각보다 각이 잘 살아 있어 쓰기 편했습니다.\n\n다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.\n\n팁으로는 세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -100,16 +100,7 @@
       "con_note": "높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.",
       "helpful_tip": "세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다.",
       "review_work_note": "",
-      "media_items": [
-        {
-          "name": "1000028551.jpg",
-          "mime_type": "image/jpeg",
-          "size": 199028,
-          "stored_path": "오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l/20260321-161356-2f80ce8b.jpg",
-          "url": "/review-media/%EC%98%A4%ED%94%8C%EB%A0%89%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%8F%B4%EB%94%A9%EB%B0%95%EC%8A%A4-%EC%A0%91%EC%9D%B4%EC%8B%9D-%ED%8A%B8%EB%A0%81%ED%81%AC%EC%A0%95%EB%A6%AC%ED%95%A8-25l/20260321-161356-2f80ce8b.jpg",
-          "kind": "image"
-        }
-      ],
+      "media_items": [],
       "generated_photo_comments": [],
       "user_experience_note": "",
       "user_intent_note": "",
@@ -121,7 +112,7 @@
       "uploaded_at": "",
       "error_note": "",
       "notion_url": "https://www.notion.so/25L-329b2169ba7c81d9958efad930826992",
-      "status_label": "승인대기",
+      "status_label": "수정요청",
       "thumb_label": "📦"
     },
     {
