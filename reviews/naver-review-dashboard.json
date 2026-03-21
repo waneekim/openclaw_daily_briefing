@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated_at": "2026-03-21T12:25:16+09:00",
+    "generated_at": "2026-03-21T12:32:46+09:00",
     "counts": {
       "total": 20,
-      "awaiting_approval": 20,
+      "awaiting_approval": 19,
       "approved": 0,
       "uploaded": 0,
-      "needs_edit": 0,
+      "needs_edit": 1,
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
@@ -36,7 +36,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T12:31:53",
       "review_url": "",
       "review_draft_title": "차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다",
       "review_draft_body": "오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 작은 용량이라도 트렁크 자잘한 짐을 나눠 담기 좋고, 세차용품 정리함으로 쓰기 괜찮았습니다. 옵션은 색상 선택: 아이보리 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 접어서 치울 수 있는데 펼쳤을 때는 생각보다 각이 잘 살아 있어 쓰기 편했습니다.\n\n다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.\n\n팁으로는 세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -153,12 +153,12 @@
       "purchase_confirmed_at": "26.03.11.",
       "due_date": "2026.04.09.",
       "d_day": "D-19",
-      "status": "awaiting_approval",
+      "status": "needs_edit",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T12:31:05",
       "review_url": "",
       "review_draft_title": "짧은 시간에 마무리하기 좋은 타입이었습니다",
       "review_draft_body": "루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 원액형이지만 희석해서 여러 번 나눠 쓰기 좋아 관리제 성격이 분명했고, 드라잉 보조 체감도 있는 편이었습니다.\n\n디자인이나 구성 쪽에서는 압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다. 실제로 써보면 희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.\n\n다만 시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.\n\n팁으로는 압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다. 전체적으로 루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -174,7 +174,7 @@
       "draft_category": "wet_coating",
       "image_url": "https://shop-phinf.pstatic.net/20230519_77/1684453942659Im2AK_JPEG/2500467471898622_1587797073.jpg?type=f170_170",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02",
-      "status_label": "승인대기",
+      "status_label": "수정요청",
       "thumb_label": "🧴"
     },
     {
