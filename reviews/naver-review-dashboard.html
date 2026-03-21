@@ -5,113 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Naver Review Dashboard</title>
   <style>
-    :root { --bg:#0b1020; --panel:#141b34; --text:#eef2ff; --muted:#b9c2e2; --line:#2a355f; --good:#1f9d63; --warn:#d69e2e; --bad:#d64545; --done:#2563eb; }
+    :root { --bg:#f5f7fb; --panel:#ffffff; --panel-2:#f8fafc; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --good:#15803d; --warn:#b45309; --bad:#dc2626; --done:#2563eb; --blue:#2563eb; }
     * { box-sizing:border-box; }
-    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:linear-gradient(180deg,#0b1020,#11182f); color:var(--text); }
-    .wrap { max-width:1200px; margin:0 auto; padding:24px; }
-    h1 { margin:0 0 10px; font-size:32px; }
-    p.lead { color:var(--muted); margin:0 0 20px; }
-    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:16px 0 24px; }
-    .stat { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:16px; padding:16px; }
-    .stat .n { font-size:28px; font-weight:700; margin-top:6px; }
-    .hero { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:20px; }
-    .panel { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:16px; padding:16px; }
-    .panel h2 { margin:0 0 10px; font-size:18px; }
-    .panel p, .panel li { color:var(--muted); line-height:1.6; }
-    .toolbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
-    .btn { display:inline-block; text-decoration:none; color:white; background:#3b82f6; padding:10px 14px; border-radius:10px; font-weight:600; border:none; cursor:pointer; }
-    .btn.secondary { background:#374151; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:980px; margin:0 auto; padding:20px 16px 120px; }
+    .page-head { margin-bottom:16px; }
+    h1 { margin:0 0 6px; font-size:28px; }
+    .lead { color:var(--muted); margin:0; line-height:1.5; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 18px; }
+    .filter-strip { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
+    .filter-chip { border:1px solid var(--line); background:white; color:var(--text); border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer; }
+    .filter-chip.active { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; color:white; background:var(--blue); padding:10px 14px; border-radius:10px; font-weight:700; border:none; cursor:pointer; gap:6px; }
+    .btn.small { padding:8px 10px; font-size:13px; }
+    .btn.secondary { background:#475569; }
     .btn.success { background:#15803d; }
     .btn.warn { background:#92400e; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px; }
-    .card { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.18); }
-    .topline { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; }
-    .badge { font-size:12px; font-weight:700; padding:6px 10px; border-radius:999px; }
-    .badge.normal { background:#334155; } .badge.warn { background:#92400e; } .badge.good { background:#166534; } .badge.bad { background:#991b1b; } .badge.done { background:#1d4ed8; }
-    .dday { color:#fca5a5; font-weight:700; }
-    .meta-line { color:var(--muted); margin:6px 0; font-size:14px; }
-    h2 { font-size:20px; margin:8px 0 12px; line-height:1.4; }
-    h3 { font-size:14px; color:#c7d2fe; margin:16px 0 8px; }
-    .draft-title { margin:0; font-weight:700; }
-    pre { white-space:pre-wrap; background:#0f172a; border:1px solid #233052; color:#e5e7eb; padding:12px; border-radius:12px; font-size:13px; line-height:1.6; max-height:280px; overflow:auto; }
-    .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:var(--muted); }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
-    .top-actions { margin-top:0; margin-bottom:12px; position:sticky; top:8px; z-index:2; padding-bottom:6px; background:linear-gradient(180deg, rgba(20,27,52,.98), rgba(20,27,52,.88)); }
-    .editor { margin-top:16px; padding:14px; border:1px solid var(--line); border-radius:14px; background:#0f172a; }
-    .editor label { display:block; margin:10px 0 6px; color:#c7d2fe; font-size:13px; }
-    .editor textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #334155; background:#111827; color:#e5e7eb; }
+    .btn.bad { background:#dc2626; }
+    .list { display:grid; gap:14px; }
+    .review-card { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:0 6px 20px rgba(15,23,42,.05); }
+    .review-card.hidden { display:none; }
+    .review-top { display:grid; grid-template-columns:72px 1fr; gap:14px; align-items:start; }
+    .thumb { width:72px; height:72px; border-radius:14px; background:#eef2ff; border:1px solid #dbe3ff; display:flex; align-items:center; justify-content:center; font-size:30px; }
+    .product-name { font-size:18px; font-weight:800; line-height:1.45; }
+    .product-sub, .product-option { color:var(--muted); margin-top:4px; font-size:14px; line-height:1.45; }
+    .meta-strip { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .meta-pill { background:var(--panel-2); border:1px solid var(--line); border-radius:999px; padding:6px 10px; font-size:13px; font-weight:700; }
+    .meta-pill.point { color:#92400e; background:#fff7ed; border-color:#fdba74; }
+    .meta-pill.due { color:#b91c1c; background:#fef2f2; border-color:#fca5a5; }
+    .status-row { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:14px 0 12px; padding-top:12px; border-top:1px solid var(--line); }
+    .status-left { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .badge { font-size:12px; font-weight:800; padding:6px 10px; border-radius:999px; color:white; }
+    .badge.normal { background:#64748b; } .badge.warn { background:#b45309; } .badge.good { background:#15803d; } .badge.bad { background:#b91c1c; } .badge.done { background:#2563eb; }
+    .synced-text { color:var(--muted); font-size:13px; }
+    .compact-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .review-body-wrap { background:#fbfdff; border:1px solid var(--line); border-radius:14px; padding:12px; }
+    .review-title-line { font-weight:800; margin-bottom:10px; line-height:1.45; }
+    pre { margin:0; white-space:pre-wrap; color:#1f2937; font-family:inherit; font-size:14px; line-height:1.7; max-height:320px; overflow:auto; }
+    .tips { display:grid; gap:8px; margin-top:12px; font-size:14px; color:#374151; }
+    .tips b { color:#111827; margin-right:6px; }
+    .footer-links { margin-top:12px; }
+    .editor { margin-top:14px; padding:14px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; }
+    .editor label { display:block; margin:10px 0 6px; color:#334155; font-size:13px; font-weight:700; }
+    .editor textarea { width:100%; min-height:72px; padding:10px; border-radius:10px; border:1px solid #cbd5e1; background:white; color:#111827; }
+    .bottom-bar { position:fixed; left:0; right:0; bottom:0; z-index:50; background:rgba(255,255,255,.96); border-top:1px solid var(--line); backdrop-filter:blur(12px); box-shadow:0 -8px 30px rgba(15,23,42,.08); }
+    .bottom-inner { max-width:1180px; margin:0 auto; padding:10px 16px 12px; display:grid; gap:10px; }
+    .bottom-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .bottom-left, .bottom-right { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .summary-pill { border:none; background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:10px 12px; min-width:92px; cursor:pointer; text-align:left; }
+    .summary-pill.active { background:#eff6ff; border-color:#93c5fd; }
+    .summary-pill .k { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
+    .summary-pill .v { display:block; font-size:18px; font-weight:800; color:#111827; }
+    .status-message { color:var(--muted); font-size:13px; }
+    @media (max-width:720px) {
+      .wrap { padding:16px 12px 136px; }
+      .review-top { grid-template-columns:56px 1fr; }
+      .thumb { width:56px; height:56px; font-size:24px; }
+      .product-name { font-size:16px; }
+      .bottom-top { align-items:flex-start; }
+      .summary-pill { min-width:78px; padding:8px 10px; }
+      .summary-pill .v { font-size:16px; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>네이버 리뷰 승인 대시보드</h1>
-    <p class="lead">승인/수정/본문 편집을 이 화면에서 처리하는 v2 실험 중이야.</p>
+    <section class="page-head">
+      <h1>네이버 리뷰 승인 대시보드</h1>
+      <p class="lead">네이버 리뷰 화면처럼 아래로 쭉 보면서 승인할 수 있게 바꾸는 중이야. 마지막 갱신: <b>2026-03-21T11:05:09+09:00</b></p>
+    </section>
+
     <div class="toolbar">
-      <a class="btn" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드 열기</a>
+      <a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">Notion 승인 보드</a>
       <button class="btn secondary" onclick="setActionToken()">액션 토큰 설정</button>
-      <button class="btn secondary" onclick="syncAllNow(true)">전체 상태 다시 불러오기</button>
-      <button class="btn secondary" onclick="location.reload()">페이지 새로고침</button>
+      <button class="btn secondary" onclick="syncAllNow(true)">전체 상태 동기화</button>
+      <button class="btn secondary" onclick="location.reload()">새로고침</button>
+      <button class="btn" onclick="bulkApproveVisible()">현재 보이는 항목 일괄 승인</button>
     </div>
-    <div class="hero">
-      <section class="panel">
-        <h2>사용 방법</h2>
-        <ul>
-          <li>1) 카드에서 승인/승인대기로 토글</li>
-          <li>2) 수정요청/본문 수정 가능</li>
-          <li>3) 상단 숫자도 같이 갱신</li>
-        </ul>
-        <p>마지막 갱신: <b>2026-03-21T09:06:26+09:00</b></p>
-      </section>
-      <section class="panel">
-        <h2>긴급 검토 항목</h2>
-        <ul><li>터닝메카드 카울[중고] <b>D-1</b></li></ul>
-      </section>
+
+    <div class="filter-strip">
+      <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">전체 보기</button>
+      <button class="filter-chip" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')">승인대기만</button>
+      <button class="filter-chip" data-filter="approved" onclick="setFilter('approved')">승인됨만</button>
+      <button class="filter-chip" data-filter="needs_edit" onclick="setFilter('needs_edit')">수정요청만</button>
+      <button class="filter-chip" data-filter="uploaded" onclick="setFilter('uploaded')">업로드완료만</button>
     </div>
-    <div class="stats">
-      <div class="stat"><div>전체</div><div class="n" id="stat-total">20</div></div>
-      <div class="stat"><div>승인 대기</div><div class="n" id="stat-awaiting_approval">20</div></div>
-      <div class="stat"><div>승인됨</div><div class="n" id="stat-approved">0</div></div>
-      <div class="stat"><div>업로드 완료</div><div class="n" id="stat-uploaded">0</div></div>
-      <div class="stat"><div>수정 요청</div><div class="n" id="stat-needs_edit">0</div></div>
-      <div class="stat"><div>오류</div><div class="n" id="stat-error">0</div></div>
-    </div>
-    <div class="grid">
-        <article class="card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">승인대기</span>
-            <span class="dday">D-25</span>
+
+    <div class="list" id="review-list">
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">📦</div>
+            <div class="product-col">
+              <div class="product-name">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L</div>
+              <div class="product-sub">오토워시</div>
+              <div class="product-option">색상 선택: 아이보리</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.15. · D-25</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>본문 수정</button>
             </div>
-          <h2>오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.15.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 색상 선택: 아이보리</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 작은 용량이라도 트렁크 자잘한 짐을 나눠 담기 좋고, 세차용품 정리함으로 쓰기 괜찮았습니다. 옵션은 색상 선택: 아이보리 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다</div>
+            <pre id="body-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 작은 용량이라도 트렁크 자잘한 짐을 나눠 담기 좋고, 세차용품 정리함으로 쓰기 괜찮았습니다. 옵션은 색상 선택: 아이보리 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 접어서 치울 수 있는데 펼쳤을 때는 생각보다 각이 잘 살아 있어 쓰기 편했습니다.
 
 다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.
 
 팁으로는 세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">접어서 치울 수 있는데 펼쳤을 때는 생각보다 각이 잘 살아 있어 쓰기 편했습니다.</span></div>
             <div><b>단점</b> <span id="con-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/25L-329b2169ba7c81d9958efad930826992" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/25L-329b2169ba7c81d9958efad930826992" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" style="display:none;">
               <label>제목</label>
@@ -132,7 +157,7 @@
               <textarea id="edit-con-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">세차 타월이나 약품처럼 자주 꺼내는 물건은 앞문 쪽으로 두면 25L 장점이 더 살아납니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-25l")'>닫기</button>
               </div>
@@ -140,42 +165,51 @@
             
         </article>
         
-        <article class="card warn" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-친수코팅제-물때방지코팅제-100ml-욕실청소">승인대기</span>
-            <span class="dday">D-24</span>
+        <article class="review-card good" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">친수코팅제 물때방지코팅제 100ml 욕실청소</div>
+              <div class="product-sub">올데이상사</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.14. · D-24</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='toggleApproval("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-친수코팅제-물때방지코팅제-100ml-욕실청소">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-21T10:51:27</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='toggleApproval("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>본문 수정</button>
             </div>
-          <h2>친수코팅제 물때방지코팅제 100ml 욕실청소</h2>
-          <div class="meta-line"><b>스토어</b> 올데이상사</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.14.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-친수코팅제-물때방지코팅제-100ml-욕실청소">유리 물때 관리용으로 접근하면 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-친수코팅제-물때방지코팅제-100ml-욕실청소">친수코팅제 물때방지코팅제 100ml 욕실청소은 욕실 유리 관리 주기를 조금 늘려주는 보조 역할로 보면 괜찮았습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-친수코팅제-물때방지코팅제-100ml-욕실청소">유리 물때 관리용으로 접근하면 만족도가 괜찮았습니다</div>
+            <pre id="body-친수코팅제-물때방지코팅제-100ml-욕실청소">친수코팅제 물때방지코팅제 100ml 욕실청소은 욕실 유리 관리 주기를 조금 늘려주는 보조 역할로 보면 괜찮았습니다.
 
 디자인이나 구성 쪽에서는 욕실 유리/거울 쪽 국소 관리용으로 접근하기 쉬운 구성이었습니다. 실제로 써보면 기존 물때를 정리한 뒤 쓰면 다음 청소 때 힘을 덜 쓰게 되는 쪽 체감이 있었습니다.
 
 다만 코팅 자체보다 도포 전 물때 제거 상태가 결과를 더 크게 좌우하는 타입이라 준비가 중요했습니다.
 
 팁으로는 욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다. 전체적으로 친수코팅제 물때방지코팅제 100ml 욕실청소은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-친수코팅제-물때방지코팅제-100ml-욕실청소">욕실 유리/거울 쪽 국소 관리용으로 접근하기 쉬운 구성이었습니다.</span></div>
             <div><b>장점</b> <span id="pro-친수코팅제-물때방지코팅제-100ml-욕실청소">기존 물때를 정리한 뒤 쓰면 다음 청소 때 힘을 덜 쓰게 되는 쪽 체감이 있었습니다.</span></div>
             <div><b>단점</b> <span id="con-친수코팅제-물때방지코팅제-100ml-욕실청소">코팅 자체보다 도포 전 물때 제거 상태가 결과를 더 크게 좌우하는 타입이라 준비가 중요했습니다.</span></div>
             <div><b>팁</b> <span id="tip-친수코팅제-물때방지코팅제-100ml-욕실청소">욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-친수코팅제-물때방지코팅제-100ml-욕실청소" style="display:none;">
               <label>제목</label>
@@ -196,7 +230,7 @@
               <textarea id="edit-con-친수코팅제-물때방지코팅제-100ml-욕실청소">코팅 자체보다 도포 전 물때 제거 상태가 결과를 더 크게 좌우하는 타입이라 준비가 중요했습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-친수코팅제-물때방지코팅제-100ml-욕실청소">욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>닫기</button>
               </div>
@@ -204,42 +238,51 @@
             
         </article>
         
-        <article class="card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">승인대기</span>
-            <span class="dday">D-22</span>
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">📦</div>
+            <div class="product-col">
+              <div class="product-name">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L</div>
+              <div class="product-sub">오토워시</div>
+              <div class="product-option">색상 선택: 48L 베이지</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.12. · D-22</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" onclick='toggleApproval("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>본문 수정</button>
             </div>
-          <h2>오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.12.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 색상 선택: 48L 베이지</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L은 48L라 생각보다 부피 있는 물건도 정리하기 좋고, 캠핑/차박 짐 나누기에도 여유가 있는 편입니다. 옵션은 색상 선택: 48L 베이지 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">차에 두고 쓰는 정리함으로 만족도가 괜찮았습니다</div>
+            <pre id="body-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L은 48L라 생각보다 부피 있는 물건도 정리하기 좋고, 캠핑/차박 짐 나누기에도 여유가 있는 편입니다. 옵션은 색상 선택: 48L 베이지 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다. 실제로 써보면 용량이 넉넉해서 세차용품 외에도 담요나 비상용품까지 같이 넣기 수월했습니다.
 
 다만 높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.
 
 팁으로는 큰 짐은 아래에, 자주 쓰는 파우치는 전면 도어 쪽에 두면 48L의 넓은 공간을 덜 헤매고 쓰기 좋습니다. 전체적으로 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">색감이 과하게 튀지 않아 트렁크 안에서 정리함처럼 자연스럽게 보이는 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">용량이 넉넉해서 세차용품 외에도 담요나 비상용품까지 같이 넣기 수월했습니다.</span></div>
             <div><b>단점</b> <span id="con-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">큰 짐은 아래에, 자주 쓰는 파우치는 전면 도어 쪽에 두면 48L의 넓은 공간을 덜 헤매고 쓰기 좋습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" style="display:none;">
               <label>제목</label>
@@ -260,7 +303,7 @@
               <textarea id="edit-con-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">높이가 있는 물건은 넣을 때 예상보다 뚜껑 간섭이 생길 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">큰 짐은 아래에, 자주 쓰는 파우치는 전면 도어 쪽에 두면 48L의 넓은 공간을 덜 헤매고 쓰기 좋습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\uc624\ud50c\ub809\uc2a4-\ud074\ub798\uc2dd-\ud3f4\ub529\ubc15\uc2a4-\uc811\uc774\uc2dd-\ud2b8\ub801\ud06c\uc815\ub9ac\ud568-48l")'>닫기</button>
               </div>
@@ -268,42 +311,51 @@
             
         </article>
         
-        <article class="card warn" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">승인대기</span>
-            <span class="dday">D-19</span>
+        <article class="review-card warn" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">루미너스 아쿠아 습식코팅제 고농축 원액 500ml</div>
+              <div class="product-sub">오토워시</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.09. · D-19</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" onclick='toggleApproval("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>본문 수정</button>
             </div>
-          <h2>루미너스 아쿠아 습식코팅제 고농축 원액 500ml</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.09.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">짧은 시간에 마무리하기 좋은 타입이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 원액형이지만 희석해서 여러 번 나눠 쓰기 좋아 관리제 성격이 분명했고, 드라잉 보조 체감도 있는 편이었습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">짧은 시간에 마무리하기 좋은 타입이었습니다</div>
+            <pre id="body-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 원액형이지만 희석해서 여러 번 나눠 쓰기 좋아 관리제 성격이 분명했고, 드라잉 보조 체감도 있는 편이었습니다.
 
 디자인이나 구성 쪽에서는 압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다. 실제로 써보면 희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.
 
 다만 시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.
 
 팁으로는 압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다. 전체적으로 루미너스 아쿠아 습식코팅제 고농축 원액 500ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다.</span></div>
             <div><b>장점</b> <span id="pro-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.</span></div>
             <div><b>단점</b> <span id="con-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.</span></div>
             <div><b>팁</b> <span id="tip-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" style="display:none;">
               <label>제목</label>
@@ -324,7 +376,7 @@
               <textarea id="edit-con-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">압축분무기로 패널별 분사량을 일정하게 맞추고, 엠블럼/몰딩 주변은 물기 정리를 먼저 하는 편이 깔끔합니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ub8e8\ubbf8\ub108\uc2a4-\uc544\ucfe0\uc544-\uc2b5\uc2dd\ucf54\ud305\uc81c-\uace0\ub18d\ucd95-\uc6d0\uc561-500ml")'>닫기</button>
               </div>
@@ -332,42 +384,51 @@
             
         </article>
         
-        <article class="card warn" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">승인대기</span>
-            <span class="dday">D-14</span>
+        <article class="review-card good" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)</div>
+              <div class="product-sub">다이마스터공식몰</div>
+              <div class="product-option">선택: 친수필름</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.04. · D-14</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='toggleApproval("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-21T10:51:50</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='toggleApproval("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>본문 수정</button>
             </div>
-          <h2>창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)</h2>
-          <div class="meta-line"><b>스토어</b> 다이마스터공식몰</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.04.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 선택: 친수필름</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">가볍게 보강하거나 테스트용으로 쓰기 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 가격이 낮아서 완성형 제품보다는 보강용이나 소규모 테스트용으로 접근할 때 만족도가 맞는 편입니다. 옵션은 선택: 친수필름 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">가볍게 보강하거나 테스트용으로 쓰기 괜찮았습니다</div>
+            <pre id="body-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 가격이 낮아서 완성형 제품보다는 보강용이나 소규모 테스트용으로 접근할 때 만족도가 맞는 편입니다. 옵션은 선택: 친수필름 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 친수필름 계열이라 화려한 제품보다 필요한 구간만 다뤄보는 실용형에 가깝습니다. 실제로 써보면 적은 비용으로 먼저 써보면서 필요한 곳에 맞는지 판단하기 좋았습니다.
 
 다만 한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.
 
 팁으로는 넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다. 전체적으로 창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">친수필름 계열이라 화려한 제품보다 필요한 구간만 다뤄보는 실용형에 가깝습니다.</span></div>
             <div><b>장점</b> <span id="pro-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">적은 비용으로 먼저 써보면서 필요한 곳에 맞는지 판단하기 좋았습니다.</span></div>
             <div><b>단점</b> <span id="con-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" style="display:none;">
               <label>제목</label>
@@ -388,7 +449,7 @@
               <textarea id="edit-con-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>닫기</button>
               </div>
@@ -396,42 +457,51 @@
             
         </article>
         
-        <article class="card warn" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-터닝메카드-카울중고">승인대기</span>
-            <span class="dday">D-1</span>
+        <article class="review-card good" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">터닝메카드 카울[중고]</div>
+              <div class="product-sub">마켓뚜기</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.03.22. · D-1</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-터닝메카드-카울중고">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-터닝메카드-카울중고">2026-03-21T10:51:54</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>본문 수정</button>
             </div>
-          <h2>터닝메카드 카울[중고]</h2>
-          <div class="meta-line"><b>스토어</b> 마켓뚜기</div>
-          <div class="meta-line"><b>리뷰 종류</b> 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.03.22.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-터닝메카드-카울중고">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-터닝메카드-카울중고">중고 기준으로 보면 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-터닝메카드-카울중고">터닝메카드 카울[중고]은 새 제품 감성보다 상태와 가격 균형으로 보면 만족도가 괜찮은 편이었습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-터닝메카드-카울중고">중고 기준으로 보면 만족도가 괜찮았습니다</div>
+            <pre id="body-터닝메카드-카울중고">터닝메카드 카울[중고]은 새 제품 감성보다 상태와 가격 균형으로 보면 만족도가 괜찮은 편이었습니다.
 
 디자인이나 구성 쪽에서는 중고 완구라 새것 같은 기대보다는 현재 상태를 보는 쪽이 맞는 제품입니다. 실제로 써보면 필요한 파츠를 부담 적게 구하는 느낌으로 접근하면 만족도가 괜찮습니다.
 
 다만 도색 벗겨짐이나 결합부 헐거움은 새 제품처럼 기대하면 아쉬울 수 있습니다.
 
 팁으로는 중고 완구는 도색 상태보다 결합부 헐거움과 작동감이 실제 만족도에 더 크게 남는 편이라 그쪽을 먼저 보는 게 낫습니다. 전체적으로 터닝메카드 카울[중고]은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-터닝메카드-카울중고">중고 완구라 새것 같은 기대보다는 현재 상태를 보는 쪽이 맞는 제품입니다.</span></div>
             <div><b>장점</b> <span id="pro-터닝메카드-카울중고">필요한 파츠를 부담 적게 구하는 느낌으로 접근하면 만족도가 괜찮습니다.</span></div>
             <div><b>단점</b> <span id="con-터닝메카드-카울중고">도색 벗겨짐이나 결합부 헐거움은 새 제품처럼 기대하면 아쉬울 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-터닝메카드-카울중고">중고 완구는 도색 상태보다 결합부 헐거움과 작동감이 실제 만족도에 더 크게 남는 편이라 그쪽을 먼저 보는 게 낫습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-터닝메카드-카울중고" style="display:none;">
               <label>제목</label>
@@ -452,7 +522,7 @@
               <textarea id="edit-con-터닝메카드-카울중고">도색 벗겨짐이나 결합부 헐거움은 새 제품처럼 기대하면 아쉬울 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-터닝메카드-카울중고">중고 완구는 도색 상태보다 결합부 헐거움과 작동감이 실제 만족도에 더 크게 남는 편이라 그쪽을 먼저 보는 게 낫습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>닫기</button>
               </div>
@@ -460,42 +530,51 @@
             
         </article>
         
-        <article class="card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">승인대기</span>
-            <span class="dday">D-59</span>
+        <article class="review-card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제</div>
+              <div class="product-sub">오토워시</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.19. · D-59</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>본문 수정</button>
             </div>
-          <h2>마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.19.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">짧은 시간에 마무리하기 좋은 타입이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제은 원액형이지만 희석 사용 기준으로 경제성 체감도 있는 편입니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">짧은 시간에 마무리하기 좋은 타입이었습니다</div>
+            <pre id="body-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제은 원액형이지만 희석 사용 기준으로 경제성 체감도 있는 편입니다.
 
 디자인이나 구성 쪽에서는 압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다. 실제로 써보면 희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.
 
 다만 시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.
 
 팁으로는 크롬이나 틈새는 드라잉 타월로 먼저 정리해야 잔사 걱정이 줄어듭니다. 전체적으로 마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">압축분무기나 희석 운용에 익숙하면 훨씬 편하게 느껴지는 제품입니다.</span></div>
             <div><b>장점</b> <span id="pro-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">희석 사용 기준으로 한 번 사용할 때 소모량 부담이 적은 편입니다.</span></div>
             <div><b>단점</b> <span id="con-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.</span></div>
             <div><b>팁</b> <span id="tip-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">크롬이나 틈새는 드라잉 타월로 먼저 정리해야 잔사 걱정이 줄어듭니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c8166a54ccce3ab825ecd" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/500ml-329b2169ba7c8166a54ccce3ab825ecd" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" style="display:none;">
               <label>제목</label>
@@ -516,7 +595,7 @@
               <textarea id="edit-con-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">시공이 쉬운 대신 고급 코팅제처럼 오래 가는 느낌을 기대하면 다소 다릅니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">크롬이나 틈새는 드라잉 타월로 먼저 정리해야 잔사 걱정이 줄어듭니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub77c\ubcf4\ucf54\uc2a4\uba54\ud2f0\uce74-\ub124\ub85c-500ml-\uc824-\ud0c0\uc785-\ud0c0\uc774\uc5b4-\ucf54\ud305\uc81c")'>닫기</button>
               </div>
@@ -524,63 +603,72 @@
             
         </article>
         
-        <article class="card warn" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">승인대기</span>
-            <span class="dday">D-59</span>
+        <article class="review-card good" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">💡</div>
+            <div class="product-col">
+              <div class="product-name">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED</div>
+              <div class="product-sub">벤딕트 공식몰</div>
+              <div class="product-option">컬러: 아이오닉9 웜화이트 5m</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.19. · D-59</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='toggleApproval("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">2026-03-21T01:01:06</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" onclick='toggleApproval("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>본문 수정</button>
             </div>
-          <h2>벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED</h2>
-          <div class="meta-line"><b>스토어</b> 벤딕트 공식몰</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 베스트리뷰 10,000P</div>
-          <div class="meta-line"><b>마감</b> 2026.05.19.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 컬러: 아이오닉9 웜화이트 5m</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">실내 분위기보다 활용성이 먼저 느껴졌습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 단순 무드등보다 야간 짐 정리나 차박 상황에서 실제 체감이 큰 편이었습니다. 옵션은 컬러: 아이오닉9 웜화이트 5m 기준으로 봤습니다.
-
-디자인이나 구성 쪽에서는 면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다. 실제로 써보면 밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.
-
-다만 밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.
-
-팁으로는 차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다. 전체적으로 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
-          <div class="tips">
-            <div><b>디자인</b> <span id="design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다.</span></div>
-            <div><b>장점</b> <span id="pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.</span></div>
-            <div><b>단점</b> <span id="con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.</span></div>
-            <div><b>팁</b> <span id="tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/9-LED-329b2169ba7c814daa64ca85a4db6d58" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">무드등보다 야간 실사용 쪽 만족도가 더 컸습니다</div>
+            <pre id="body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED는 단순 무드등보다는 야간 실사용 쪽에서 만족도가 더 큰 제품이었습니다. 특히 밤에 짐 찾거나 아이들 물건 정리할 때 실내 조도가 애매한 상황에서 바로 체감이 오는 편이었습니다. 옵션은 아이오닉9 웜화이트 5m 기준으로 봤습니다.
+
+면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명합니다. 실제로는 차박이나 야간 정리처럼 손이 자주 가는 상황에서 활용성이 높아, 단순 장식용보다 실용 쪽 만족도가 더 컸습니다.
+
+다만 밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치를 잘 잡아야 합니다. 그래서 예쁘게 보이는 것보다 실제로 어디를 비출지 먼저 정하는 편이 결과가 좋았습니다.
+
+팁으로는 전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 훨씬 낫습니다. 배선은 먼저 고정하고 최종 점등 위치를 마지막에 조정해야 재작업도 줄어듭니다. 전체적으로 벤딕트 아이오닉9 식빵등은 튜닝용보다 실내 활용도 개선용으로 봤을 때 만족도가 더 높은 제품이었습니다.</pre>
+          </div>
+
+          <div class="tips">
+            <div><b>디자인</b> <span id="design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명한 편입니다.</span></div>
+            <div><b>장점</b> <span id="pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리처럼 실내 조도가 아쉬운 상황에서 바로 체감이 와서, 단순 장식용보다 활용성 쪽 만족도가 높았습니다.</span></div>
+            <div><b>단점</b> <span id="con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치가 중요합니다.</span></div>
+            <div><b>팁</b> <span id="tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡고, 배선은 먼저 고정한 뒤 최종 점등 위치를 조정하는 편이 재작업이 적습니다.</span></div>
+          </div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/9-LED-329b2169ba7c814daa64ca85a4db6d58" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" style="display:none;">
               <label>제목</label>
-              <textarea id="edit-title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">실내 분위기보다 활용성이 먼저 느껴졌습니다</textarea>
+              <textarea id="edit-title-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">무드등보다 야간 실사용 쪽 만족도가 더 컸습니다</textarea>
               <label>본문</label>
-              <textarea id="edit-body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 단순 무드등보다 야간 짐 정리나 차박 상황에서 실제 체감이 큰 편이었습니다. 옵션은 컬러: 아이오닉9 웜화이트 5m 기준으로 봤습니다.
+              <textarea id="edit-body-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED는 단순 무드등보다는 야간 실사용 쪽에서 만족도가 더 큰 제품이었습니다. 특히 밤에 짐 찾거나 아이들 물건 정리할 때 실내 조도가 애매한 상황에서 바로 체감이 오는 편이었습니다. 옵션은 아이오닉9 웜화이트 5m 기준으로 봤습니다.
 
-디자인이나 구성 쪽에서는 면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다. 실제로 써보면 밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.
+면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명합니다. 실제로는 차박이나 야간 정리처럼 손이 자주 가는 상황에서 활용성이 높아, 단순 장식용보다 실용 쪽 만족도가 더 컸습니다.
 
-다만 밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.
+다만 밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치를 잘 잡아야 합니다. 그래서 예쁘게 보이는 것보다 실제로 어디를 비출지 먼저 정하는 편이 결과가 좋았습니다.
 
-팁으로는 차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다. 전체적으로 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</textarea>
+팁으로는 전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 훨씬 낫습니다. 배선은 먼저 고정하고 최종 점등 위치를 마지막에 조정해야 재작업도 줄어듭니다. 전체적으로 벤딕트 아이오닉9 식빵등은 튜닝용보다 실내 활용도 개선용으로 봤을 때 만족도가 더 높은 제품이었습니다.</textarea>
               <label>디자인</label>
-              <textarea id="edit-design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다.</textarea>
+              <textarea id="edit-design-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명한 편입니다.</textarea>
               <label>장점</label>
-              <textarea id="edit-pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.</textarea>
+              <textarea id="edit-pro-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리처럼 실내 조도가 아쉬운 상황에서 바로 체감이 와서, 단순 장식용보다 활용성 쪽 만족도가 높았습니다.</textarea>
               <label>단점</label>
-              <textarea id="edit-con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.</textarea>
+              <textarea id="edit-con-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치가 중요합니다.</textarea>
               <label>팁</label>
-              <textarea id="edit-tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다.</textarea>
-              <div class="actions">
+              <textarea id="edit-tip-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡고, 배선은 먼저 고정한 뒤 최종 점등 위치를 조정하는 편이 재작업이 적습니다.</textarea>
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ubca4\ub515\ud2b8-\uc544\uc774\uc624\ub2c99-\uc545\uc138\uc0ac\ub9ac-\ud29c\ub2dd-\uc2e4\ub0b4-\uc2dd\ube75\ub4f1-\uc790\ub3d9\ucc28-\uc2e4\ub0b4\ub4f1-led")'>닫기</button>
               </div>
@@ -588,42 +676,51 @@
             
         </article>
         
-        <article class="card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">승인대기</span>
-            <span class="dday">D-57</span>
+        <article class="review-card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약</div>
+              <div class="product-sub">다주자뷰티</div>
+              <div class="product-option">종류: 9%</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 300원</span>
+                <span class="meta-pill due">2026.05.17. · D-57</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" onclick='toggleApproval("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>본문 수정</button>
             </div>
-          <h2>우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약</h2>
-          <div class="meta-line"><b>스토어</b> 다주자뷰티</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 300원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.17.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 종류: 9%</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도에 맞게 쓰면 괜찮은 편이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 종류: 9% 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도에 맞게 쓰면 괜찮은 편이었습니다</div>
+            <pre id="body-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약은 기본 기능은 기대한 범위 안에서 해주는 편이었습니다. 옵션은 종류: 9% 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다. 실제로 써보면 용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.
 
 다만 한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.
 
 팁으로는 용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다. 전체적으로 우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">구성이 과하게 복잡하지 않아 접근하기 쉬운 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도만 맞으면 손이 자주 가는 쪽에 가까웠습니다.</span></div>
             <div><b>단점</b> <span id="con-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" style="display:none;">
               <label>제목</label>
@@ -644,7 +741,7 @@
               <textarea id="edit-con-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">한 번에 모든 문제를 해결하는 제품으로 기대하면 아쉬울 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">용도에 맞는 상황에서 시작해야 장점이 더 잘 보입니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\uc6b0\uc2e0-\uc624\ud22c-\uc140\ub809\ud130-3-\uc0b0\ud654\uc81c-1000g-\uc5fc\uc0c9\uc57d-\ud0c8\uc0c9\uc57d")'>닫기</button>
               </div>
@@ -652,42 +749,51 @@
             
         </article>
         
-        <article class="card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-3m-클레이바-낙진제거제-1ea">승인대기</span>
-            <span class="dday">D-53</span>
+        <article class="review-card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🚘</div>
+            <div class="product-col">
+              <div class="product-name">3M 클레이바 낙진제거제 1EA</div>
+              <div class="product-sub">세알남</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.13. · D-53</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-3m-클레이바-낙진제거제-1ea">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-3m-클레이바-낙진제거제-1ea">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-3m-클레이바-낙진제거제-1ea" onclick='toggleApproval("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>승인</button>
             <button class="btn bad" onclick='reviewAction("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>본문 수정</button>
             </div>
-          <h2>3M 클레이바 낙진제거제 1EA</h2>
-          <div class="meta-line"><b>스토어</b> 세알남</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.13.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-3m-클레이바-낙진제거제-1ea">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-3m-클레이바-낙진제거제-1ea">표면 정리 단계에서 확실히 역할이 있는 편이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-3m-클레이바-낙진제거제-1ea">3M 클레이바 낙진제거제 1EA은 표면 이물 정리용으로 용도가 분명하고, 작업 후 촉감 차이가 느껴지는 편입니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-3m-클레이바-낙진제거제-1ea">표면 정리 단계에서 확실히 역할이 있는 편이었습니다</div>
+            <pre id="body-3m-클레이바-낙진제거제-1ea">3M 클레이바 낙진제거제 1EA은 표면 이물 정리용으로 용도가 분명하고, 작업 후 촉감 차이가 느껴지는 편입니다.
 
 디자인이나 구성 쪽에서는 클레이바 특성상 제품 자체보다 작업법이 더 중요한 타입입니다. 실제로 써보면 세차만으로 안 지워지던 까슬한 느낌을 정리하는 데 역할이 분명했습니다.
 
 다만 윤활이 부족하면 오히려 불안해서 작업 속도를 천천히 가져가야 합니다.
 
 팁으로는 클레이 작업은 소리와 저항이 줄어드는 순간을 기준으로 멈추는 편이 과도한 문지름을 줄이기 좋았습니다. 전체적으로 3M 클레이바 낙진제거제 1EA은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-3m-클레이바-낙진제거제-1ea">클레이바 특성상 제품 자체보다 작업법이 더 중요한 타입입니다.</span></div>
             <div><b>장점</b> <span id="pro-3m-클레이바-낙진제거제-1ea">세차만으로 안 지워지던 까슬한 느낌을 정리하는 데 역할이 분명했습니다.</span></div>
             <div><b>단점</b> <span id="con-3m-클레이바-낙진제거제-1ea">윤활이 부족하면 오히려 불안해서 작업 속도를 천천히 가져가야 합니다.</span></div>
             <div><b>팁</b> <span id="tip-3m-클레이바-낙진제거제-1ea">클레이 작업은 소리와 저항이 줄어드는 순간을 기준으로 멈추는 편이 과도한 문지름을 줄이기 좋았습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-3m-클레이바-낙진제거제-1ea" style="display:none;">
               <label>제목</label>
@@ -708,7 +814,7 @@
               <textarea id="edit-con-3m-클레이바-낙진제거제-1ea">윤활이 부족하면 오히려 불안해서 작업 속도를 천천히 가져가야 합니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-3m-클레이바-낙진제거제-1ea">클레이 작업은 소리와 저항이 줄어드는 순간을 기준으로 멈추는 편이 과도한 문지름을 줄이기 좋았습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("3m-\ud074\ub808\uc774\ubc14-\ub099\uc9c4\uc81c\uac70\uc81c-1ea")'>닫기</button>
               </div>
@@ -716,42 +822,51 @@
             
         </article>
         
-        <article class="card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">승인대기</span>
-            <span class="dday">D-53</span>
+        <article class="review-card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)</div>
+              <div class="product-sub">밥솥나라</div>
+              <div class="product-option">선택1: 4인치(10cm) 5개 세트 / 선택2: 검은색 반투명</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 100원</span>
+                <span class="meta-pill due">2026.05.13. · D-53</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" onclick='toggleApproval("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>본문 수정</button>
             </div>
-          <h2>버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)</h2>
-          <div class="meta-line"><b>스토어</b> 밥솥나라</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 100원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.13.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 선택1: 4인치(10cm) 5개 세트 / 선택2: 검은색 반투명</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷 이동이 편해져서 은근히 손이 자주 갔습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)은 버킷 무게가 있는 세차 환경일수록 체감이 커지고, 물통 이동 횟수가 많은 날 더 편했습니다. 옵션은 선택1: 4인치(10cm) 5개 세트 / 선택2: 검은색 반투명 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷 이동이 편해져서 은근히 손이 자주 갔습니다</div>
+            <pre id="body-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)은 버킷 무게가 있는 세차 환경일수록 체감이 커지고, 물통 이동 횟수가 많은 날 더 편했습니다. 옵션은 선택1: 4인치(10cm) 5개 세트 / 선택2: 검은색 반투명 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 바퀴 조합이 심플해서 세차용 보조 도구라는 성격이 분명합니다. 실제로 써보면 한 번 움직일 때 허리를 덜 쓰게 되는 점이 생각보다 체감이 있습니다.
 
 다만 버킷 무게 중심이 치우치면 회전감이 둔해질 수 있습니다.
 
 팁으로는 매끈한 바닥에서 체감이 더 크니 작업 공간 특성을 먼저 보는 편이 좋습니다. 전체적으로 버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">바퀴 조합이 심플해서 세차용 보조 도구라는 성격이 분명합니다.</span></div>
             <div><b>장점</b> <span id="pro-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">한 번 움직일 때 허리를 덜 쓰게 되는 점이 생각보다 체감이 있습니다.</span></div>
             <div><b>단점</b> <span id="con-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷 무게 중심이 치우치면 회전감이 둔해질 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">매끈한 바닥에서 체감이 더 크니 작업 공간 특성을 먼저 보는 편이 좋습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" style="display:none;">
               <label>제목</label>
@@ -772,7 +887,7 @@
               <textarea id="edit-con-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">버킷 무게 중심이 치우치면 회전감이 둔해질 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">매끈한 바닥에서 체감이 더 크니 작업 공간 특성을 먼저 보는 편이 좋습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ubc84\ud0b7\ub3cc\ub9ac-\uc138\ucc28\ubc14\ud034-\uc6b0\ub808\ud0c4-\uce90\uc2a4\ud130-\uc138\ud2b8-3\uc778\uce5875cm-4\uc778\uce5810cm")'>닫기</button>
               </div>
@@ -780,42 +895,51 @@
             
         </article>
         
-        <article class="card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">승인대기</span>
-            <span class="dday">D-52</span>
+        <article class="review-card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml</div>
+              <div class="product-sub">Bullsone공식몰</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 300원</span>
+                <span class="meta-pill due">2026.05.12. · D-52</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" onclick='toggleApproval("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>본문 수정</button>
             </div>
-          <h2>[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml</h2>
-          <div class="meta-line"><b>스토어</b> Bullsone공식몰</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 300원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.12.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">빠르게 관리할 때 잘 맞는 습식코팅제였습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml은 풀코팅보다 유지관리용으로 접근하면 만족도가 괜찮고, 작업 속도가 빠른 편입니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">빠르게 관리할 때 잘 맞는 습식코팅제였습니다</div>
+            <pre id="body-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml은 풀코팅보다 유지관리용으로 접근하면 만족도가 괜찮고, 작업 속도가 빠른 편입니다.
 
 디자인이나 구성 쪽에서는 물기 있는 상태에서 바로 쓰는 흐름이라 작업 루틴에 자연스럽게 들어갑니다. 실제로 써보면 패널별로 짧게 작업하면 광택감과 드라잉 편의가 같이 오는 느낌이 있었습니다.
 
 다만 과하게 분사하면 잔사 정리가 번거로워질 수 있습니다.
 
 팁으로는 패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다. 전체적으로 [불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">물기 있는 상태에서 바로 쓰는 흐름이라 작업 루틴에 자연스럽게 들어갑니다.</span></div>
             <div><b>장점</b> <span id="pro-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">패널별로 짧게 작업하면 광택감과 드라잉 편의가 같이 오는 느낌이 있었습니다.</span></div>
             <div><b>단점</b> <span id="con-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">과하게 분사하면 잔사 정리가 번거로워질 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c81f8a943f7cd5a2901b7" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/500ml-329b2169ba7c81f8a943f7cd5a2901b7" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" style="display:none;">
               <label>제목</label>
@@ -836,7 +960,7 @@
               <textarea id="edit-con-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">과하게 분사하면 잔사 정리가 번거로워질 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">패널 하나씩 짧게 분사하고 바로 헹구는 방식이 가장 안정적이었습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ubd88\uc2a4\uc6d0-\ub274-\ud06c\ub9ac\uc2a4\ud0c8\ucf54\ud2b8-\ud50c\ub7ec\uc2a4-\uc720\ub9ac\ub9c9\ucf54\ud305\uc81c-\ubb3c\uc641\uc2a4-500ml")'>닫기</button>
               </div>
@@ -844,42 +968,51 @@
             
         </article>
         
-        <article class="card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">승인대기</span>
-            <span class="dday">D-52</span>
+        <article class="review-card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개</div>
+              <div class="product-sub">오토워시</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 160원</span>
+                <span class="meta-pill due">2026.05.12. · D-52</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>본문 수정</button>
             </div>
-          <h2>마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 160원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.12.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">관리용 클리너로 두기 꽤 실용적이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개은 타이어 갈변 비중이 큰 차에서는 생각보다 손이 자주 가는 제품입니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">관리용 클리너로 두기 꽤 실용적이었습니다</div>
+            <pre id="body-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개은 타이어 갈변 비중이 큰 차에서는 생각보다 손이 자주 가는 제품입니다.
 
 디자인이나 구성 쪽에서는 갈변/분진 정리용으로 목적이 또렷해서 사용 상황이 명확한 편입니다. 실제로 써보면 희석 사용 기준이라 작업 면적 대비 부담이 덜한 점이 좋았습니다.
 
 다만 진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.
 
 팁으로는 브러시 작업 전에 제품이 반응하는 짧은 시간만 주고 바로 문지르는 편이 갈변 제거 효율이 좋았습니다. 전체적으로 마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">갈변/분진 정리용으로 목적이 또렷해서 사용 상황이 명확한 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">희석 사용 기준이라 작업 면적 대비 부담이 덜한 점이 좋았습니다.</span></div>
             <div><b>단점</b> <span id="con-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">브러시 작업 전에 제품이 반응하는 짧은 시간만 주고 바로 문지르는 편이 갈변 제거 효율이 좋았습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" style="display:none;">
               <label>제목</label>
@@ -900,7 +1033,7 @@
               <textarea id="edit-con-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">브러시 작업 전에 제품이 반응하는 짧은 시간만 주고 바로 문지르는 편이 갈변 제거 효율이 좋았습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\ud720\uc564\ud0c0\uc774\uc5b4-\ud074\ub9ac\ub108-\ub300\uc6a9\ub7c9-\ud76c\uc11d\uc81c\ud488-\ud0c0\uc774\uc5b4\uac08\ubcc0\uc81c\uac70-\ud720-\ubd84\uc9c4-1l-2\uac1c")'>닫기</button>
               </div>
@@ -908,42 +1041,51 @@
             
         </article>
         
-        <article class="card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">승인대기</span>
-            <span class="dday">D-51</span>
+        <article class="review-card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🫧</div>
+            <div class="product-col">
+              <div class="product-name">비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기</div>
+              <div class="product-sub">비쎌코리아</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.11. · D-51</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" onclick='toggleApproval("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>본문 수정</button>
             </div>
-          <h2>비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기</h2>
-          <div class="meta-line"><b>스토어</b> 비쎌코리아</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.11.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">전체 세탁 대신 부분 관리용으로 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기은 전체 청소기보다는 집에 두고 부분 얼룩 대응 속도를 높여주는 쪽 가치가 더 큰 제품이었습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">전체 세탁 대신 부분 관리용으로 만족도가 괜찮았습니다</div>
+            <pre id="body-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기은 전체 청소기보다는 집에 두고 부분 얼룩 대응 속도를 높여주는 쪽 가치가 더 큰 제품이었습니다.
 
 디자인이나 구성 쪽에서는 패브릭 전용 도구 느낌이 강해서 사용 상황이 명확한 편입니다. 실제로 써보면 부분 얼룩을 바로 대응할 수 있어 집안 관리 템포가 빨라졌습니다.
 
 다만 소음과 건조시간은 어느 정도 감수해야 해서 밤늦게 쓰기엔 다소 부담이 있습니다.
 
 팁으로는 흡입만 하는 건조 스트로크를 몇 번 더 해주면 체감 건조 시간이 확실히 줄어드는 편입니다. 전체적으로 비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">패브릭 전용 도구 느낌이 강해서 사용 상황이 명확한 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">부분 얼룩을 바로 대응할 수 있어 집안 관리 템포가 빨라졌습니다.</span></div>
             <div><b>단점</b> <span id="con-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">소음과 건조시간은 어느 정도 감수해야 해서 밤늦게 쓰기엔 다소 부담이 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">흡입만 하는 건조 스트로크를 몇 번 더 해주면 체감 건조 시간이 확실히 줄어드는 편입니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" style="display:none;">
               <label>제목</label>
@@ -964,7 +1106,7 @@
               <textarea id="edit-con-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">소음과 건조시간은 어느 정도 감수해야 해서 밤늦게 쓰기엔 다소 부담이 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">흡입만 하는 건조 스트로크를 몇 번 더 해주면 체감 건조 시간이 확실히 줄어드는 편입니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ube44\uc38c-\uc2a4\ud31f\ud074\ub9b0-c5-3928s-\ud328\ube0c\ub9ad-\uc18c\ud30c-\uce74\ud398\ud2b8-\uce68\ub300-\ub9e4\ud2b8\ub9ac\uc2a4-\uc2b5\uc2dd-\uce68\uad6c-\uccad\uc18c\uae30")'>닫기</button>
               </div>
@@ -972,42 +1114,51 @@
             
         </article>
         
-        <article class="card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">승인대기</span>
-            <span class="dday">D-48</span>
+        <article class="review-card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거</div>
+              <div class="product-sub">오토워시</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.08. · D-48</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" onclick='toggleApproval("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>본문 수정</button>
             </div>
-          <h2>마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거</h2>
-          <div class="meta-line"><b>스토어</b> 오토워시</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.08.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">유리 얼룩 관리용으로 무난하게 만족했습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거은 손자국이나 유막처럼 운전 중 거슬리는 부분을 빠르게 정리하기 좋은 타입이었습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">유리 얼룩 관리용으로 무난하게 만족했습니다</div>
+            <pre id="body-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거은 손자국이나 유막처럼 운전 중 거슬리는 부분을 빠르게 정리하기 좋은 타입이었습니다.
 
 디자인이나 구성 쪽에서는 유리용 제품답게 사용 목적이 분명하고, 잔사 없이 마무리하는 쪽에 초점이 맞는 느낌입니다. 실제로 써보면 실내외 유리의 번들거림이나 손자국 정리 속도가 빨라서 평소 관리 주기가 짧아졌습니다.
 
 다만 한 번에 너무 많이 뿌리면 닦는 면적이 넓어져 오히려 자국이 남을 수 있습니다.
 
 팁으로는 운전석 유리는 가로 방향, 조수석 쪽은 세로 방향으로 닦아두면 남은 자국 방향을 구분하기 편합니다. 전체적으로 마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">유리용 제품답게 사용 목적이 분명하고, 잔사 없이 마무리하는 쪽에 초점이 맞는 느낌입니다.</span></div>
             <div><b>장점</b> <span id="pro-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">실내외 유리의 번들거림이나 손자국 정리 속도가 빨라서 평소 관리 주기가 짧아졌습니다.</span></div>
             <div><b>단점</b> <span id="con-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">한 번에 너무 많이 뿌리면 닦는 면적이 넓어져 오히려 자국이 남을 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">운전석 유리는 가로 방향, 조수석 쪽은 세로 방향으로 닦아두면 남은 자국 방향을 구분하기 편합니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" style="display:none;">
               <label>제목</label>
@@ -1028,7 +1179,7 @@
               <textarea id="edit-con-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">한 번에 너무 많이 뿌리면 닦는 면적이 넓어져 오히려 자국이 남을 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">운전석 유리는 가로 방향, 조수석 쪽은 세로 방향으로 닦아두면 남은 자국 방향을 구분하기 편합니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ub9c8\ud504\ub77c-\ub9e4\ub2c8\uc545-\uae00\ub77c\uc2a4\ud074\ub9ac\ub108-\ub514\uadf8\ub9ac\uc800-500ml-\uc790\ub3d9\ucc28-\uc720\ub9ac\uc138\uc815\uc81c-\uc5bc\ub8e9-\uc720\ub9c9\uc81c\uac70")'>닫기</button>
               </div>
@@ -1036,42 +1187,51 @@
             
         </article>
         
-        <article class="card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">승인대기</span>
-            <span class="dday">D-41</span>
+        <article class="review-card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제</div>
+              <div class="product-sub">다이마스터공식몰</div>
+              <div class="product-option">선택: D3 얼룩제거제</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.05.01. · D-41</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" onclick='toggleApproval("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>승인</button>
             <button class="btn bad" onclick='reviewAction("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>본문 수정</button>
             </div>
-          <h2>D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제</h2>
-          <div class="meta-line"><b>스토어</b> 다이마스터공식몰</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.05.01.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 선택: D3 얼룩제거제</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">관리용 클리너로 두기 꽤 실용적이었습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제은 한 가지 오염 전용이 아니라 이곳저곳 시도해볼 수 있는 관리용으로 보면 활용 폭이 괜찮았습니다. 옵션은 선택: D3 얼룩제거제 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">관리용 클리너로 두기 꽤 실용적이었습니다</div>
+            <pre id="body-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제은 한 가지 오염 전용이 아니라 이곳저곳 시도해볼 수 있는 관리용으로 보면 활용 폭이 괜찮았습니다. 옵션은 선택: D3 얼룩제거제 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 갈변/분진 정리용으로 목적이 또렷해서 사용 상황이 명확한 편입니다. 실제로 써보면 희석 사용 기준이라 작업 면적 대비 부담이 덜한 점이 좋았습니다.
 
 다만 진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.
 
 팁으로는 반응이 빠른 오염부터 먼저 테스트해보면 이 제품이 어디에 잘 맞는지 감이 더 빨리 옵니다. 전체적으로 D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">갈변/분진 정리용으로 목적이 또렷해서 사용 상황이 명확한 편입니다.</span></div>
             <div><b>장점</b> <span id="pro-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">희석 사용 기준이라 작업 면적 대비 부담이 덜한 점이 좋았습니다.</span></div>
             <div><b>단점</b> <span id="con-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">반응이 빠른 오염부터 먼저 테스트해보면 이 제품이 어디에 잘 맞는지 감이 더 빨리 옵니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" style="display:none;">
               <label>제목</label>
@@ -1092,7 +1252,7 @@
               <textarea id="edit-con-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">진한 농도로 쓰면 결과는 좋지만 작업 속도가 느리면 잔사 관리가 필요할 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">반응이 빠른 오염부터 먼저 테스트해보면 이 제품이 어디에 잘 맞는지 감이 더 빨리 옵니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("d3-\uc5bc\ub8e9\uc81c\uac70\uc81c-\uc720\ub9c9\uc81c\uac70\uc81c-\ubc31\ud654\uc81c\uac70\uc81c-\uac08\ubcc0\uc81c\uac70\uc81c-\ubc8c\ub808\uc81c\uac70\uc81c")'>닫기</button>
               </div>
@@ -1100,42 +1260,51 @@
             
         </article>
         
-        <article class="card warn" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인대기</span>
-            <span class="dday">D-25</span>
+        <article class="review-card good" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🪑</div>
+            <div class="product-col">
+              <div class="product-name">벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼</div>
+              <div class="product-sub">벤오토</div>
+              <div class="product-option">선택: 1+1 벤오토 베리어 목쿠션 (총 2개) / 컬러: 미스티 그레이</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.15. · D-25</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='toggleApproval("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">2026-03-21T10:52:34</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" onclick='toggleApproval("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>본문 수정</button>
             </div>
-          <h2>벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼</h2>
-          <div class="meta-line"><b>스토어</b> 벤오토</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.15.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 선택: 1+1 벤오토 베리어 목쿠션 (총 2개) / 컬러: 미스티 그레이</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">목 뒤 공간 메우는 용도로 만족도가 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼은 1+1 구성이라 운전석/조수석을 같이 맞추기 좋고, 장거리 주행 시 목 뒤 뜸이 줄어드는 쪽 체감이 있었습니다. 옵션은 선택: 1+1 벤오토 베리어 목쿠션 (총 2개) / 컬러: 미스티 그레이 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">목 뒤 공간 메우는 용도로 만족도가 괜찮았습니다</div>
+            <pre id="body-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼은 1+1 구성이라 운전석/조수석을 같이 맞추기 좋고, 장거리 주행 시 목 뒤 뜸이 줄어드는 쪽 체감이 있었습니다. 옵션은 선택: 1+1 벤오토 베리어 목쿠션 (총 2개) / 컬러: 미스티 그레이 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 헤드레스트에 달았을 때 부피감이 지나치지 않아 차 안 분위기를 크게 해치지 않습니다. 실제로 써보면 한 쌍 기준으로 좌우 밸런스를 맞추기 쉬워서 동승석까지 같이 쓰기 좋았습니다.
 
 다만 푹신함이 장점인 대신 단단하게 고정되는 느낌을 기대하면 다소 다르게 느껴질 수 있습니다.
 
 팁으로는 운전석만 먼저 써보고 맞는 높이를 찾은 뒤 조수석에도 맞추는 방식이 실패가 적습니다. 전체적으로 벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">헤드레스트에 달았을 때 부피감이 지나치지 않아 차 안 분위기를 크게 해치지 않습니다.</span></div>
             <div><b>장점</b> <span id="pro-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">한 쌍 기준으로 좌우 밸런스를 맞추기 쉬워서 동승석까지 같이 쓰기 좋았습니다.</span></div>
             <div><b>단점</b> <span id="con-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">푹신함이 장점인 대신 단단하게 고정되는 느낌을 기대하면 다소 다르게 느껴질 수 있습니다.</span></div>
             <div><b>팁</b> <span id="tip-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">운전석만 먼저 써보고 맞는 높이를 찾은 뒤 조수석에도 맞추는 방식이 실패가 적습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" style="display:none;">
               <label>제목</label>
@@ -1156,7 +1325,7 @@
               <textarea id="edit-con-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">푹신함이 장점인 대신 단단하게 고정되는 느낌을 기대하면 다소 다르게 느껴질 수 있습니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">운전석만 먼저 써보고 맞는 높이를 찾은 뒤 조수석에도 맞추는 방식이 실패가 적습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ubca4\uc624\ud1a0-\ubca0\ub9ac\uc5b4-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ubaa9\ubca0\uac1c-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uba54\ubaa8\ub9ac\ud3fc")'>닫기</button>
               </div>
@@ -1164,42 +1333,51 @@
             
         </article>
         
-        <article class="card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">승인대기</span>
-            <span class="dday">D-20</span>
+        <article class="review-card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식</div>
+              <div class="product-sub">crazy monster</div>
+              <div class="product-option">상품명: 3단 접이식 평탄화보드 / 색상: 라이트 그레이</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 350원</span>
+                <span class="meta-pill due">2026.04.10. · D-20</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" onclick='toggleApproval("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>본문 수정</button>
             </div>
-          <h2>크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식</h2>
-          <div class="meta-line"><b>스토어</b> crazy monster</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 350원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.10.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 상품명: 3단 접이식 평탄화보드 / 색상: 라이트 그레이</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">실사용 기준으로 무난하게 만족했습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식은 큰 불편 없이 쓰기 무난한 편이었습니다. 옵션은 상품명: 3단 접이식 평탄화보드 / 색상: 라이트 그레이 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">실사용 기준으로 무난하게 만족했습니다</div>
+            <pre id="body-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식은 큰 불편 없이 쓰기 무난한 편이었습니다. 옵션은 상품명: 3단 접이식 평탄화보드 / 색상: 라이트 그레이 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
 
 다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
 
 팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
             <div><b>장점</b> <span id="pro-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
             <div><b>단점</b> <span id="con-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
             <div><b>팁</b> <span id="tip-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/3-329b2169ba7c81f988c5ebeced16da96" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/3-329b2169ba7c81f988c5ebeced16da96" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" style="display:none;">
               <label>제목</label>
@@ -1220,7 +1398,7 @@
               <textarea id="edit-con-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ud06c\ub808\uc774\uc9c0\ubaac\uc2a4\ud130-\ucc28\ubc15-\ub9e4\ud2b8-\ud3c9\ud0c4\ud654-\ubcf4\ub4dc-\ud330\ub9ac\uc138\uc774\ub4dc-\uc2fc\ud0c0\ud398-\uc3d8\ub80c\ud1a0-3\ub2e8-\uc811\uc774\uc2dd")'>닫기</button>
               </div>
@@ -1228,42 +1406,51 @@
             
         </article>
         
-        <article class="card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">승인대기</span>
-            <span class="dday">D-18</span>
+        <article class="review-card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="product-col">
+              <div class="product-name">[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml</div>
+              <div class="product-sub">Bullsone공식몰</div>
+              
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 300원</span>
+                <span class="meta-pill due">2026.04.08. · D-18</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge warn" id="badge-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">승인대기</span>
+              <span class="synced-text">동기화 <span id="synced-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">2026-03-21T09:05:13</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
             <button class="btn success" id="action-primary-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" onclick='toggleApproval("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>승인</button>
             <button class="btn bad" onclick='reviewAction("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>본문 수정</button>
             </div>
-          <h2>[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml</h2>
-          <div class="meta-line"><b>스토어</b> Bullsone공식몰</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 300원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.08.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">2026-03-21T09:05:13</span></div>
-          
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">실사용 기준으로 무난하게 만족했습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml은 큰 불편 없이 쓰기 무난한 편이었습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">실사용 기준으로 무난하게 만족했습니다</div>
+            <pre id="body-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml은 큰 불편 없이 쓰기 무난한 편이었습니다.
 
 디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.
 
 다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.
 
 팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 [불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.</span></div>
             <div><b>장점</b> <span id="pro-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">기본 기능은 기대한 범위 안에서 해주는 편이었습니다.</span></div>
             <div><b>단점</b> <span id="con-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</span></div>
             <div><b>팁</b> <span id="tip-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/300ml-329b2169ba7c81ac98fed45ead9bd71e" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/300ml-329b2169ba7c81ac98fed45ead9bd71e" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" style="display:none;">
               <label>제목</label>
@@ -1284,7 +1471,7 @@
               <textarea id="edit-con-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\ubd88\uc2a4\uc6d0-\uc790\ub3d9\ucc28-\uc2e4\ub0b4-\uac00\uc8fd-\ubcf4\ud638\uc81c-\ubcf4\uc2b5\uc81c-\ub525-\ucf54\ud305-\uac00\uc8fd-\ucee8\ub514\uc154\ub108-300ml")'>닫기</button>
               </div>
@@ -1292,42 +1479,51 @@
             
         </article>
         
-        <article class="card warn" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="awaiting_approval">
-          <div class="topline">
-            <span class="badge warn" id="badge-전동드릴-광택패드-80mm-7종-세트-광택작업">승인대기</span>
-            <span class="dday">D-16</span>
+        <article class="review-card good" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="approved">
+          <div class="review-top">
+            <div class="thumb" aria-hidden="true">🛍️</div>
+            <div class="product-col">
+              <div class="product-name">전동드릴 광택패드 80mm 7종 세트 광택작업</div>
+              <div class="product-sub">디테일링박스</div>
+              <div class="product-option">선택: 125mm(5인치) 광택패드 7종세트</div>
+              <div class="meta-strip">
+                <span class="meta-pill point">최대 150원</span>
+                <span class="meta-pill due">2026.04.06. · D-16</span>
+              </div>
+            </div>
           </div>
-          <div class="actions top-actions">
-            <button class="btn success" id="action-primary-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='toggleApproval("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>승인</button>
+
+          <div class="status-row">
+            <div class="status-left">
+              <span class="badge good" id="badge-전동드릴-광택패드-80mm-7종-세트-광택작업">승인됨</span>
+              <span class="synced-text">동기화 <span id="synced-전동드릴-광택패드-80mm-7종-세트-광택작업">2026-03-21T10:53:12</span></span>
+            </div>
+            <div class="actions compact-actions top-actions">
+            <button class="btn warn" id="action-primary-전동드릴-광택패드-80mm-7종-세트-광택작업" onclick='toggleApproval("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>승인대기로</button>
             <button class="btn bad" onclick='reviewAction("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", "needs_edit")'>수정요청</button>
-            <button class="btn secondary" onclick='refreshItem("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5", true)'>상태 확인</button>
             <button class="btn secondary" onclick='toggleEdit("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>본문 수정</button>
             </div>
-          <h2>전동드릴 광택패드 80mm 7종 세트 광택작업</h2>
-          <div class="meta-line"><b>스토어</b> 디테일링박스</div>
-          <div class="meta-line"><b>리뷰 종류</b> 한달사용 리뷰쓰기</div>
-          <div class="meta-line"><b>포인트</b> 최대 150원</div>
-          <div class="meta-line"><b>이벤트</b> 없음</div>
-          <div class="meta-line"><b>마감</b> 2026.04.06.</div>
-          <div class="meta-line"><b>마지막 동기화</b> <span id="synced-전동드릴-광택패드-80mm-7종-세트-광택작업">2026-03-21T09:05:13</span></div>
-          <div class="meta-line"><b>옵션</b> 선택: 125mm(5인치) 광택패드 7종세트</div>
-          <h3>초안 제목</h3>
-          <p class="draft-title" id="title-전동드릴-광택패드-80mm-7종-세트-광택작업">패드 구성을 한 번에 맞추기엔 괜찮았습니다</p>
-          <h3>초안 본문</h3>
-          <pre id="body-전동드릴-광택패드-80mm-7종-세트-광택작업">전동드릴 광택패드 80mm 7종 세트 광택작업은 전동드릴로 가볍게 광택 작업을 시작해보는 입문용 구성으로는 무난했고, 패드 비교가 쉬운 편이었습니다. 옵션은 선택: 125mm(5인치) 광택패드 7종세트 기준으로 봤습니다.
+          </div>
+
+          <div class="review-body-wrap">
+            <div class="review-title-line" id="title-전동드릴-광택패드-80mm-7종-세트-광택작업">패드 구성을 한 번에 맞추기엔 괜찮았습니다</div>
+            <pre id="body-전동드릴-광택패드-80mm-7종-세트-광택작업">전동드릴 광택패드 80mm 7종 세트 광택작업은 전동드릴로 가볍게 광택 작업을 시작해보는 입문용 구성으로는 무난했고, 패드 비교가 쉬운 편이었습니다. 옵션은 선택: 125mm(5인치) 광택패드 7종세트 기준으로 봤습니다.
 
 디자인이나 구성 쪽에서는 전문 광택기 세팅 전 단계에서 가볍게 접근하기 좋은 타입입니다. 실제로 써보면 손작업보다 일정한 힘으로 작업하기 쉬운 점이 장점이었습니다.
 
 다만 깊은 흠집 복원까지 기대하면 한계가 분명합니다.
 
 팁으로는 처음부터 넓은 면보다 문 손잡이 주변이나 작은 패널부터 시작해야 패드 성격을 익히기 좋습니다. 전체적으로 전동드릴 광택패드 80mm 7종 세트 광택작업은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.</pre>
+          </div>
+
           <div class="tips">
             <div><b>디자인</b> <span id="design-전동드릴-광택패드-80mm-7종-세트-광택작업">전문 광택기 세팅 전 단계에서 가볍게 접근하기 좋은 타입입니다.</span></div>
             <div><b>장점</b> <span id="pro-전동드릴-광택패드-80mm-7종-세트-광택작업">손작업보다 일정한 힘으로 작업하기 쉬운 점이 장점이었습니다.</span></div>
             <div><b>단점</b> <span id="con-전동드릴-광택패드-80mm-7종-세트-광택작업">깊은 흠집 복원까지 기대하면 한계가 분명합니다.</span></div>
             <div><b>팁</b> <span id="tip-전동드릴-광택패드-80mm-7종-세트-광택작업">처음부터 넓은 면보다 문 손잡이 주변이나 작은 패널부터 시작해야 패드 성격을 익히기 좋습니다.</span></div>
           </div>
-          <div class="actions"><a class="btn" href="https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592" target="_blank">Notion 카드 열기</a><a class="btn secondary" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드 열기</a></div>
+
+          <div class="actions compact-actions footer-links"><a class="btn secondary small" href="https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592" target="_blank">Notion 카드</a><a class="btn secondary small" href="https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1" target="_blank">승인 보드</a></div>
           
             <div class="editor" id="editor-전동드릴-광택패드-80mm-7종-세트-광택작업" style="display:none;">
               <label>제목</label>
@@ -1348,7 +1544,7 @@
               <textarea id="edit-con-전동드릴-광택패드-80mm-7종-세트-광택작업">깊은 흠집 복원까지 기대하면 한계가 분명합니다.</textarea>
               <label>팁</label>
               <textarea id="edit-tip-전동드릴-광택패드-80mm-7종-세트-광택작업">처음부터 넓은 면보다 문 손잡이 주변이나 작은 패널부터 시작해야 패드 성격을 익히기 좋습니다.</textarea>
-              <div class="actions">
+              <div class="actions compact-actions">
                 <button class="btn" onclick='saveDraft("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>수정 저장</button>
                 <button class="btn secondary" onclick='toggleEdit("\uc804\ub3d9\ub4dc\ub9b4-\uad11\ud0dd\ud328\ub4dc-80mm-7\uc885-\uc138\ud2b8-\uad11\ud0dd\uc791\uc5c5")'>닫기</button>
               </div>
@@ -1357,9 +1553,31 @@
         </article>
         </div>
   </div>
+
+  <div class="bottom-bar">
+    <div class="bottom-inner">
+      <div class="bottom-top">
+        <div class="bottom-left">
+          <button class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">20</span></button>
+          <button class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">14</span></button>
+          <button class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">6</span></button>
+          <button class="summary-pill" data-filter="needs_edit" onclick="setFilter('needs_edit')"><span class="k">수정요청</span><span class="v" id="stat-needs_edit">0</span></button>
+          <button class="summary-pill" data-filter="uploaded" onclick="setFilter('uploaded')"><span class="k">업로드완료</span><span class="v" id="stat-uploaded">0</span></button>
+          <button class="summary-pill" data-filter="error" onclick="setFilter('error')"><span class="k">오류</span><span class="v" id="stat-error">0</span></button>
+        </div>
+        <div class="bottom-right">
+          <button class="btn small secondary" onclick="scrollTo({top:0,behavior:'smooth'})">맨 위</button>
+          <button class="btn small" onclick="bulkApproveVisible()">보이는 항목 일괄 승인</button>
+        </div>
+      </div>
+      <div class="status-message" id="status-message">현재 필터: 전체 보기</div>
+    </div>
+  </div>
+
   <script>
     const ACTION_API_BASE_URL = "https://induction-secrets-proud-climbing.trycloudflare.com";
     const TOKEN_KEY = 'reviewActionToken';
+    let currentFilter = 'all';
 
     function baseApiUrl() {
       return ACTION_API_BASE_URL.endsWith('/') ? ACTION_API_BASE_URL.slice(0, -1) : ACTION_API_BASE_URL;
@@ -1376,6 +1594,9 @@
       if (token) headers['X-Review-Action-Token'] = token;
       return headers;
     }
+    function visibleCards() {
+      return Array.from(document.querySelectorAll('[data-slug]')).filter(card => !card.classList.contains('hidden'));
+    }
     function updateStats() {
       const cards = Array.from(document.querySelectorAll('[data-slug]'));
       const counts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
@@ -1390,6 +1611,28 @@
       set('stat-uploaded', counts.uploaded);
       set('stat-needs_edit', counts.needs_edit);
       set('stat-error', counts.error);
+      applyFilter();
+    }
+    function filterLabel(filter) {
+      return { all:'전체 보기', awaiting_approval:'승인대기만', approved:'승인됨만', needs_edit:'수정요청만', uploaded:'업로드완료만', error:'오류만' }[filter] || filter;
+    }
+    function setFilter(filter) {
+      currentFilter = filter;
+      applyFilter();
+    }
+    function applyFilter() {
+      const cards = Array.from(document.querySelectorAll('[data-slug]'));
+      for (const card of cards) {
+        const status = card.getAttribute('data-status') || 'awaiting_approval';
+        const show = currentFilter === 'all' || status === currentFilter;
+        card.classList.toggle('hidden', !show);
+      }
+      document.querySelectorAll('[data-filter]').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-filter') === currentFilter);
+      });
+      const visible = visibleCards().length;
+      const msg = document.getElementById('status-message');
+      if (msg) msg.textContent = `현재 필터: ${filterLabel(currentFilter)} · 보이는 항목 ${visible}개`;
     }
     function setStatusUI(slug, status, label) {
       const badge = document.getElementById('badge-' + slug);
@@ -1399,7 +1642,7 @@
       badge.textContent = label || status;
       const cls = ({awaiting_approval:'warn', approved:'good', uploaded:'done', needs_edit:'bad', error:'bad', rejected:'normal'}[status] || 'normal');
       badge.className = 'badge ' + cls;
-      card.className = 'card ' + cls;
+      card.className = 'review-card ' + cls;
       card.setAttribute('data-status', status);
       if (primary) {
         primary.textContent = (status === 'approved') ? '승인대기로' : '승인';
@@ -1425,14 +1668,15 @@
       el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none';
     }
     async function reviewAction(slug, action) {
-      if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return; }
-      if (!getActionToken()) { setActionToken(); return; }
+      if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return false; }
+      if (!getActionToken()) { setActionToken(); return false; }
       const res = await fetch(baseApiUrl() + '/review-actions', {
         method: 'POST', headers: apiHeaders(), body: JSON.stringify({ slug, action, memo: '' })
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) { alert('처리 실패: ' + (data.error || res.statusText)); return; }
+      if (!res.ok || !data.ok) { alert('처리 실패: ' + (data.error || res.statusText)); return false; }
       applyItem(slug, data.item);
+      return true;
     }
     async function toggleApproval(slug) {
       const card = document.getElementById('card-' + slug);
@@ -1469,15 +1713,30 @@
     async function syncAllNow(notify=false) {
       if (!ACTION_API_BASE_URL) { if (notify) alert('액션 API URL이 아직 연결되지 않았어.'); return; }
       if (!getActionToken()) { if (notify) setActionToken(); return; }
-      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 50);
+      const cards = Array.from(document.querySelectorAll('[data-slug]')).slice(0, 80);
       for (const card of cards) {
         const slug = card.getAttribute('data-slug');
         try { await refreshItem(slug, false); } catch (e) { console.error('refresh failed', slug, e); }
       }
       if (notify) alert('상태 동기화 완료');
     }
+    async function bulkApproveVisible() {
+      const cards = visibleCards().filter(card => (card.getAttribute('data-status') || '') !== 'approved');
+      if (!cards.length) { alert('현재 보이는 항목 중 승인할 항목이 없어.'); return; }
+      const ok = window.confirm(`현재 보이는 항목 중 ${cards.length}개를 승인할까?`);
+      if (!ok) return;
+      for (const card of cards) {
+        const slug = card.getAttribute('data-slug');
+        const current = card.getAttribute('data-status') || 'awaiting_approval';
+        if (current === 'approved') continue;
+        const success = await reviewAction(slug, 'approved');
+        if (!success) break;
+      }
+      alert('보이는 항목 일괄 승인 처리가 끝났어.');
+    }
     document.addEventListener('DOMContentLoaded', () => {
       updateStats();
+      setFilter('all');
       if (!ACTION_API_BASE_URL || !getActionToken()) return;
       setTimeout(() => { syncAllNow(false).catch(() => {}); }, 700);
     });

@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-03-21T09:06:26+09:00",
+    "generated_at": "2026-03-21T11:05:09+09:00",
     "counts": {
       "total": 20,
-      "awaiting_approval": 20,
-      "approved": 0,
+      "awaiting_approval": 14,
+      "approved": 6,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
@@ -51,7 +51,8 @@
       "error_note": "",
       "draft_category": "folding_box",
       "notion_url": "https://www.notion.so/25L-329b2169ba7c81d9958efad930826992",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "📦"
     },
     {
       "title": "최근구매 리뷰 | 친수코팅제 물때방지코팅제 100ml 욕실청소",
@@ -69,12 +70,12 @@
       "purchase_confirmed_at": "26.03.16.",
       "due_date": "2026.04.14.",
       "d_day": "D-24",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T10:51:27",
       "review_url": "",
       "review_draft_title": "유리 물때 관리용으로 접근하면 만족도가 괜찮았습니다",
       "review_draft_body": "친수코팅제 물때방지코팅제 100ml 욕실청소은 욕실 유리 관리 주기를 조금 늘려주는 보조 역할로 보면 괜찮았습니다.\n\n디자인이나 구성 쪽에서는 욕실 유리/거울 쪽 국소 관리용으로 접근하기 쉬운 구성이었습니다. 실제로 써보면 기존 물때를 정리한 뒤 쓰면 다음 청소 때 힘을 덜 쓰게 되는 쪽 체감이 있었습니다.\n\n다만 코팅 자체보다 도포 전 물때 제거 상태가 결과를 더 크게 좌우하는 타입이라 준비가 중요했습니다.\n\n팁으로는 욕실 수전 쪽보다 유리/거울처럼 평평한 면에서 먼저 효과를 보는 편이 만족도가 낫습니다. 전체적으로 친수코팅제 물때방지코팅제 100ml 욕실청소은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -89,7 +90,8 @@
       "error_note": "",
       "draft_category": "glass_coating",
       "notion_url": "https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "🧴"
     },
     {
       "title": "최근구매 리뷰 | 오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L",
@@ -129,7 +131,8 @@
       "error_note": "",
       "draft_category": "folding_box",
       "notion_url": "https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "📦"
     },
     {
       "title": "최근구매 리뷰 | 루미너스 아쿠아 습식코팅제 고농축 원액 500ml",
@@ -167,7 +170,8 @@
       "error_note": "",
       "draft_category": "wet_coating",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "최근구매 리뷰 | 창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)",
@@ -187,12 +191,12 @@
       "purchase_confirmed_at": "26.03.06.",
       "due_date": "2026.04.04.",
       "d_day": "D-14",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T10:51:50",
       "review_url": "",
       "review_draft_title": "가볍게 보강하거나 테스트용으로 쓰기 괜찮았습니다",
       "review_draft_body": "창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 가격이 낮아서 완성형 제품보다는 보강용이나 소규모 테스트용으로 접근할 때 만족도가 맞는 편입니다. 옵션은 선택: 친수필름 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 친수필름 계열이라 화려한 제품보다 필요한 구간만 다뤄보는 실용형에 가깝습니다. 실제로 써보면 적은 비용으로 먼저 써보면서 필요한 곳에 맞는지 판단하기 좋았습니다.\n\n다만 한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.\n\n팁으로는 넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다. 전체적으로 창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -207,7 +211,8 @@
       "error_note": "",
       "draft_category": "glass_coating",
       "notion_url": "https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "🛍️"
     },
     {
       "title": "최근구매 리뷰 | 터닝메카드 카울[중고]",
@@ -225,12 +230,12 @@
       "purchase_confirmed_at": "26.02.21.",
       "due_date": "2026.03.22.",
       "d_day": "D-1",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T10:51:54",
       "review_url": "",
       "review_draft_title": "중고 기준으로 보면 만족도가 괜찮았습니다",
       "review_draft_body": "터닝메카드 카울[중고]은 새 제품 감성보다 상태와 가격 균형으로 보면 만족도가 괜찮은 편이었습니다.\n\n디자인이나 구성 쪽에서는 중고 완구라 새것 같은 기대보다는 현재 상태를 보는 쪽이 맞는 제품입니다. 실제로 써보면 필요한 파츠를 부담 적게 구하는 느낌으로 접근하면 만족도가 괜찮습니다.\n\n다만 도색 벗겨짐이나 결합부 헐거움은 새 제품처럼 기대하면 아쉬울 수 있습니다.\n\n팁으로는 중고 완구는 도색 상태보다 결합부 헐거움과 작동감이 실제 만족도에 더 크게 남는 편이라 그쪽을 먼저 보는 게 낫습니다. 전체적으로 터닝메카드 카울[중고]은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -245,7 +250,8 @@
       "error_note": "",
       "draft_category": "used_toy",
       "notion_url": "https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "🛍️"
     },
     {
       "title": "한달사용 리뷰 | 마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제",
@@ -283,7 +289,8 @@
       "error_note": "",
       "draft_category": "wet_coating",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8166a54ccce3ab825ecd",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "한달사용 리뷰 | 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED",
@@ -305,27 +312,28 @@
       "purchase_confirmed_at": "26.02.19.",
       "due_date": "2026.05.19.",
       "d_day": "D-59",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T01:01:06",
       "review_url": "",
-      "review_draft_title": "실내 분위기보다 활용성이 먼저 느껴졌습니다",
-      "review_draft_body": "벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 단순 무드등보다 야간 짐 정리나 차박 상황에서 실제 체감이 큰 편이었습니다. 옵션은 컬러: 아이오닉9 웜화이트 5m 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다. 실제로 써보면 밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.\n\n다만 밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.\n\n팁으로는 차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다. 전체적으로 벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
-      "review_draft_summary": "단순 무드등보다 야간 짐 정리나 차박 상황에서 실제 체감이 큰 편이었습니다.",
-      "design_note": "면발광 계열이라 점광원보다 부드럽게 퍼지는 느낌이 있어 실내가 덜 거칠어 보입니다.",
-      "pro_note": "밤에 짐 찾거나 아이들 물건 정리할 때 바로 체감이 오는 편입니다.",
-      "con_note": "밝기나 위치를 과하게 잡으면 야간에는 시선이 분산될 수 있습니다.",
-      "helpful_tip": "차박이나 야간 정리 용도면 전체를 밝히기보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 더 만족스럽습니다.",
+      "review_draft_title": "무드등보다 야간 실사용 쪽 만족도가 더 컸습니다",
+      "review_draft_body": "벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED는 단순 무드등보다는 야간 실사용 쪽에서 만족도가 더 큰 제품이었습니다. 특히 밤에 짐 찾거나 아이들 물건 정리할 때 실내 조도가 애매한 상황에서 바로 체감이 오는 편이었습니다. 옵션은 아이오닉9 웜화이트 5m 기준으로 봤습니다.\n\n면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명합니다. 실제로는 차박이나 야간 정리처럼 손이 자주 가는 상황에서 활용성이 높아, 단순 장식용보다 실용 쪽 만족도가 더 컸습니다.\n\n다만 밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치를 잘 잡아야 합니다. 그래서 예쁘게 보이는 것보다 실제로 어디를 비출지 먼저 정하는 편이 결과가 좋았습니다.\n\n팁으로는 전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡는 편이 훨씬 낫습니다. 배선은 먼저 고정하고 최종 점등 위치를 마지막에 조정해야 재작업도 줄어듭니다. 전체적으로 벤딕트 아이오닉9 식빵등은 튜닝용보다 실내 활용도 개선용으로 봤을 때 만족도가 더 높은 제품이었습니다.",
+      "review_draft_summary": "실내 분위기용 튜닝보다 밤에 짐 찾거나 아이들 물건 정리할 때 실제 체감이 더 큰 조명이었습니다.",
+      "design_note": "면발광 느낌이라 점처럼 번쩍이는 타입보다 빛이 부드럽게 퍼지고, 아이오닉9처럼 실내 공간이 큰 차에서는 존재감이 꽤 분명한 편입니다.",
+      "pro_note": "차박이나 야간 정리처럼 실내 조도가 아쉬운 상황에서 바로 체감이 와서, 단순 장식용보다 활용성 쪽 만족도가 높았습니다.",
+      "con_note": "밝기와 위치를 과하게 잡으면 야간에는 시선이 분산되거나 잔광이 거슬릴 수 있어서 처음 배치가 중요합니다.",
+      "helpful_tip": "전체를 밝히는 느낌보다 손이 자주 가는 구간 위주로 먼저 위치를 잡고, 배선은 먼저 고정한 뒤 최종 점등 위치를 조정하는 편이 재작업이 적습니다.",
       "approval_memo": "",
       "uploader_result": "",
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "interior_light",
       "notion_url": "https://www.notion.so/9-LED-329b2169ba7c814daa64ca85a4db6d58",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "💡"
     },
     {
       "title": "한달사용 리뷰 | 우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약",
@@ -365,7 +373,8 @@
       "error_note": "",
       "draft_category": "generic",
       "notion_url": "https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🛍️"
     },
     {
       "title": "한달사용 리뷰 | 3M 클레이바 낙진제거제 1EA",
@@ -403,7 +412,8 @@
       "error_note": "",
       "draft_category": "clay_bar",
       "notion_url": "https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🚘"
     },
     {
       "title": "한달사용 리뷰 | 버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)",
@@ -443,7 +453,8 @@
       "error_note": "",
       "draft_category": "bucket_dolly",
       "notion_url": "https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🛍️"
     },
     {
       "title": "한달사용 리뷰 | [불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml",
@@ -481,7 +492,8 @@
       "error_note": "",
       "draft_category": "wet_coating",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81f8a943f7cd5a2901b7",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "한달사용 리뷰 | 마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개",
@@ -519,7 +531,8 @@
       "error_note": "",
       "draft_category": "wheel_tire_cleaner",
       "notion_url": "https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "한달사용 리뷰 | 비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기",
@@ -557,7 +570,8 @@
       "error_note": "",
       "draft_category": "spot_cleaner",
       "notion_url": "https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🫧"
     },
     {
       "title": "한달사용 리뷰 | 마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거",
@@ -595,7 +609,8 @@
       "error_note": "",
       "draft_category": "glass_cleaner",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "한달사용 리뷰 | D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제",
@@ -635,7 +650,8 @@
       "error_note": "",
       "draft_category": "wheel_tire_cleaner",
       "notion_url": "https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🛍️"
     },
     {
       "title": "한달사용 리뷰 | 벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼",
@@ -655,12 +671,12 @@
       "purchase_confirmed_at": "26.01.16.",
       "due_date": "2026.04.15.",
       "d_day": "D-25",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T10:52:34",
       "review_url": "",
       "review_draft_title": "목 뒤 공간 메우는 용도로 만족도가 괜찮았습니다",
       "review_draft_body": "벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼은 1+1 구성이라 운전석/조수석을 같이 맞추기 좋고, 장거리 주행 시 목 뒤 뜸이 줄어드는 쪽 체감이 있었습니다. 옵션은 선택: 1+1 벤오토 베리어 목쿠션 (총 2개) / 컬러: 미스티 그레이 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 헤드레스트에 달았을 때 부피감이 지나치지 않아 차 안 분위기를 크게 해치지 않습니다. 실제로 써보면 한 쌍 기준으로 좌우 밸런스를 맞추기 쉬워서 동승석까지 같이 쓰기 좋았습니다.\n\n다만 푹신함이 장점인 대신 단단하게 고정되는 느낌을 기대하면 다소 다르게 느껴질 수 있습니다.\n\n팁으로는 운전석만 먼저 써보고 맞는 높이를 찾은 뒤 조수석에도 맞추는 방식이 실패가 적습니다. 전체적으로 벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -675,7 +691,8 @@
       "error_note": "",
       "draft_category": "neck_cushion",
       "notion_url": "https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "🪑"
     },
     {
       "title": "한달사용 리뷰 | 크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식",
@@ -715,7 +732,8 @@
       "error_note": "",
       "draft_category": "generic",
       "notion_url": "https://www.notion.so/3-329b2169ba7c81f988c5ebeced16da96",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🛍️"
     },
     {
       "title": "한달사용 리뷰 | [불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml",
@@ -753,7 +771,8 @@
       "error_note": "",
       "draft_category": "generic",
       "notion_url": "https://www.notion.so/300ml-329b2169ba7c81ac98fed45ead9bd71e",
-      "status_label": "승인대기"
+      "status_label": "승인대기",
+      "thumb_label": "🧴"
     },
     {
       "title": "한달사용 리뷰 | 전동드릴 광택패드 80mm 7종 세트 광택작업",
@@ -773,12 +792,12 @@
       "purchase_confirmed_at": "26.01.07.",
       "due_date": "2026.04.06.",
       "d_day": "D-16",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-21T01:19:40+09:00",
-      "last_synced_at": "2026-03-21T09:05:13",
+      "last_synced_at": "2026-03-21T10:53:12",
       "review_url": "",
       "review_draft_title": "패드 구성을 한 번에 맞추기엔 괜찮았습니다",
       "review_draft_body": "전동드릴 광택패드 80mm 7종 세트 광택작업은 전동드릴로 가볍게 광택 작업을 시작해보는 입문용 구성으로는 무난했고, 패드 비교가 쉬운 편이었습니다. 옵션은 선택: 125mm(5인치) 광택패드 7종세트 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 전문 광택기 세팅 전 단계에서 가볍게 접근하기 좋은 타입입니다. 실제로 써보면 손작업보다 일정한 힘으로 작업하기 쉬운 점이 장점이었습니다.\n\n다만 깊은 흠집 복원까지 기대하면 한계가 분명합니다.\n\n팁으로는 처음부터 넓은 면보다 문 손잡이 주변이나 작은 패널부터 시작해야 패드 성격을 익히기 좋습니다. 전체적으로 전동드릴 광택패드 80mm 7종 세트 광택작업은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -793,7 +812,8 @@
       "error_note": "",
       "draft_category": "polishing_pad",
       "notion_url": "https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592",
-      "status_label": "승인대기"
+      "status_label": "승인됨",
+      "thumb_label": "🛍️"
     }
   ]
 }
