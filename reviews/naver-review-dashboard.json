@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated_at": "2026-03-22T13:35:57+09:00",
+    "generated_at": "2026-03-22T15:23:32+09:00",
     "counts": {
       "total": 29,
-      "awaiting_approval": 29,
+      "awaiting_approval": 28,
       "approved": 0,
       "uploaded": 0,
-      "needs_edit": 0,
+      "needs_edit": 1,
       "error": 0
     },
     "approval_db_url": "https://www.notion.so/329b2169ba7c818eb194ee3692d79ad1",
@@ -33,12 +33,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20220404_145/1649061135328gDQs1_JPEG/50197031056878283_591998712.jpg?type=f170_170",
       "due_date": "2026.04.17.",
       "d_day": "D-26",
-      "status": "awaiting_approval",
+      "status": "needs_edit",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-22T13:33:30+09:00",
-      "last_synced_at": "2026-03-22T13:34:04",
+      "last_synced_at": "2026-03-22T15:18:32",
       "review_url": "",
       "review_draft_title": "실사용 기준으로 무난하게 만족했습니다",
       "review_draft_body": "캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 큰 불편 없이 쓰기 무난한 편이었습니다.\n\n디자인이나 구성 쪽에서는 용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다. 실제로 써보면 기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\n\n다만 큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.\n\n팁으로는 처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다. 전체적으로 캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -47,8 +47,27 @@
       "pro_note": "기본 기능은 기대한 범위 안에서 해주는 편이었습니다.",
       "con_note": "큰 변화보다 상황에 따라 장점이 드러나는 타입입니다.",
       "helpful_tip": "처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.",
-      "review_work_note": "",
-      "media_items": [],
+      "review_work_note": "나는 가족들과 차박을 함께 하면서 여러가지 매트와 베개를 사용을 했는데 이 메모리폰 베개는 지금까지 사용했던 것 중에 최고의 메모리 폼이었어. 와이프도 엄청나게 편하다고 평을 했고 나도 마찬가지여서 1개 더 재구매 한거야. 조만간 차박을 가게 되는데 나는 너무 기대되고 있어. 그리고 매트와 함께 압축을 해서 넣으면 짐도 훨씬 줄어들어.",
+      "media_items": [
+        {
+          "name": "1000028332.jpg",
+          "mime_type": "image/jpeg",
+          "size": 214247,
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg",
+          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260322-151828-954e95ed.jpg",
+          "kind": "image",
+          "caption": ""
+        },
+        {
+          "name": "1000028330.jpg",
+          "mime_type": "image/jpeg",
+          "size": 236865,
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151831-ce442afa.jpg",
+          "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260322-151831-ce442afa.jpg",
+          "kind": "image",
+          "caption": ""
+        }
+      ],
       "generated_photo_comments": [],
       "user_experience_note": "",
       "user_intent_note": "",
@@ -60,8 +79,11 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "caption_generation_status": "failed",
+      "caption_generation_error": "Command '['gemini', '-m', 'gemini-3-flash-preview', '-p', '너는 네이버 리뷰 보조 작성자다.\\n아래 상품 문맥과 이미지 파일 하나를 참고해서, 리뷰에 바로 넣을 수 있는 \\'사진 한줄평\\' 한 문장만 한국어로 작성해라.\\n\\n규칙:\\n- 반드시 이미지에 실제로 보이는 내용만 바탕으로 써라.\\n- 보이지 않는 사용 경험을 단정하지 마라.\\n- 18~45자 정도의 자연스러운 한국어 문장.\\n- 단순 설명문보다 리뷰 문맥형 문장.\\n- 과장/허위/광고톤 금지.\\n- 출력은 JSON만. 코드블록 금지.\\n\\n반환 형식:\\n{\"caption\":\"...\",\"confidence\":\"high|medium|low\"}\\n\\n상품 문맥:\\n{\"product_name\": \"캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개\", \"store_name\": \"캠핑슬립\", \"review_kind_label\": \"리뷰쓰기\", \"review_draft_title\": \"실사용 기준으로 무난하게 만족했습니다\", \"review_draft_summary\": \"큰 불편 없이 쓰기 무난한 편이었습니다.\", \"review_work_note\": \"나는 가족들과 차박을 함께 하면서 여러가지 매트와 베개를 사용을 했는데 이 메모리폰 베개는 지금까지 사용했던 것 중에 최고의 메모리 폼이었어. 와이프도 엄청나게 편하다고 평을 했고 나도 마찬가지여서 1개 더 재구매 한거야. 조만간 차박을 가게 되는데 나는 너무 기대되고 있어. 그리고 매트와 함께 압축을 해서 넣으면 짐도 훨씬 줄어들어.\", \"design_note\": \"용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.\", \"pro_note\": \"기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\", \"helpful_tip\": \"처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.\"}\\n\\n이미지 파일:\\n/Users/waneekim/.openclaw/workspace/naver_review_automation/review_media_uploads/캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg', '--output-format', 'json']' returned non-zero exit status 41.",
+      "caption_generation_model": "gemini-3-flash-preview",
       "notion_url": "https://www.notion.so/32ab2169ba7c817cabbef83faffa68fb",
-      "status_label": "승인대기",
+      "status_label": "수정요청",
       "thumb_label": "🛍️"
     },
     {
