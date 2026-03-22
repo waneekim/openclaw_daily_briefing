@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-03-22T20:18:13+09:00",
+    "generated_at": "2026-03-22T22:00:37+09:00",
     "counts": {
       "total": 29,
       "initial_pending": 22,
@@ -39,15 +39,15 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-22T13:33:30+09:00",
-      "last_synced_at": "2026-03-22T15:58:51",
+      "last_synced_at": "2026-03-22T22:00:18",
       "review_url": "",
-      "review_draft_title": "차박용 베개를 여러 개 써봤지만 결국 하나 더 사게 된 제품이었습니다",
-      "review_draft_body": "캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개는 가족들과 차박하면서 여러 매트와 베개를 번갈아 써본 뒤에도 기억에 남을 만큼 만족도가 높았던 제품이었습니다. 한 번 써보고 끝난 게 아니라, 저와 아내 둘 다 편하다고 느껴서 결국 하나를 더 재구매하게 됐습니다.\n\n직접 누워보면 과하게 꺼지기보다는 머리와 목을 안정적으로 받쳐주는 쪽에 가까웠고, 차박처럼 자세가 애매해지기 쉬운 환경에서는 이런 차이가 생각보다 크게 느껴졌습니다. 와이드한 형태라 매트 위에서도 자리 잡기가 괜찮았고, 뒤척일 때도 일반 베개보다 덜 불안한 편이었습니다.\n\n다만 베개는 체형이나 평소 자는 자세에 따라 느낌 차이가 있는 제품이라 무조건 누구에게나 맞는다고 말하긴 어렵습니다. 그래도 차 안에서 자는 용도로 봤을 때는 단순히 휴대용이라는 수준보다 실제 숙면 쪽 만족도가 더 컸습니다.\n\n팁으로는 차박 매트와 함께 압축해서 넣으면 짐 부피가 생각보다 많이 줄어듭니다. 다음 차박이 더 기대될 정도로 만족도가 높았던 제품이라, 저는 결국 재구매까지 하게 됐습니다.",
-      "review_draft_summary": "가족 차박에서 직접 써보니 편안함이 확실해서 결국 하나를 더 재구매하게 된 메모리폼 베개였습니다.",
-      "design_note": "와이드한 형태라 차박 매트 위에 두었을 때 일반 베개보다 안정감 있게 받쳐주는 느낌이 있었습니다.",
-      "pro_note": "저와 아내 모두 편하다고 느꼈고, 지금까지 써본 차박용 베개 중 가장 만족도가 높아 결국 하나를 더 샀습니다.",
-      "con_note": "푹신함만 기대하기보다 본인 체형과 차박 자세에 맞는지 한 번 직접 써보는 편이 더 정확합니다.",
-      "helpful_tip": "차박 매트와 함께 압축해서 넣으면 부피 부담이 생각보다 줄어서 수납이 훨씬 편했습니다.",
+      "review_draft_title": "여러 제품 써보고 정착한 인생 차박 베개, 결국 재구매까지 했습니다",
+      "review_draft_body": "가족들과 차박을 다니며 여러 종류의 매트와 베개를 써봤지만, 캠핑슬립 메모리폼 베개는 그중에서도 단연 만족도가 가장 높았던 제품입니다. 단순히 휴대하기 좋다는 수준을 넘어 실제 자고 일어났을 때의 편안함이 확실히 달랐습니다.\n\n실제로 차박 매트 위에 세팅해보니 와이드한 사이즈 덕분에 공간이 훨씬 아늑하고 꽉 차 보이는 느낌이 듭니다. 일반 베개보다 가로로 넓어서 뒤척임이 잦은 차박 환경에서도 머리와 목을 아주 든든하게 받쳐주더라고요. 너무 푹 꺼지지 않고 탄탄하게 지지해주는 메모리폼의 질감이 좋아 아내도 저도 인생 베개라며 칭찬을 아끼지 않았습니다.\n\n결국 고민 없이 하나 더 재구매하게 됐는데, 조만간 떠날 차박이 벌써부터 기다려질 정도입니다. 수납 팁을 하나 드리자면, 차박 매트와 함께 돌돌 말아 압축해서 넣으면 부피가 상당히 줄어들어 짐 실을 때 부담이 훨씬 덜합니다. 차박에서의 숙면을 중요하게 생각하신다면 꼭 한번 써보시길 추천합니다.",
+      "review_draft_summary": "아내와 저 모두 대만족해서 하나 더 들인, 차박 매트 위에서 가장 든든한 와이드 메모리폼 베개입니다.",
+      "design_note": "와이드한 사이즈가 매트를 가득 채워줘서 시각적으로도 아늑하고 안정감이 느껴집니다.",
+      "pro_note": "지금까지 써본 제품 중 최고의 지지력을 보여준 메모리폼이며, 부부가 함께 만족해 추가 구매했습니다.",
+      "con_note": "일반 휴대용 베개보다는 부피가 있지만, 그만큼 안정적이라 실사용 시 만족도가 훨씬 큽니다.",
+      "helpful_tip": "베개만 따로 챙기기보다 차박 매트와 겹쳐서 함께 압축하면 트렁크 공간을 아주 효율적으로 쓸 수 있습니다.",
       "review_work_note": "나는 가족들과 차박을 함께 하면서 여러가지 매트와 베개를 사용을 했는데 이 메모리폰 베개는 지금까지 사용했던 것 중에 최고의 메모리 폼이었어. 와이프도 엄청나게 편하다고 평을 했고 나도 마찬가지여서 1개 더 재구매 한거야. 조만간 차박을 가게 되는데 나는 너무 기대되고 있어. 그리고 매트와 함께 압축을 해서 넣으면 짐도 훨씬 줄어들어.",
       "media_items": [
         {
@@ -57,7 +57,9 @@
           "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg",
           "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260322-151828-954e95ed.jpg",
           "kind": "image",
-          "caption": ""
+          "caption": "차박 매트 위에 캠핑슬립 베개를 두니 와이드한 사이즈 덕분에 아주 든든해 보여요.",
+          "caption_source": "ai_vision",
+          "caption_model": "gemini-3-flash-preview"
         },
         {
           "name": "1000028330.jpg",
@@ -66,10 +68,23 @@
           "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151831-ce442afa.jpg",
           "url": "/review-media/%EC%BA%A0%ED%95%91%EC%8A%AC%EB%A6%BD-%EB%A9%94%EB%AA%A8%EB%A6%AC%ED%8F%BC-%EC%99%80%EC%9D%B4%EB%93%9C-%EC%B0%A8%EB%B0%95-%ED%9C%B4%EB%8C%80%EC%9A%A9-%EC%BA%A0%ED%95%91%EC%9A%A9-%EB%B2%A0%EA%B0%9C/20260322-151831-ce442afa.jpg",
           "kind": "image",
-          "caption": ""
+          "caption": "차박 매트 위에 캠핑슬립 베개를 세팅하니 넓은 사이즈 덕분에 공간이 훨씬 아늑하고 꽉 차 보입니다.",
+          "caption_source": "ai_vision",
+          "caption_model": "gemini-3-flash-preview"
         }
       ],
-      "generated_photo_comments": [],
+      "generated_photo_comments": [
+        {
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg",
+          "caption": "차박 매트 위에 캠핑슬립 베개를 두니 와이드한 사이즈 덕분에 아주 든든해 보여요.",
+          "confidence": "high"
+        },
+        {
+          "stored_path": "캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151831-ce442afa.jpg",
+          "caption": "차박 매트 위에 캠핑슬립 베개를 세팅하니 넓은 사이즈 덕분에 공간이 훨씬 아늑하고 꽉 차 보입니다.",
+          "confidence": "high"
+        }
+      ],
       "user_experience_note": "",
       "user_intent_note": "",
       "rewrite_request_note": "",
@@ -80,8 +95,8 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
-      "caption_generation_status": "failed",
-      "caption_generation_error": "Command '['gemini', '-m', 'gemini-3-flash-preview', '-p', '너는 네이버 리뷰 보조 작성자다.\\n아래 상품 문맥과 이미지 파일 하나를 참고해서, 리뷰에 바로 넣을 수 있는 \\'사진 한줄평\\' 한 문장만 한국어로 작성해라.\\n\\n규칙:\\n- 반드시 이미지에 실제로 보이는 내용만 바탕으로 써라.\\n- 보이지 않는 사용 경험을 단정하지 마라.\\n- 18~45자 정도의 자연스러운 한국어 문장.\\n- 단순 설명문보다 리뷰 문맥형 문장.\\n- 과장/허위/광고톤 금지.\\n- 출력은 JSON만. 코드블록 금지.\\n\\n반환 형식:\\n{\"caption\":\"...\",\"confidence\":\"high|medium|low\"}\\n\\n상품 문맥:\\n{\"product_name\": \"캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개\", \"store_name\": \"캠핑슬립\", \"review_kind_label\": \"리뷰쓰기\", \"review_draft_title\": \"실사용 기준으로 무난하게 만족했습니다\", \"review_draft_summary\": \"큰 불편 없이 쓰기 무난한 편이었습니다.\", \"review_work_note\": \"나는 가족들과 차박을 함께 하면서 여러가지 매트와 베개를 사용을 했는데 이 메모리폰 베개는 지금까지 사용했던 것 중에 최고의 메모리 폼이었어. 와이프도 엄청나게 편하다고 평을 했고 나도 마찬가지여서 1개 더 재구매 한거야. 조만간 차박을 가게 되는데 나는 너무 기대되고 있어. 그리고 매트와 함께 압축을 해서 넣으면 짐도 훨씬 줄어들어.\", \"design_note\": \"용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.\", \"pro_note\": \"기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\", \"helpful_tip\": \"처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.\"}\\n\\n이미지 파일:\\n/Users/waneekim/.openclaw/workspace/naver_review_automation/review_media_uploads/캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg', '--output-format', 'json']' returned non-zero exit status 41.",
+      "caption_generation_status": "done",
+      "caption_generation_error": "",
       "caption_generation_model": "gemini-3-flash-preview",
       "review_cycle": "revised",
       "notion_url": "https://www.notion.so/32ab2169ba7c817cabbef83faffa68fb",
