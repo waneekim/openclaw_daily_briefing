@@ -1,9 +1,9 @@
 {
   "meta": {
-    "generated_at": "2026-03-22T16:11:27+09:00",
+    "generated_at": "2026-03-22T20:18:13+09:00",
     "counts": {
       "total": 29,
-      "awaiting_approval": 23,
+      "initial_pending": 22,
       "revised_pending": 1,
       "approved": 6,
       "uploaded": 0,
@@ -87,6 +87,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c817cabbef83faffa68fb",
       "status_label": "승인대기",
       "review_cycle_label": "피드백반영",
+      "display_status": "revised_pending",
+      "display_status_label": "재검토대기",
       "thumb_label": "🛍️"
     },
     {
@@ -142,6 +144,8 @@
       "notion_url": "https://www.notion.so/25L-329b2169ba7c81d9958efad930826992",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "📦"
     },
     {
@@ -195,6 +199,8 @@
       "notion_url": "https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054",
       "status_label": "승인됨",
       "review_cycle_label": "초안",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🧴"
     },
     {
@@ -250,6 +256,8 @@
       "notion_url": "https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "📦"
     },
     {
@@ -303,6 +311,8 @@
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -358,6 +368,8 @@
       "notion_url": "https://www.notion.so/300ml-32ab2169ba7c81d39f0fe8290c63000a",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -413,6 +425,8 @@
       "notion_url": "https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a",
       "status_label": "승인됨",
       "review_cycle_label": "초안",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🛍️"
     },
     {
@@ -468,6 +482,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c81e4a78bea588cd32a83",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -523,6 +539,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c817baca6e6849567375d",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -576,6 +594,8 @@
       "notion_url": "https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c",
       "status_label": "승인됨",
       "review_cycle_label": "피드백반영",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🛍️"
     },
     {
@@ -629,6 +649,8 @@
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8166a54ccce3ab825ecd",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -686,6 +708,8 @@
       "notion_url": "https://www.notion.so/9-LED-329b2169ba7c814daa64ca85a4db6d58",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "💡"
     },
     {
@@ -741,6 +765,8 @@
       "notion_url": "https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -794,6 +820,8 @@
       "notion_url": "https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🚘"
     },
     {
@@ -849,6 +877,8 @@
       "notion_url": "https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -902,6 +932,8 @@
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81f8a943f7cd5a2901b7",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -955,6 +987,8 @@
       "notion_url": "https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -1008,6 +1042,8 @@
       "notion_url": "https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🫧"
     },
     {
@@ -1061,6 +1097,8 @@
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -1116,6 +1154,8 @@
       "notion_url": "https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -1171,6 +1211,8 @@
       "notion_url": "https://www.notion.so/4-32ab2169ba7c813f9725c27a3dc64d5d",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -1224,6 +1266,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c81b98359e2b7da42dfc5",
       "status_label": "승인됨",
       "review_cycle_label": "피드백반영",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🪑"
     },
     {
@@ -1279,6 +1323,8 @@
       "notion_url": "https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44",
       "status_label": "승인됨",
       "review_cycle_label": "초안",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🪑"
     },
     {
@@ -1332,6 +1378,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c81abbec8f3bcb7cfb9ea",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -1387,6 +1435,8 @@
       "notion_url": "https://www.notion.so/3-329b2169ba7c81f988c5ebeced16da96",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     },
     {
@@ -1440,6 +1490,8 @@
       "notion_url": "https://www.notion.so/300ml-329b2169ba7c81ac98fed45ead9bd71e",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -1495,6 +1547,8 @@
       "notion_url": "https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592",
       "status_label": "승인됨",
       "review_cycle_label": "초안",
+      "display_status": "approved",
+      "display_status_label": "승인됨",
       "thumb_label": "🛍️"
     },
     {
@@ -1548,6 +1602,8 @@
       "notion_url": "https://www.notion.so/99-3-G73-G19-G65X-32ab2169ba7c81969d0cd9378179adaa",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🧴"
     },
     {
@@ -1601,6 +1657,8 @@
       "notion_url": "https://www.notion.so/32ab2169ba7c81abbec8f3bcb7cfb9ea",
       "status_label": "승인대기",
       "review_cycle_label": "초안",
+      "display_status": "initial_pending",
+      "display_status_label": "초안승인대기",
       "thumb_label": "🛍️"
     }
   ]
