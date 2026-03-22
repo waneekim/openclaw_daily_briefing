@@ -108,7 +108,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-22T15:43:12+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-22T15:45:56+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -267,7 +267,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge good" id="badge-친수코팅제-물때방지코팅제-100ml-욕실청소">승인됨</span>
-              <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-22T15:41:34</span></span>
+              <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-22T15:42:07</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button class="btn warn" id="action-primary-친수코팅제-물때방지코팅제-100ml-욕실청소" onclick='toggleApproval("\uce5c\uc218\ucf54\ud305\uc81c-\ubb3c\ub54c\ubc29\uc9c0\ucf54\ud305\uc81c-100ml-\uc695\uc2e4\uccad\uc18c")'>승인대기로</button>
@@ -2315,7 +2315,6 @@
       const el = document.getElementById('media-ai-status-' + slug);
       if (!el) return;
       const status = item?.caption_generation_status || '';
-      const error = item?.caption_generation_error || '';
       const model = item?.caption_generation_model || '';
       if (status === 'done') {
         el.className = 'media-ai-status ok';
@@ -2324,7 +2323,7 @@
       }
       if (status === 'failed') {
         el.className = 'media-ai-status err';
-        el.textContent = `AI 이미지 분석 실패${error ? ' · ' + error : ''}`;
+        el.textContent = 'AI 이미지 분석에 실패했어. 다시 생성 버튼으로 재시도해줘.';
         return;
       }
       el.className = 'media-ai-status muted';
@@ -2387,13 +2386,21 @@
     async function reviewAction(slug, action) {
       if (!ACTION_API_BASE_URL) { alert('액션 API URL이 아직 연결되지 않았어.'); return false; }
       if (!getActionToken()) { setActionToken(); return false; }
-      const res = await fetch(baseApiUrl() + '/review-actions', {
-        method: 'POST', headers: apiHeaders(), body: JSON.stringify({ slug, action, memo: '' })
-      });
-      const data = await parseApiJsonSafe(res);
-      if (!res.ok || !data.ok) { alert('처리 실패: ' + (data.error || res.statusText)); return false; }
-      applyItem(slug, data.item);
-      return true;
+      blurActiveElement();
+      const restoreScroll = keepCardPosition(slug);
+      try {
+        const res = await fetch(baseApiUrl() + '/review-actions', {
+          method: 'POST', headers: apiHeaders(), body: JSON.stringify({ slug, action, memo: '' })
+        });
+        const data = await parseApiJsonSafe(res);
+        if (!res.ok || !data.ok) { alert('처리 실패: ' + (data.error || res.statusText)); return false; }
+        applyItem(slug, data.item);
+        return true;
+      } finally {
+        requestAnimationFrame(restoreScroll);
+        setTimeout(restoreScroll, 60);
+        setTimeout(restoreScroll, 180);
+      }
     }
     async function toggleApproval(slug) {
       const card = document.getElementById('card-' + slug);
@@ -2403,9 +2410,12 @@
     }
     async function refreshItem(slug, notify=false) {
       if (!ACTION_API_BASE_URL || !getActionToken()) return;
+      const restoreScroll = keepCardPosition(slug);
       const res = await fetch(baseApiUrl() + '/review-item?slug=' + encodeURIComponent(slug), { method: 'GET', headers: apiHeaders() });
       const data = await parseApiJsonSafe(res);
       if (res.ok && data.ok) applyItem(slug, data.item);
+      requestAnimationFrame(restoreScroll);
+      setTimeout(restoreScroll, 60);
       if (notify) alert('상태 동기화 완료');
     }
     function applySort() {
