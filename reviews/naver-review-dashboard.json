@@ -1,10 +1,11 @@
 {
   "meta": {
-    "generated_at": "2026-03-22T15:59:12+09:00",
+    "generated_at": "2026-03-22T16:11:27+09:00",
     "counts": {
       "total": 29,
-      "awaiting_approval": 25,
-      "approved": 4,
+      "awaiting_approval": 23,
+      "revised_pending": 1,
+      "approved": 6,
       "uploaded": 0,
       "needs_edit": 0,
       "error": 0
@@ -82,8 +83,10 @@
       "caption_generation_status": "failed",
       "caption_generation_error": "Command '['gemini', '-m', 'gemini-3-flash-preview', '-p', '너는 네이버 리뷰 보조 작성자다.\\n아래 상품 문맥과 이미지 파일 하나를 참고해서, 리뷰에 바로 넣을 수 있는 \\'사진 한줄평\\' 한 문장만 한국어로 작성해라.\\n\\n규칙:\\n- 반드시 이미지에 실제로 보이는 내용만 바탕으로 써라.\\n- 보이지 않는 사용 경험을 단정하지 마라.\\n- 18~45자 정도의 자연스러운 한국어 문장.\\n- 단순 설명문보다 리뷰 문맥형 문장.\\n- 과장/허위/광고톤 금지.\\n- 출력은 JSON만. 코드블록 금지.\\n\\n반환 형식:\\n{\"caption\":\"...\",\"confidence\":\"high|medium|low\"}\\n\\n상품 문맥:\\n{\"product_name\": \"캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개\", \"store_name\": \"캠핑슬립\", \"review_kind_label\": \"리뷰쓰기\", \"review_draft_title\": \"실사용 기준으로 무난하게 만족했습니다\", \"review_draft_summary\": \"큰 불편 없이 쓰기 무난한 편이었습니다.\", \"review_work_note\": \"나는 가족들과 차박을 함께 하면서 여러가지 매트와 베개를 사용을 했는데 이 메모리폰 베개는 지금까지 사용했던 것 중에 최고의 메모리 폼이었어. 와이프도 엄청나게 편하다고 평을 했고 나도 마찬가지여서 1개 더 재구매 한거야. 조만간 차박을 가게 되는데 나는 너무 기대되고 있어. 그리고 매트와 함께 압축을 해서 넣으면 짐도 훨씬 줄어들어.\", \"design_note\": \"용도가 비교적 분명한 제품이라 사용 맥락이 뚜렷합니다.\", \"pro_note\": \"기본 기능은 기대한 범위 안에서 해주는 편이었습니다.\", \"helpful_tip\": \"처음엔 좁은 범위에서 먼저 써보는 편이 실패 부담이 적습니다.\"}\\n\\n이미지 파일:\\n/Users/waneekim/.openclaw/workspace/naver_review_automation/review_media_uploads/캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개/20260322-151828-954e95ed.jpg', '--output-format', 'json']' returned non-zero exit status 41.",
       "caption_generation_model": "gemini-3-flash-preview",
+      "review_cycle": "revised",
       "notion_url": "https://www.notion.so/32ab2169ba7c817cabbef83faffa68fb",
       "status_label": "승인대기",
+      "review_cycle_label": "피드백반영",
       "thumb_label": "🛍️"
     },
     {
@@ -135,8 +138,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "folding_box",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/25L-329b2169ba7c81d9958efad930826992",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "📦"
     },
     {
@@ -186,8 +191,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "glass_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/100ml-329b2169ba7c819c87d6d9a7dacd5054",
       "status_label": "승인됨",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -239,8 +246,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "folding_box",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/48L-329b2169ba7c8198836fdc34e90af3a2",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "📦"
     },
     {
@@ -290,8 +299,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wet_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81239ad5c62e4723da02",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -343,8 +354,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/300ml-32ab2169ba7c81d39f0fe8290c63000a",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -374,7 +387,7 @@
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-22T13:33:30+09:00",
-      "last_synced_at": "2026-03-22T15:52:50",
+      "last_synced_at": "2026-03-22T16:01:32",
       "review_url": "",
       "review_draft_title": "가볍게 보강하거나 테스트용으로 쓰기 괜찮았습니다",
       "review_draft_body": "창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 가격이 낮아서 완성형 제품보다는 보강용이나 소규모 테스트용으로 접근할 때 만족도가 맞는 편입니다. 옵션은 선택: 친수필름 기준으로 봤습니다.\n\n디자인이나 구성 쪽에서는 친수필름 계열이라 화려한 제품보다 필요한 구간만 다뤄보는 실용형에 가깝습니다. 실제로 써보면 적은 비용으로 먼저 써보면서 필요한 곳에 맞는지 판단하기 좋았습니다.\n\n다만 한 번에 큰 체감보다 시공 상태나 부착 위치에 따라 결과 편차가 생길 수 있습니다.\n\n팁으로는 넓은 면 전체보다 물때가 심한 한두 군데부터 먼저 붙여보는 편이 실패 부담이 적습니다. 전체적으로 창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)은 과장 없이 보면 용도에 맞게 만족할 만한 편이었습니다.",
@@ -396,8 +409,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "glass_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/1000-1-3-329b2169ba7c81df8b8ff01eef35466a",
       "status_label": "승인됨",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -449,8 +464,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/32ab2169ba7c81e4a78bea588cd32a83",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -502,8 +519,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/32ab2169ba7c817baca6e6849567375d",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -526,12 +545,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20220726_108/1658820686449vvzbm_JPEG/59956575043230375_648651445.jpg?type=f170_170",
       "due_date": "2026.03.22.",
       "d_day": "D-0",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-22T13:33:30+09:00",
-      "last_synced_at": "2026-03-22T15:58:57",
+      "last_synced_at": "2026-03-22T16:04:23",
       "review_url": "",
       "review_draft_title": "아이가 오래 기다렸던 제품이라 더 만족도가 컸던 중고 구매였습니다",
       "review_draft_body": "터닝메카드 카울[중고]은 단순히 저렴하게 산 중고 완구라기보다, 아이가 오래 기다려 온 제품을 좋은 타이밍에 구했다는 점에서 만족도가 더 컸습니다. 우리 아이가 생일 때부터 계속 기다리던 제품이었는데, 마침 가격도 괜찮고 상태도 나쁘지 않은 물건이 보여서 바로 선택하게 됐습니다.\n\n실제로 받아보니 중고 제품이라 어느 정도 사용감은 감안해야 했지만, 아이가 바로 좋아하고 즐겁게 가지고 노는 모습을 보니 충분히 만족스러웠습니다. 새 제품 프리미엄을 꼭 고집하지 않는다면 이렇게 상태 괜찮은 중고를 고르는 것도 꽤 좋은 선택이라는 생각이 들었습니다.\n\n다만 중고 완구는 판매 사진만 보고 판단하기보다 결합부 상태나 작동감 같은 실제 사용 부분을 함께 보는 게 더 중요합니다. 외관이 깨끗해 보여도 막상 헐겁거나 잘 안 맞으면 만족도가 떨어질 수 있기 때문입니다.\n\n전체적으로는 아이 만족도가 가장 컸던 구매였습니다. 좋은 품질의 중고 제품을 적당한 가격에 잘 구한 느낌이라, 비슷한 제품을 찾는 분이라면 상태 확인만 잘하면 충분히 만족할 만하다고 느꼈습니다.",
@@ -553,8 +572,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "used_toy",
+      "review_cycle": "revised",
       "notion_url": "https://www.notion.so/329b2169ba7c8137a541f12bf860bd5c",
-      "status_label": "승인대기",
+      "status_label": "승인됨",
+      "review_cycle_label": "피드백반영",
       "thumb_label": "🛍️"
     },
     {
@@ -604,8 +625,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wet_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8166a54ccce3ab825ecd",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -659,8 +682,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "interior_light",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/9-LED-329b2169ba7c814daa64ca85a4db6d58",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "💡"
     },
     {
@@ -712,8 +737,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/3-1000g-329b2169ba7c8179b1c9db94e02185c5",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -763,8 +790,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "clay_bar",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/3M-1EA-329b2169ba7c8169a3bad56eacb64eee",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🚘"
     },
     {
@@ -816,8 +845,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "bucket_dolly",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/3-7-5cm-4-10cm-329b2169ba7c81489c61cbdce7100e26",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -867,8 +898,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wet_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c81f8a943f7cd5a2901b7",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -918,8 +951,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wheel_tire_cleaner",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/1L-2-329b2169ba7c81f699dae5119c553b0a",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -969,8 +1004,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "spot_cleaner",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/C5-3928S-329b2169ba7c814db127c1ed01452465",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🫧"
     },
     {
@@ -1020,8 +1057,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "glass_cleaner",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/500ml-329b2169ba7c8130a906c4cc0d6a5cfd",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -1073,8 +1112,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wheel_tire_cleaner",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/D3-329b2169ba7c813294afcaa312c5758f",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -1126,8 +1167,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/4-32ab2169ba7c813f9725c27a3dc64d5d",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -1150,12 +1193,12 @@
       "image_url": "https://shop-phinf.pstatic.net/20251021_26/1761031677552oKfns_PNG/5275652049944343_1032764522.png?type=f170_170",
       "due_date": "2026.04.21.",
       "d_day": "D-30",
-      "status": "awaiting_approval",
+      "status": "approved",
       "approval_channel": "notion",
       "source_snapshot_path": "/Users/waneekim/.openclaw/workspace/naver_review_automation/available_reviews_snapshot.json",
       "source_url": "https://shopping.naver.com/my/writable-reviews",
       "last_collected_at": "2026-03-22T13:33:30+09:00",
-      "last_synced_at": "2026-03-22T15:59:04",
+      "last_synced_at": "2026-03-22T16:04:53",
       "review_url": "",
       "review_draft_title": "차량용보다는 의자 허리받침으로 쓸 때 더 만족스러웠습니다",
       "review_draft_body": "닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침은 처음에는 장거리 운전용 목쿠션으로 기대하고 샀지만, 실제로는 회사 의자에서 허리받침으로 썼을 때 만족도가 더 높았던 제품이었습니다. 차 안에서는 제 체형과 자세에는 조금 딱딱하고 목 뒤에서 존재감이 강하게 느껴져 오래 쓰기엔 다소 불편했습니다.\n\n반대로 의자에 두고 허리 쪽을 받쳐보니 느낌이 훨씬 괜찮았습니다. 자세를 너무 세게 밀어내는 방식은 아닌데, 등을 반듯하게 세우고 앉아 있기 편해서 장시간 업무 볼 때 오히려 더 유용했습니다. 뒤에서 허리 쪽을 안정적으로 받쳐주는 느낌이 있어서 지금은 차량용보다 사무실용으로 더 자주 쓰고 있습니다.\n\n이 제품은 이름 그대로 목쿠션으로만 생각하면 호불호가 있을 수 있습니다. 특히 목 뒤가 예민하거나 시트 각도 영향을 많이 받는 분들은 차 안에서는 다르게 느낄 수 있습니다. 대신 작은 보조 쿠션처럼 활용 범위를 넓혀 보면 의외로 더 잘 맞는 자리를 찾을 수도 있습니다.\n\n전체적으로는 차량용 목쿠션으로는 아쉬움이 있었지만, 허리받침 용도로는 만족도가 꽤 높았습니다. 한 가지 용도만 고집하기보다 본인에게 맞는 위치를 바꿔 써보는 편이 더 좋은 제품이었습니다.",
@@ -1177,8 +1220,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "neck_cushion",
+      "review_cycle": "revised",
       "notion_url": "https://www.notion.so/32ab2169ba7c81b98359e2b7da42dfc5",
-      "status_label": "승인대기",
+      "status_label": "승인됨",
+      "review_cycle_label": "피드백반영",
       "thumb_label": "🪑"
     },
     {
@@ -1230,8 +1275,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "neck_cushion",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/329b2169ba7c811f9fcddb73d506fe44",
       "status_label": "승인됨",
+      "review_cycle_label": "초안",
       "thumb_label": "🪑"
     },
     {
@@ -1281,8 +1328,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/32ab2169ba7c81abbec8f3bcb7cfb9ea",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -1334,8 +1383,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/3-329b2169ba7c81f988c5ebeced16da96",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -1385,8 +1436,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/300ml-329b2169ba7c81ac98fed45ead9bd71e",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -1438,8 +1491,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "polishing_pad",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/80mm-7-329b2169ba7c8169a7cff7ff452fb592",
       "status_label": "승인됨",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     },
     {
@@ -1489,8 +1544,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "wet_coating",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/99-3-G73-G19-G65X-32ab2169ba7c81969d0cd9378179adaa",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🧴"
     },
     {
@@ -1540,8 +1597,10 @@
       "uploaded_at": "",
       "error_note": "",
       "draft_category": "generic",
+      "review_cycle": "initial",
       "notion_url": "https://www.notion.so/32ab2169ba7c81abbec8f3bcb7cfb9ea",
       "status_label": "승인대기",
+      "review_cycle_label": "초안",
       "thumb_label": "🛍️"
     }
   ]

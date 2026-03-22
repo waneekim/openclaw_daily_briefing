@@ -46,6 +46,9 @@
     .status-left { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .badge { font-size:12px; font-weight:800; padding:6px 10px; border-radius:999px; color:white; }
     .badge.normal { background:#64748b; } .badge.warn { background:#b45309; } .badge.good { background:#15803d; } .badge.bad { background:#b91c1c; } .badge.done { background:#2563eb; }
+    .cycle-badge { font-size:12px; font-weight:800; padding:6px 10px; border-radius:999px; }
+    .cycle-badge.initial { color:#475569; background:#f1f5f9; border:1px solid #cbd5e1; }
+    .cycle-badge.revised { color:#1d4ed8; background:#eff6ff; border:1px solid #93c5fd; }
     .synced-text { color:var(--muted); font-size:13px; }
     .compact-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .review-body-wrap { background:#fbfdff; border:1px solid var(--line); border-radius:14px; padding:12px; }
@@ -108,7 +111,7 @@
   <div class="wrap">
     <section class="page-head">
       <h1>네이버 리뷰 승인 대시보드</h1>
-      <p class="lead">마지막 갱신: <b>2026-03-22T15:59:12+09:00</b></p>
+      <p class="lead">마지막 갱신: <b>2026-03-22T16:11:27+09:00</b></p>
       <p class="lead">아래로 내려가며 검토하고, 필요한 조작은 하단 고정바에서 바로 할 수 있어.</p>
     </section>
 
@@ -118,7 +121,7 @@
       <button type="button" class="btn" onclick="setFilter('all')">전체 보기로 돌아가기</button>
     </div>
     <div class="list" id="review-list">
-        <article class="review-card warn" id="card-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-slug="캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-status="awaiting_approval" data-point="650" data-point-bucket="201_999" data-dday="D-26" data-media-count="2">
+        <article class="review-card warn" id="card-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-slug="캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개" data-status="awaiting_approval" data-review-cycle="revised" data-point="650" data-point-bucket="201_999" data-dday="D-26" data-media-count="2">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220404_145/1649061135328gDQs1_JPEG/50197031056878283_591998712.jpg?type=f170_170" alt="캠핑슬립 메모리폼 와이드 차박 휴대용 캠핑용 베개" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -135,6 +138,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">승인대기</span>
+              <span class="cycle-badge revised" id="cycle-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">피드백반영</span>
               <span class="synced-text">동기화 <span id="synced-캠핑슬립-메모리폼-와이드-차박-휴대용-캠핑용-베개">2026-03-22T15:58:51</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -184,7 +188,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-24" data-media-count="0">
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-24" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241014_213/1728874174146PpWo5_JPEG/63007109293176082_1038306443.jpg?type=f170_170" alt="오플렉스 클래식 폴딩박스 접이식 트렁크정리함 25L" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -201,6 +205,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">초안</span>
               <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-25l">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -250,7 +255,7 @@
 
         </article>
         
-        <article class="review-card good" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="approved" data-point="150" data-point-bucket="lte_200" data-dday="D-23" data-media-count="0">
+        <article class="review-card good" id="card-친수코팅제-물때방지코팅제-100ml-욕실청소" data-slug="친수코팅제-물때방지코팅제-100ml-욕실청소" data-status="approved" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-23" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251216_211/1765830345117pWjyG_PNG/20526836233493435_929627864.png?type=f170_170" alt="친수코팅제 물때방지코팅제 100ml 욕실청소" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -267,6 +272,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge good" id="badge-친수코팅제-물때방지코팅제-100ml-욕실청소">승인됨</span>
+              <span class="cycle-badge initial" id="cycle-친수코팅제-물때방지코팅제-100ml-욕실청소">초안</span>
               <span class="synced-text">동기화 <span id="synced-친수코팅제-물때방지코팅제-100ml-욕실청소">2026-03-22T15:52:35</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -316,7 +322,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-21" data-media-count="0">
+        <article class="review-card warn" id="card-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-slug="오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-21" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241014_260/1728874146901BPNcR_JPEG/4492173361145230_258511921.jpg?type=f170_170" alt="오플렉스 클래식 폴딩박스 접이식 트렁크정리함 48L" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -333,6 +339,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">초안</span>
               <span class="synced-text">동기화 <span id="synced-오플렉스-클래식-폴딩박스-접이식-트렁크정리함-48l">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -382,7 +389,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-18" data-media-count="0">
+        <article class="review-card warn" id="card-루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-slug="루미너스-아쿠아-습식코팅제-고농축-원액-500ml" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-18" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20230519_77/1684453942659Im2AK_JPEG/2500467471898622_1587797073.jpg?type=f170_170" alt="루미너스 아쿠아 습식코팅제 고농축 원액 500ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -399,6 +406,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">초안</span>
               <span class="synced-text">동기화 <span id="synced-루미너스-아쿠아-습식코팅제-고농축-원액-500ml">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -448,7 +456,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-slug="정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-status="awaiting_approval" data-point="2250" data-point-bucket="ge_1000" data-dday="D-16" data-media-count="0">
+        <article class="review-card warn" id="card-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-slug="정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml" data-status="awaiting_approval" data-review-cycle="initial" data-point="2250" data-point-bucket="ge_1000" data-dday="D-16" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20240328_12/1711613430252f11tO_JPEG/112749328944685057_312215202.jpg?type=f170_170" alt="정우케미칼 물때제거제 샤워부스 수도꼭지 수전청소 기름때 제거 300ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -465,6 +473,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">초안</span>
               <span class="synced-text">동기화 <span id="synced-정우케미칼-물때제거제-샤워부스-수도꼭지-수전청소-기름때-제거-300ml">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -514,7 +523,7 @@
 
         </article>
         
-        <article class="review-card good" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="approved" data-point="150" data-point-bucket="lte_200" data-dday="D-13" data-media-count="0">
+        <article class="review-card good" id="card-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-slug="창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" data-status="approved" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-13" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250519_142/1747624435806BCQ4s_JPEG/92184324550034341_27457019.jpg?type=f170_170" alt="창고 정리 대박 세일 단돈 1000원 (1인당 최대 구매수량 3개 한정)" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -531,7 +540,8 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge good" id="badge-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">승인됨</span>
-              <span class="synced-text">동기화 <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-22T15:52:50</span></span>
+              <span class="cycle-badge initial" id="cycle-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">초안</span>
+              <span class="synced-text">동기화 <span id="synced-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정">2026-03-22T16:01:32</span></span>
             </div>
             <div class="actions compact-actions top-actions">
             <button type="button" class="btn warn" id="action-primary-창고-정리-대박-세일-단돈-1000원-1인당-최대-구매수량-3개-한정" onclick='toggleApproval("\ucc3d\uace0-\uc815\ub9ac-\ub300\ubc15-\uc138\uc77c-\ub2e8\ub3c8-1000\uc6d0-1\uc778\ub2f9-\ucd5c\ub300-\uad6c\ub9e4\uc218\ub7c9-3\uac1c-\ud55c\uc815")'>승인대기로</button>
@@ -580,7 +590,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-대형-세차타월" data-slug="클린-양면-드라잉타월-듀오-대형-세차타월" data-status="awaiting_approval" data-point="1150" data-point-bucket="ge_1000" data-dday="D-1" data-media-count="0">
+        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-대형-세차타월" data-slug="클린-양면-드라잉타월-듀오-대형-세차타월" data-status="awaiting_approval" data-review-cycle="initial" data-point="1150" data-point-bucket="ge_1000" data-dday="D-1" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250920_11/1758351631334BgANx_JPEG/42950283064471066_1795873852.jpeg?type=f170_170" alt="클린 양면 드라잉타월 듀오 대형 세차타월" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -597,6 +607,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-클린-양면-드라잉타월-듀오-대형-세차타월">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-클린-양면-드라잉타월-듀오-대형-세차타월">초안</span>
               <span class="synced-text">동기화 <span id="synced-클린-양면-드라잉타월-듀오-대형-세차타월">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -646,7 +657,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-미니" data-slug="클린-양면-드라잉타월-듀오-미니" data-status="awaiting_approval" data-point="650" data-point-bucket="201_999" data-dday="D-1" data-media-count="0">
+        <article class="review-card warn" id="card-클린-양면-드라잉타월-듀오-미니" data-slug="클린-양면-드라잉타월-듀오-미니" data-status="awaiting_approval" data-review-cycle="initial" data-point="650" data-point-bucket="201_999" data-dday="D-1" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250921_260/17584500240292LkEC_JPEG/38362833902612809_1903135760.jpeg?type=f170_170" alt="클린 양면 드라잉타월 듀오 미니" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -663,6 +674,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-클린-양면-드라잉타월-듀오-미니">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-클린-양면-드라잉타월-듀오-미니">초안</span>
               <span class="synced-text">동기화 <span id="synced-클린-양면-드라잉타월-듀오-미니">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -712,7 +724,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-0" data-media-count="0">
+        <article class="review-card good" id="card-터닝메카드-카울중고" data-slug="터닝메카드-카울중고" data-status="approved" data-review-cycle="revised" data-point="150" data-point-bucket="lte_200" data-dday="D-0" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220726_108/1658820686449vvzbm_JPEG/59956575043230375_648651445.jpg?type=f170_170" alt="터닝메카드 카울[중고]" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -728,11 +740,12 @@
 
           <div class="status-row">
             <div class="status-left">
-              <span class="badge warn" id="badge-터닝메카드-카울중고">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-터닝메카드-카울중고">2026-03-22T15:58:57</span></span>
+              <span class="badge good" id="badge-터닝메카드-카울중고">승인됨</span>
+              <span class="cycle-badge revised" id="cycle-터닝메카드-카울중고">피드백반영</span>
+              <span class="synced-text">동기화 <span id="synced-터닝메카드-카울중고">2026-03-22T16:04:23</span></span>
             </div>
             <div class="actions compact-actions top-actions">
-            <button type="button" class="btn success" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인</button>
+            <button type="button" class="btn warn" id="action-primary-터닝메카드-카울중고" onclick='toggleApproval("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0")'>승인대기로</button>
             <button type="button" class="btn bad" onclick='reviewAction("\ud130\ub2dd\uba54\uce74\ub4dc-\uce74\uc6b8\uc911\uace0", "needs_edit")'>수정요청</button>
             </div>
           </div>
@@ -778,7 +791,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-58" data-media-count="0">
+        <article class="review-card warn" id="card-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-slug="마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-58" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20231205_36/1701744598967wI1iK_JPEG/15212098485237545_1568487973.jpg?type=f170_170" alt="마프라 라보코스메티카 네로 500ml 젤 타입 타이어 코팅제" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -795,6 +808,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">초안</span>
               <span class="synced-text">동기화 <span id="synced-마프라-라보코스메티카-네로-500ml-젤-타입-타이어-코팅제">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -844,7 +858,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-58" data-media-count="0">
+        <article class="review-card warn" id="card-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-slug="벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-58" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250407_94/17440143330162caqe_JPEG/26672132441149536_992522621.jpg?type=f170_170" alt="벤딕트 아이오닉9 악세사리 튜닝 실내 식빵등 자동차 실내등 LED" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -861,6 +875,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">초안</span>
               <span class="synced-text">동기화 <span id="synced-벤딕트-아이오닉9-악세사리-튜닝-실내-식빵등-자동차-실내등-led">2026-03-21T12:21:12</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -910,7 +925,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-56" data-media-count="0">
+        <article class="review-card warn" id="card-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-slug="우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약" data-status="awaiting_approval" data-review-cycle="initial" data-point="300" data-point-bucket="201_999" data-dday="D-56" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20210924_188/16324630582772AS1Y_JPEG/33598956981548887_124000510.jpg?type=f170_170" alt="우신 오투 셀렉터 3% 산화제 1000g 염색약 탈색약" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -927,6 +942,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">초안</span>
               <span class="synced-text">동기화 <span id="synced-우신-오투-셀렉터-3-산화제-1000g-염색약-탈색약">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -976,7 +992,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-52" data-media-count="0">
+        <article class="review-card warn" id="card-3m-클레이바-낙진제거제-1ea" data-slug="3m-클레이바-낙진제거제-1ea" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-52" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20220519_204/1652950058260LjqrH_JPEG/54085841976612320_1669221383.jpg?type=f170_170" alt="3M 클레이바 낙진제거제 1EA" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -993,6 +1009,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-3m-클레이바-낙진제거제-1ea">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-3m-클레이바-낙진제거제-1ea">초안</span>
               <span class="synced-text">동기화 <span id="synced-3m-클레이바-낙진제거제-1ea">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1042,7 +1059,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval" data-point="100" data-point-bucket="lte_200" data-dday="D-52" data-media-count="0">
+        <article class="review-card warn" id="card-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-slug="버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm" data-status="awaiting_approval" data-review-cycle="initial" data-point="100" data-point-bucket="lte_200" data-dday="D-52" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251230_7/1767056108620Ho1eP_PNG/30045274412463301_2122508918.png?type=f170_170" alt="버킷돌리 세차바퀴 우레탄 캐스터 세트 3인치(7.5cm) 4인치(10cm)" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1059,6 +1076,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">초안</span>
               <span class="synced-text">동기화 <span id="synced-버킷돌리-세차바퀴-우레탄-캐스터-세트-3인치75cm-4인치10cm">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1108,7 +1126,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-51" data-media-count="0">
+        <article class="review-card warn" id="card-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-slug="불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml" data-status="awaiting_approval" data-review-cycle="initial" data-point="300" data-point-bucket="201_999" data-dday="D-51" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250509_139/1746771639667kmqUN_JPEG/1980697534074407_1136854346.jpg?type=f170_170" alt="[불스원] 뉴 크리스탈코트 플러스 유리막코팅제 물왁스 500ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1125,6 +1143,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">초안</span>
               <span class="synced-text">동기화 <span id="synced-불스원-뉴-크리스탈코트-플러스-유리막코팅제-물왁스-500ml">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1174,7 +1193,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval" data-point="160" data-point-bucket="lte_200" data-dday="D-51" data-media-count="0">
+        <article class="review-card warn" id="card-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-slug="마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개" data-status="awaiting_approval" data-review-cycle="initial" data-point="160" data-point-bucket="lte_200" data-dday="D-51" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250401_125/1743496352230j7bhv_JPEG/31389848309219650_692316593.jpg?type=f170_170" alt="마프라 매니악 휠앤타이어 클리너 대용량 희석제품 타이어갈변제거 휠 분진 1L, 2개" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1191,6 +1210,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">초안</span>
               <span class="synced-text">동기화 <span id="synced-마프라-매니악-휠앤타이어-클리너-대용량-희석제품-타이어갈변제거-휠-분진-1l-2개">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1240,7 +1260,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-50" data-media-count="0">
+        <article class="review-card warn" id="card-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-slug="비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-50" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250912_280/1757654959500whBsP_JPEG/91787769618132292_662564541.jpg?type=f170_170" alt="비쎌 스팟클린 C5 3928S 패브릭 소파 카페트 침대 매트리스 습식 침구 청소기" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1257,6 +1277,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">초안</span>
               <span class="synced-text">동기화 <span id="synced-비쎌-스팟클린-c5-3928s-패브릭-소파-카페트-침대-매트리스-습식-침구-청소기">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1306,7 +1327,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-47" data-media-count="0">
+        <article class="review-card warn" id="card-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-slug="마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-47" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20241015_140/1728953030232ipeiL_JPEG/76617948276070059_1528498812.jpg?type=f170_170" alt="마프라 매니악 글라스클리너 디그리저 500ml 자동차 유리세정제 얼룩 유막제거" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1323,6 +1344,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">초안</span>
               <span class="synced-text">동기화 <span id="synced-마프라-매니악-글라스클리너-디그리저-500ml-자동차-유리세정제-얼룩-유막제거">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1372,7 +1394,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval" data-point="150" data-point-bucket="lte_200" data-dday="D-40" data-media-count="0">
+        <article class="review-card warn" id="card-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-slug="d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제" data-status="awaiting_approval" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-40" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20260119_20/1768812886389wTFsE_PNG/102945854517781197_140130200.png?type=f170_170" alt="D3 얼룩제거제 유막제거제 백화제거제 갈변제거제 벌레제거제" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1389,6 +1411,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">초안</span>
               <span class="synced-text">동기화 <span id="synced-d3-얼룩제거제-유막제거제-백화제거제-갈변제거제-벌레제거제">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1438,7 +1461,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-slug="줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-status="awaiting_approval" data-point="500" data-point-bucket="201_999" data-dday="D-31" data-media-count="0">
+        <article class="review-card warn" id="card-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-slug="줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개" data-status="awaiting_approval" data-review-cycle="initial" data-point="500" data-point-bucket="201_999" data-dday="D-31" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251202_134/1764659730165B9deB_JPEG/98792543302009687_1028583260.jpg?type=f170_170" alt="줄눈셀프시공 타일줄눈보수제 욕실 화장실 바닥용 화이트4개" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1455,6 +1478,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">초안</span>
               <span class="synced-text">동기화 <span id="synced-줄눈셀프시공-타일줄눈보수제-욕실-화장실-바닥용-화이트4개">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1504,7 +1528,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-slug="닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-status="awaiting_approval" data-point="500" data-point-bucket="201_999" data-dday="D-30" data-media-count="0">
+        <article class="review-card good" id="card-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-slug="닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" data-status="approved" data-review-cycle="revised" data-point="500" data-point-bucket="201_999" data-dday="D-30" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251021_26/1761031677552oKfns_PNG/5275652049944343_1032764522.png?type=f170_170" alt="닥터써클 차량용 목쿠션 헤드레스트 자동차 목베개 운전석 목받침 헤드 쿠션 머리받침" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1520,11 +1544,12 @@
 
           <div class="status-row">
             <div class="status-left">
-              <span class="badge warn" id="badge-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">승인대기</span>
-              <span class="synced-text">동기화 <span id="synced-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">2026-03-22T15:59:04</span></span>
+              <span class="badge good" id="badge-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">승인됨</span>
+              <span class="cycle-badge revised" id="cycle-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">피드백반영</span>
+              <span class="synced-text">동기화 <span id="synced-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침">2026-03-22T16:04:53</span></span>
             </div>
             <div class="actions compact-actions top-actions">
-            <button type="button" class="btn success" id="action-primary-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='toggleApproval("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>승인</button>
+            <button type="button" class="btn warn" id="action-primary-닥터써클-차량용-목쿠션-헤드레스트-자동차-목베개-운전석-목받침-헤드-쿠션-머리받침" onclick='toggleApproval("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68")'>승인대기로</button>
             <button type="button" class="btn bad" onclick='reviewAction("\ub2e5\ud130\uc368\ud074-\ucc28\ub7c9\uc6a9-\ubaa9\ucfe0\uc158-\ud5e4\ub4dc\ub808\uc2a4\ud2b8-\uc790\ub3d9\ucc28-\ubaa9\ubca0\uac1c-\uc6b4\uc804\uc11d-\ubaa9\ubc1b\uce68-\ud5e4\ub4dc-\ucfe0\uc158-\uba38\ub9ac\ubc1b\uce68", "needs_edit")'>수정요청</button>
             </div>
           </div>
@@ -1570,7 +1595,7 @@
 
         </article>
         
-        <article class="review-card good" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="approved" data-point="150" data-point-bucket="lte_200" data-dday="D-24" data-media-count="0">
+        <article class="review-card good" id="card-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-slug="벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼" data-status="approved" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-24" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20240821_2/1724227703361pOA1L_JPEG/18615460340715699_196304166.jpg?type=f170_170" alt="벤오토 베리어 차량용 목쿠션 목베개 목받침 헤드레스트 메모리폼" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1587,6 +1612,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge good" id="badge-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">승인됨</span>
+              <span class="cycle-badge initial" id="cycle-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">초안</span>
               <span class="synced-text">동기화 <span id="synced-벤오토-베리어-차량용-목쿠션-목베개-목받침-헤드레스트-메모리폼">2026-03-22T15:55:05</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1636,7 +1662,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-point="800" data-point-bucket="201_999" data-dday="D-22" data-media-count="0">
+        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-review-cycle="initial" data-point="800" data-point-bucket="201_999" data-dday="D-22" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20190423_106/volkisoma@naver.com_1556024714406dYPS4_JPEG/38743573253971596_1102060613.jpg?type=f170_170" alt="나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1653,6 +1679,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">초안</span>
               <span class="synced-text">동기화 <span id="synced-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1702,7 +1729,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval" data-point="350" data-point-bucket="201_999" data-dday="D-19" data-media-count="0">
+        <article class="review-card warn" id="card-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-slug="크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식" data-status="awaiting_approval" data-review-cycle="initial" data-point="350" data-point-bucket="201_999" data-dday="D-19" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20251107_271/1762516972409TDAwd_JPEG/17192282403048257_780884709.jpg?type=f170_170" alt="크레이지몬스터 차박 매트 평탄화 보드 팰리세이드 싼타페 쏘렌토 3단 접이식" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1719,6 +1746,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">초안</span>
               <span class="synced-text">동기화 <span id="synced-크레이지몬스터-차박-매트-평탄화-보드-팰리세이드-싼타페-쏘렌토-3단-접이식">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1768,7 +1796,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval" data-point="300" data-point-bucket="201_999" data-dday="D-17" data-media-count="0">
+        <article class="review-card warn" id="card-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-slug="불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml" data-status="awaiting_approval" data-review-cycle="initial" data-point="300" data-point-bucket="201_999" data-dday="D-17" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250219_240/1739950389729qAdgF_JPEG/26767359592405083_81699949.jpg?type=f170_170" alt="[불스원] 자동차 실내 가죽 보호제 보습제 딥 코팅 가죽 컨디셔너 300ml" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1785,6 +1813,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">초안</span>
               <span class="synced-text">동기화 <span id="synced-불스원-자동차-실내-가죽-보호제-보습제-딥-코팅-가죽-컨디셔너-300ml">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1834,7 +1863,7 @@
 
         </article>
         
-        <article class="review-card good" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="approved" data-point="150" data-point-bucket="lte_200" data-dday="D-15" data-media-count="0">
+        <article class="review-card good" id="card-전동드릴-광택패드-80mm-7종-세트-광택작업" data-slug="전동드릴-광택패드-80mm-7종-세트-광택작업" data-status="approved" data-review-cycle="initial" data-point="150" data-point-bucket="lte_200" data-dday="D-15" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20200603_20/1591176299849tH6AE_JPEG/28536134358733484_1708609491.jpg?type=f170_170" alt="전동드릴 광택패드 80mm 7종 세트 광택작업" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1851,6 +1880,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge good" id="badge-전동드릴-광택패드-80mm-7종-세트-광택작업">승인됨</span>
+              <span class="cycle-badge initial" id="cycle-전동드릴-광택패드-80mm-7종-세트-광택작업">초안</span>
               <span class="synced-text">동기화 <span id="synced-전동드릴-광택패드-80mm-7종-세트-광택작업">2026-03-22T15:55:24</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1900,7 +1930,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-slug="소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-status="awaiting_approval" data-point="600" data-point-bucket="201_999" data-dday="D-15" data-media-count="0">
+        <article class="review-card warn" id="card-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-slug="소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x" data-status="awaiting_approval" data-review-cycle="initial" data-point="600" data-point-bucket="201_999" data-dday="D-15" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20250923_288/1758592450024aTNTb_JPEG/92725363146037568_538436387.jpg?type=f170_170" alt="소프트99 최고급 유리관리 3종 세트, 고성능 유막제거제 G73+장기지속 발수코팅제 G19+사이드미러 발수코팅제 G65X" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1917,6 +1947,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">초안</span>
               <span class="synced-text">동기화 <span id="synced-소프트99-최고급-유리관리-3종-세트-고성능-유막제거제-g73장기지속-발수코팅제-g19사이드미러-발수코팅제-g65x">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -1966,7 +1997,7 @@
 
         </article>
         
-        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-point="800" data-point-bucket="201_999" data-dday="D-15" data-media-count="0">
+        <article class="review-card warn" id="card-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-slug="나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소" data-status="awaiting_approval" data-review-cycle="initial" data-point="800" data-point-bucket="201_999" data-dday="D-15" data-media-count="0">
           <div class="review-top">
             <div class="thumb"><img class="thumb-img" src="https://shop-phinf.pstatic.net/20190423_106/volkisoma@naver.com_1556024714406dYPS4_JPEG/38743573253971596_1102060613.jpg?type=f170_170" alt="나노클린 유리닦이 연마제 스펀지 샤워부스 화장실욕실 거울물때 제거청소" loading="lazy" referrerpolicy="no-referrer" /></div>
             <div class="product-col">
@@ -1983,6 +2014,7 @@
           <div class="status-row">
             <div class="status-left">
               <span class="badge warn" id="badge-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">승인대기</span>
+              <span class="cycle-badge initial" id="cycle-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">초안</span>
               <span class="synced-text">동기화 <span id="synced-나노클린-유리닦이-연마제-스펀지-샤워부스-화장실욕실-거울물때-제거청소">2026-03-22T13:34:04</span></span>
             </div>
             <div class="actions compact-actions top-actions">
@@ -2039,8 +2071,9 @@
       <div class="bottom-top">
         <div class="bottom-left">
           <button type="button" class="summary-pill active" data-filter="all" onclick="setFilter('all')"><span class="k">전체</span><span class="v" id="stat-total">29</span></button>
-          <button type="button" class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">25</span></button>
-          <button type="button" class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">4</span></button>
+          <button type="button" class="summary-pill" data-filter="awaiting_approval" onclick="setFilter('awaiting_approval')"><span class="k">승인대기</span><span class="v" id="stat-awaiting_approval">23</span></button>
+          <button type="button" class="summary-pill" data-filter="revised_pending" onclick="setFilter('revised_pending')"><span class="k">재검토대기</span><span class="v" id="stat-revised_pending">1</span></button>
+          <button type="button" class="summary-pill" data-filter="approved" onclick="setFilter('approved')"><span class="k">승인됨</span><span class="v" id="stat-approved">6</span></button>
           <button type="button" class="summary-pill" data-filter="needs_edit" onclick="setFilter('needs_edit')"><span class="k">수정요청</span><span class="v" id="stat-needs_edit">0</span></button>
           <button type="button" class="summary-pill" data-filter="uploaded" onclick="setFilter('uploaded')"><span class="k">업로드완료</span><span class="v" id="stat-uploaded">0</span></button>
           <button type="button" class="summary-pill" data-filter="error" onclick="setFilter('error')"><span class="k">오류</span><span class="v" id="stat-error">0</span></button>
@@ -2204,7 +2237,7 @@
     function visibleCards() {
       return Array.from(document.querySelectorAll('article.review-card[data-slug]')).filter(card => !card.classList.contains('hidden'));
     }
-    let totalCounts = { total: 0, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+    let totalCounts = { total: 0, awaiting_approval: 0, revised_pending: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
     function renderStatRatios(filteredCounts, pointFilter) {
       const set = (id, filtered, total) => {
         const el = document.getElementById(id);
@@ -2213,6 +2246,7 @@
       };
       set('stat-total', filteredCounts.total, totalCounts.total);
       set('stat-awaiting_approval', filteredCounts.awaiting_approval, totalCounts.awaiting_approval);
+      set('stat-revised_pending', filteredCounts.revised_pending, totalCounts.revised_pending);
       set('stat-approved', filteredCounts.approved, totalCounts.approved);
       set('stat-uploaded', filteredCounts.uploaded, totalCounts.uploaded);
       set('stat-needs_edit', filteredCounts.needs_edit, totalCounts.needs_edit);
@@ -2220,15 +2254,17 @@
     }
     function updateStats() {
       const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
-      totalCounts = { total: cards.length, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+      totalCounts = { total: cards.length, awaiting_approval: 0, revised_pending: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
+        const reviewCycle = card.getAttribute('data-review-cycle') || 'initial';
         if (Object.prototype.hasOwnProperty.call(totalCounts, status)) totalCounts[status] += 1;
+        if (status === 'awaiting_approval' && reviewCycle === 'revised') totalCounts.revised_pending += 1;
       }
       applyFilter();
     }
     function filterLabel(filter) {
-      return { all:'전체 보기', awaiting_approval:'승인대기만', approved:'승인됨만', needs_edit:'수정요청만', uploaded:'업로드완료만', error:'오류만' }[filter] || filter;
+      return { all:'전체 보기', awaiting_approval:'승인대기만', revised_pending:'재검토대기만', approved:'승인됨만', needs_edit:'수정요청만', uploaded:'업로드완료만', error:'오류만' }[filter] || filter;
     }
     function setFilter(filter) {
       currentFilter = filter;
@@ -2237,16 +2273,20 @@
     function applyFilter() {
       const cards = Array.from(document.querySelectorAll('article.review-card[data-slug]'));
       const pointFilter = document.getElementById('point-filter')?.value || 'all';
-      const pointFilteredCounts = { total: 0, awaiting_approval: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
+      const pointFilteredCounts = { total: 0, awaiting_approval: 0, revised_pending: 0, approved: 0, uploaded: 0, needs_edit: 0, error: 0 };
       for (const card of cards) {
         const status = card.getAttribute('data-status') || 'awaiting_approval';
+        const reviewCycle = card.getAttribute('data-review-cycle') || 'initial';
         const pointBucket = card.getAttribute('data-point-bucket') || 'lte_200';
         const pointOk = pointFilter === 'all' || pointBucket === pointFilter;
         if (pointOk) {
           pointFilteredCounts.total += 1;
           if (Object.prototype.hasOwnProperty.call(pointFilteredCounts, status)) pointFilteredCounts[status] += 1;
+          if (status === 'awaiting_approval' && reviewCycle === 'revised') pointFilteredCounts.revised_pending += 1;
         }
-        const statusOk = currentFilter === 'all' || status === currentFilter;
+        const statusOk = currentFilter === 'all'
+          || status === currentFilter
+          || (currentFilter === 'revised_pending' && status === 'awaiting_approval' && reviewCycle === 'revised');
         const show = statusOk && pointOk;
         card.classList.toggle('hidden', !show);
       }
@@ -2324,6 +2364,10 @@
       setStatusUI(slug, item.status, item.status_label, { skipListRefresh: true });
       const setText = (id, val) => { const el = document.getElementById(id + slug); if (el) el.textContent = val || ''; };
       setText('synced-', item.last_synced_at);
+      const cycle = item.review_cycle || 'initial';
+      const cycleLabel = item.review_cycle_label || (cycle === 'revised' ? '피드백반영' : '초안');
+      const cycleEl = document.getElementById('cycle-' + slug);
+      if (cycleEl) { cycleEl.textContent = cycleLabel; cycleEl.className = 'cycle-badge ' + cycle; }
       renderMediaAiStatus(slug, item);
       const workStatusEl = document.getElementById('wb-save-status-' + slug);
       if (workStatusEl) { workStatusEl.className = 'save-status'; workStatusEl.textContent = ''; }
@@ -2336,7 +2380,10 @@
       const media = item.media_items || [];
       uploadedMedia[slug] = media;
       const card = document.getElementById('card-' + slug);
-      if (card) card.setAttribute('data-media-count', String(media.length));
+      if (card) {
+        card.setAttribute('data-media-count', String(media.length));
+        card.setAttribute('data-review-cycle', cycle);
+      }
       renderMediaPanel(slug);
       refreshWorkbenchButton(slug);
     }
