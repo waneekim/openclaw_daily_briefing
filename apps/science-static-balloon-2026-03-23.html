@@ -6,17 +6,46 @@
   <title>Science App | 풍선 정전기 실험</title>
   <style>
     :root{--bg:#f7fbff;--ink:#17324d;--soft:#5b748c;--line:#d8e7f2;--card:#ffffff;--accent:#4f8cff;--good:#2aa772;--warn:#ff9f43;--max:980px}
-    *{--box-sizing:border-box}body{--margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef7ff 100%);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif;color:var(--ink)}
-    .wrap{--max-width:var(--max);margin:0 auto;padding:28px 20px 80px}.hero,.card{--background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 40px rgba(70,110,160,.08)}
-    .hero{--padding:28px}.pill{--display:inline-flex;padding:10px 14px;border-radius:999px;border:1px solid var(--line);color:var(--soft);font-size:12px;background:#fff}h1{--margin:12px 0 12px;font-size:clamp(34px,5vw,52px);line-height:1.03;letter-spacing:-.04em}.lead{--max-width:700px;line-height:1.85;color:#46627b}
-    .grid{--display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}.card{--padding:22px}.controls{--display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.btn{--padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;cursor:pointer}.btn.primary{--background:var(--accent);color:white;border-color:var(--accent)}
-    .status{--margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8fbff;border:1px dashed var(--line);line-height:1.75}.good{--color:var(--good);font-weight:700}.warn{--color:var(--warn);font-weight:700} .panel-list{--display:grid;gap:12px} .item{--padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
-    .balloon-scene,.magnet-scene,.generic-scene{--position:relative;height:320px;border-radius:20px;background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 78%,#dcefd7 78%,#dcefd7 100%);overflow:hidden;border:1px solid var(--line)}
-    .wall{--position:absolute;right:46px;top:36px;width:18px;height:220px;background:#d7e1ea;border-radius:8px} .balloon{--position:absolute;left:120px;top:80px;width:110px;height:140px;background:#ff758f;border-radius:55% 55% 52% 52%;transition:all .5s ease} .balloon:after{--content:'';position:absolute;left:52px;bottom:-48px;width:2px;height:48px;background:#6f8191} .balloon.rubbed{--box-shadow:0 0 0 8px rgba(79,140,255,.15)} .balloon.stuck{--left:880px;top:74px}
-    .paper{--position:absolute;width:44px;height:34px;background:#fff;border:1px solid #d8e7f2;border-radius:8px;transition:all .5s ease} .paper1{--left:360px;top:210px;transform:rotate(-8deg)} .paper2{--left:430px;top:170px;transform:rotate(9deg)} .paper3{--left:500px;top:220px;transform:rotate(-4deg)} .balloon.rubbed ~ .paper1{--left:250px;top:180px} .balloon.rubbed ~ .paper2{--left:270px;top:140px} .balloon.rubbed ~ .paper3{--left:290px;top:215px}
-    .magnet{--position:absolute;left:100px;top:110px;width:110px;height:120px;border:16px solid #ff6b6b;border-bottom:none;border-radius:60px 60px 0 0;box-sizing:border-box} .magnet:before{--content:'';position:absolute;left:-16px;top:-16px;width:32px;height:48px;background:#4f8cff} .magnet:after{--content:'';position:absolute;right:-16px;top:-16px;width:32px;height:48px;background:#4f8cff}
-    .token{--position:absolute;padding:12px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);transition:transform .5s ease} #paperclip{--left:340px;top:100px} #coin{--left:430px;top:170px} #wood{--left:520px;top:240px} .generic-scene{--display:flex;align-items:center;justify-content:center;color:#46627b;font-size:22px;padding:28px;text-align:center}
-    @media (max-width:920px){--.grid{--grid-template-columns:1fr} .balloon-stuck{--left:70%}}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef7ff 100%);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif;color:var(--ink)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 80px}
+    .hero,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 40px rgba(70,110,160,.08)}
+    .hero{padding:28px}
+    .pill{display:inline-flex;padding:10px 14px;border-radius:999px;border:1px solid var(--line);color:var(--soft);font-size:12px;background:#fff}
+    h1{margin:12px 0 12px;font-size:clamp(34px,5vw,52px);line-height:1.03;letter-spacing:-.04em}
+    .lead{max-width:700px;line-height:1.85;color:#46627b}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+    .card{padding:22px}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
+    .status{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8fbff;border:1px dashed var(--line);line-height:1.75}
+    .good{color:var(--good);font-weight:700}
+    .warn{color:var(--warn);font-weight:700}
+    .panel-list{display:grid;gap:12px}
+    .item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .balloon-scene,.magnet-scene,.generic-scene{position:relative;height:320px;border-radius:20px;background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 78%,#dcefd7 78%,#dcefd7 100%);overflow:hidden;border:1px solid var(--line)}
+    .wall{position:absolute;right:46px;top:36px;width:18px;height:220px;background:#d7e1ea;border-radius:8px}
+    .balloon{position:absolute;left:120px;top:80px;width:110px;height:140px;background:#ff758f;border-radius:55% 55% 52% 52%;transition:all .5s ease}
+    .balloon:after{content:'';position:absolute;left:52px;bottom:-48px;width:2px;height:48px;background:#6f8191}
+    .balloon.rubbed{box-shadow:0 0 0 8px rgba(79,140,255,.15)}
+    .balloon.stuck{left:880px;top:74px}
+    .paper{position:absolute;width:44px;height:34px;background:#fff;border:1px solid #d8e7f2;border-radius:8px;transition:all .5s ease}
+    .paper1{left:360px;top:210px;transform:rotate(-8deg)}
+    .paper2{left:430px;top:170px;transform:rotate(9deg)}
+    .paper3{left:500px;top:220px;transform:rotate(-4deg)}
+    .balloon-scene.rubbed .paper1{left:250px;top:180px}
+    .balloon-scene.rubbed .paper2{left:270px;top:140px}
+    .balloon-scene.rubbed .paper3{left:290px;top:215px}
+    .magnet{position:absolute;left:100px;top:110px;width:110px;height:120px;border:16px solid #ff6b6b;border-bottom:none;border-radius:60px 60px 0 0;box-sizing:border-box}
+    .magnet:before{content:'';position:absolute;left:-16px;top:-16px;width:32px;height:48px;background:#4f8cff}
+    .magnet:after{content:'';position:absolute;right:-16px;top:-16px;width:32px;height:48px;background:#4f8cff}
+    .token{position:absolute;padding:12px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);transition:transform .5s ease}
+    #paperclip{left:340px;top:100px}
+    #coin{left:430px;top:170px}
+    #wood{left:520px;top:240px}
+    .generic-scene{display:flex;align-items:center;justify-content:center;color:#46627b;font-size:22px;padding:28px;text-align:center}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}.balloon.stuck{left:70%;}}
   </style>
 </head>
 <body>
@@ -29,30 +58,41 @@
     </section>
     <section class="grid">
       <article class="card">
-        <h2>직접 눌러보는 미니 실험</h2>
-        <div class="balloon-scene"><div class="wall"></div><div class="balloon" id="balloon"></div><div class="paper paper1"></div><div class="paper paper2"></div><div class="paper paper3"></div></div>
-        <div class="controls"><button class="btn primary" onclick="act('rub')">옷에 문질러 보기</button><button class="btn " onclick="act('stick')">바로 벽에 붙이기</button><button class="btn " onclick="act('reset')">처음 상태로</button></div>
+        <h2>풍선과 종이 조각의 반응 관찰</h2>
+        
+<div class="balloon-scene" id="scene">
+  <div class="wall"></div>
+  <div class="balloon" id="balloon"></div>
+  <div class="paper paper1"></div>
+  <div class="paper paper2"></div>
+  <div class="paper paper3"></div>
+</div>
+        <div class="controls"><button class="btn primary" onclick="act('rub')">옷에 문질러 보기</button><button class="btn " onclick="act('stick')">벽에 가까이 가져가기</button><button class="btn " onclick="act('reset')">처음 상태로</button></div>
         <div class="status" id="status">버튼을 눌러 관찰을 시작해봐.</div>
       </article>
       <article class="card">
         <h2>생각 포인트</h2>
-        <div class="panel-list"><div class="item"><b>핵심 생각</b><br/>풍선을 문지르면 표면에 전하가 생겨 가벼운 물체나 벽과 상호작용할 수 있어.</div><div class="item"><b>민건 질문</b><br/>왜 종이보다 머리카락이 더 크게 움직일 때가 있을까?</div><div class="item"><b>민결 질문</b><br/>풍선이 벽에 잠깐 붙는 건 무슨 마법처럼 보일까?</div></div>
+        <div class="panel-list"><div class="item"><b>핵심 생각</b><br/>풍선을 문지르면 표면에 전하가 생겨 가벼운 물체나 벽과 상호작용할 수 있어.</div><div class="item"><b>민건 질문</b><br/>왜 종이보다 머리카락이 더 크게 움직일 때가 있을까?</div><div class="item"><b>민결 질문</b><br/>풍선이 벽에 잠깐 붙는 건 왜 그럴까?</div></div>
       </article>
     </section>
   </div>
   <script>
-const balloon=document.getElementById('balloon');
-const statusBox=document.getElementById('status');
+const scene = document.getElementById('scene');
+const balloon = document.getElementById('balloon');
+const statusBox = document.getElementById('status');
 function act(mode){
-  if(mode==='rub'){
-    balloon.className='balloon rubbed';
-    statusBox.innerHTML='<span class="good">관찰:</span> 풍선을 옷에 문지른 뒤 종이 조각 가까이 가져가면 가벼운 종이가 따라오는 것처럼 보여. 전하가 생겼다는 단서야.';
-  }else if(mode==='stick'){
-    balloon.className='balloon stuck';
-    statusBox.innerHTML='<span class="good">관찰:</span> 충분히 문질렀다면 벽에 잠깐 붙는 모습을 볼 수 있어. 벽 표면 전하가 살짝 재배치되기 때문이야.';
-  }else{
-    balloon.className='balloon';
-    statusBox.textContent='버튼을 눌러 풍선과 종이 조각의 반응을 관찰해봐.';
+  scene.classList.remove('rubbed', 'stuck');
+  balloon.className = 'balloon';
+  if(mode === 'rub'){
+    scene.classList.add('rubbed');
+    balloon.classList.add('rubbed');
+    statusBox.innerHTML = '<span class="good">관찰:</span> 풍선을 옷에 문지른 뒤 종이 조각 가까이 가져가면 종이가 따라오는 것처럼 보여. 정전기가 생겼다는 단서야.';
+  } else if(mode === 'stick'){
+    scene.classList.add('stuck');
+    balloon.classList.add('stuck');
+    statusBox.innerHTML = '<span class="good">관찰:</span> 충분히 문질렀다면 풍선이 벽에 잠깐 붙는 모습을 떠올릴 수 있어. 벽 표면 전하가 잠깐 재배치되기 때문이야.';
+  } else {
+    statusBox.textContent = '버튼을 눌러 풍선과 종이 조각의 반응을 관찰해봐.';
   }
 }
 </script>
