@@ -66,6 +66,59 @@
     .ramp{position:absolute;left:90px;top:180px;width:320px;height:14px;background:#6f8191;transform:rotate(-18deg);transform-origin:left center;border-radius:999px}
     .block{position:absolute;left:120px;top:150px;width:54px;height:54px;background:#4f8cff;border-radius:14px;transition:left .5s ease}
     .generic-scene{display:flex;align-items:center;justify-content:center;color:#46627b;font-size:22px;padding:28px;text-align:center}
+    .tank-scene,.plant-scene,.sprout-scene,.evap-scene,.crater-scene,.foodchain-scene{position:relative;height:320px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+    .tank-scene{background:linear-gradient(180deg,#d7f0ff 0%,#bde5ff 58%,#7fd0ff 58%,#5fc0f1 100%)}
+    .waterline{position:absolute;left:0;right:0;top:58%;height:3px;background:rgba(255,255,255,.8)}
+    .float-item{position:absolute;left:50%;transform:translateX(-50%);transition:all .7s ease}
+    .wood-item{width:96px;height:36px;background:#b97a56;border-radius:10px;top:47%}
+    .metal-item{width:44px;height:44px;background:#8593a5;border-radius:50%;top:73%}
+    .cup-item{width:72px;height:64px;border:8px solid #f7f7ff;border-top:none;border-radius:0 0 18px 18px;top:47%}
+    .floating{top:47%}.sinking{top:73%}
+    .plant-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 74%,#dcefd7 74%,#dcefd7 100%)}
+    .plant-scene .pot{position:absolute;left:50%;bottom:42px;transform:translateX(-50%);width:120px;height:70px;background:#d48b5b;border-radius:0 0 26px 26px}
+    .plant-scene .stem{position:absolute;left:50%;bottom:108px;width:12px;height:110px;background:#4cae68;border-radius:10px;transform-origin:bottom center;transition:transform .6s ease}
+    .plant-scene .leaf{position:absolute;width:54px;height:26px;background:#69c17f;border-radius:54px 54px 0 54px}
+    .plant-scene .leaf-left{left:calc(50% - 46px);bottom:180px;transform:rotate(-28deg)}
+    .plant-scene .leaf-right{left:50%;bottom:150px;transform:rotate(28deg)}
+    .sunbeam{position:absolute;top:36px;width:110px;height:18px;background:linear-gradient(90deg,rgba(255,211,77,.7),rgba(255,211,77,0));opacity:0;transition:opacity .4s ease}
+    .sunbeam.left{left:40px;transform:rotate(20deg)} .sunbeam.right{right:40px;transform:rotate(-20deg)}
+    .plant-scene.tilt-left .stem{transform:rotate(-16deg)} .plant-scene.tilt-right .stem{transform:rotate(16deg)} .plant-scene.tilt-center .stem{transform:rotate(0deg)}
+    .sprout-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 68%,#b78d61 68%,#8d6b52 100%)}
+    .sprout-scene .soil{position:absolute;left:0;right:0;bottom:0;height:110px;background:#8d6b52}
+    .seed{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);width:34px;height:26px;background:#8a4f2a;border-radius:50% 50% 48% 52%;transition:all .6s ease}
+    .seed-swollen{width:42px;height:32px;background:#a4693f}
+    .root{position:absolute;left:50%;bottom:82px;width:4px;background:#f1f1e8;transform:translateX(-50%);transition:height .7s ease}
+    .sprout{position:absolute;left:50%;bottom:120px;width:10px;background:#57b86e;transform:translateX(-50%);border-radius:10px 10px 0 0;transition:height .7s ease}
+    .sprout:before,.sprout:after{content:'';position:absolute;top:6px;width:26px;height:14px;background:#6fc986;border-radius:26px 26px 0 26px}
+    .sprout:before{left:-24px;transform:rotate(-28deg)} .sprout:after{right:-24px;transform:scaleX(-1) rotate(-28deg)}
+    .evap-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 70%,#d9d0b8 70%,#c7b998 100%)}
+    .evap-scene .mini-sun{position:absolute;right:46px;top:36px;width:60px;height:60px;background:#ffd34d;border-radius:50%;box-shadow:0 0 0 10px rgba(255,211,77,.15);opacity:.35;transition:all .5s ease}
+    .evap-scene .cover{position:absolute;left:50%;top:48px;transform:translateX(-50%);width:180px;height:90px;border:4px solid rgba(120,150,180,.45);border-bottom:none;border-radius:18px 18px 0 0;opacity:0;transition:opacity .4s ease}
+    .evap-scene .puddle{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);width:180px;height:54px;background:#69c5ff;border-radius:50%;transition:all .8s ease}
+    .vapor{position:absolute;bottom:82px;width:18px;height:54px;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.0),rgba(255,255,255,.6));opacity:0;animation:vapor 2.4s ease-in-out infinite}
+    .vapor1{left:44%}.vapor2{left:50%;animation-delay:.5s}.vapor3{left:56%;animation-delay:1s}
+    @keyframes vapor{0%{transform:translateY(0);opacity:0}30%{opacity:.6}100%{transform:translateY(-60px);opacity:0}}
+    .evap-scene.sunny .mini-sun{opacity:1}.evap-scene.sunny .puddle{width:110px;height:32px}.evap-scene.sunny .vapor{opacity:1}
+    .evap-scene.shade .mini-sun{opacity:.15}.evap-scene.shade .puddle{width:160px;height:46px}
+    .evap-scene.covered .cover{opacity:1}.evap-scene.covered .vapor{opacity:1}.evap-scene.covered .puddle{width:140px;height:40px}
+    .crater-scene{background:linear-gradient(180deg,#0c1733 0%,#2d4564 45%,#9f927e 45%,#8a7b66 100%)}
+    .planet-sky{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.8) 0 2px,transparent 3px),radial-gradient(circle at 70% 18%,rgba(255,255,255,.7) 0 2px,transparent 3px),radial-gradient(circle at 85% 28%,rgba(255,255,255,.5) 0 2px,transparent 3px)}
+    .meteor{position:absolute;left:48%;top:20px;width:26px;height:26px;background:#ffb347;border-radius:50%;box-shadow:-18px 10px 0 0 rgba(255,179,71,.35);opacity:0}
+    .surface{position:absolute;left:0;right:0;bottom:0;height:145px;background:#9c8b74}
+    .crater{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 50% 40%,#786b58 0 35%,#534839 36% 60%,transparent 61%);opacity:.95}
+    .crater-small{width:90px;height:34px}.crater-fast{width:140px;height:48px}.crater-big{width:190px;height:66px}
+    .ejecta{position:absolute;bottom:96px;width:10px;height:10px;background:#d4c0a3;border-radius:50%;opacity:0}
+    .impact-small .meteor,.impact-fast .meteor,.impact-big .meteor{opacity:1;animation:meteorFall .6s ease forwards}
+    .impact-small .ejecta,.impact-fast .ejecta,.impact-big .ejecta{opacity:1;animation:eject .7s ease-out forwards}
+    .ejecta1{left:46%}.ejecta2{left:50%;animation-delay:.05s}.ejecta3{left:54%;animation-delay:.1s}
+    @keyframes meteorFall{0%{transform:translate(0,0) scale(.8)}100%{transform:translate(-6px,180px) scale(1.15);opacity:0}}
+    @keyframes eject{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translateY(-36px) translateX(22px);opacity:0}}
+    .foodchain-scene{background:linear-gradient(180deg,#e8f7ff 0%,#f7fbff 65%,#dcefd7 65%,#c9e5c2 100%)}
+    .foodchain-scene .node{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:96px;height:96px;border-radius:50%;background:#fff;border:2px solid var(--line);font-size:34px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .foodchain-scene .node span{font-size:18px;font-weight:800;color:#35516b}
+    .grass-node{left:90px;bottom:80px}.rabbit-node{left:50%;bottom:130px;transform:translateX(-50%)}.fox-node{right:90px;bottom:190px}
+    .foodchain-scene .link{position:absolute;height:4px;background:#9bc3d9;transform-origin:left center}
+    .link-grass{left:180px;bottom:145px;width:220px;transform:rotate(-18deg)} .link-rabbit{left:calc(50% + 20px);bottom:214px;width:220px;transform:rotate(-18deg)}
     @media (max-width:920px){.grid{grid-template-columns:1fr}.balloon.stuck{left:70%;}}
   </style>
 </head>
@@ -81,7 +134,15 @@
       <article class="card">
         <h2>달 표면에는 왜 둥근 구멍이 많을까?</h2>
         
-<div class="generic-scene" id="scene">모래 표면에 작은 물체가 떨어져 자국이 생기는 생각 실험</div>
+<div class="crater-scene" id="scene">
+  <div class="planet-sky"></div>
+  <div class="meteor" id="meteor"></div>
+  <div class="surface"></div>
+  <div class="crater crater-small" id="crater"></div>
+  <div class="ejecta ejecta1"></div>
+  <div class="ejecta ejecta2"></div>
+  <div class="ejecta ejecta3"></div>
+</div>
         <div class="controls"><button class="btn primary" onclick="act('small')">작게 떨어뜨리기</button><button class="btn " onclick="act('fast')">빠르게 떨어뜨리기</button><button class="btn " onclick="act('big')">큰 공 떨어뜨리기</button><button class="btn " onclick="act('reset')">처음 상태로</button></div>
         <div class="status" id="status">버튼을 눌러 관찰을 시작해봐.</div>
       </article>
@@ -93,20 +154,24 @@
   </div>
   <script>
 const scene=document.getElementById('scene');
+const crater=document.getElementById('crater');
 const statusBox=document.getElementById('status');
 function act(mode){
+  scene.className='crater-scene';
+  crater.className='crater';
+  void scene.offsetWidth;
   if(mode==='small'){
-    scene.textContent='작은 둥근 자국이 생긴 표면';
-    statusBox.innerHTML='<span class="good">관찰:</span> 작은 물체도 떨어지면 둥근 자국을 만들 수 있어.';
+    scene.classList.add('impact-small'); crater.classList.add('crater-small');
+    statusBox.innerHTML='<span class="good">관찰:</span> 작은 물체가 떨어지면 작은 둥근 충돌구가 생겨.';
   }else if(mode==='fast'){
-    scene.textContent='더 퍼진 자국과 주변 튄 흔적';
-    statusBox.innerHTML='<span class="good">관찰:</span> 더 빠르게 부딪히면 자국이 더 크고 퍼질 수 있어.';
+    scene.classList.add('impact-fast'); crater.classList.add('crater-fast');
+    statusBox.innerHTML='<span class="good">관찰:</span> 더 빠르게 부딪히면 자국이 더 넓고 주변으로 튄 흔적도 커질 수 있어.';
   }else if(mode==='big'){
-    scene.textContent='넓고 깊은 충돌 자국';
-    statusBox.innerHTML='<span class="warn">관찰:</span> 큰 물체는 더 큰 자국을 남기기 쉬워.';
+    scene.classList.add('impact-big'); crater.classList.add('crater-big');
+    statusBox.innerHTML='<span class="warn">관찰:</span> 큰 물체는 더 큰 충돌구를 만들기 쉬워.';
   }else{
-    scene.textContent='모래 표면에 작은 물체가 떨어져 자국이 생기는 생각 실험';
-    statusBox.textContent='떨어지는 물체가 달라지면 자국이 어떻게 바뀔지 골라봐.';
+    scene.classList.add('impact-small'); crater.classList.add('crater-small');
+    statusBox.textContent='떨어지는 물체 크기와 속도를 바꿔 충돌구 차이를 비교해봐.';
   }
 }
 </script>
