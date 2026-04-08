@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Science App | 뜨는 것과 가라앉는 것</title>
+  <style>
+    :root{--bg:#f7fbff;--ink:#17324d;--soft:#5b748c;--line:#d8e7f2;--card:#ffffff;--accent:#4f8cff;--good:#2aa772;--warn:#ff9f43;--max:980px}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#f7fbff 0%,#eef7ff 100%);font-family:Inter,Pretendard,Apple SD Gothic Neo,Arial,sans-serif;color:var(--ink)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 20px 80px}
+    .hero,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 40px rgba(70,110,160,.08)}
+    .hero{padding:28px}
+    .pill{display:inline-flex;padding:10px 14px;border-radius:999px;border:1px solid var(--line);color:var(--soft);font-size:12px;background:#fff}
+    h1{margin:12px 0 12px;font-size:clamp(34px,5vw,52px);line-height:1.03;letter-spacing:-.04em}
+    .lead{max-width:700px;line-height:1.85;color:#46627b}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+    .card{padding:22px}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
+    .status{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8fbff;border:1px dashed var(--line);line-height:1.75}
+    .good{color:var(--good);font-weight:700}
+    .warn{color:var(--warn);font-weight:700}
+    .panel-list{display:grid;gap:12px}
+    .item{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .balloon-scene,.magnet-scene,.generic-scene{position:relative;height:320px;border-radius:20px;background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 78%,#dcefd7 78%,#dcefd7 100%);overflow:hidden;border:1px solid var(--line)}
+    .wall{position:absolute;right:46px;top:36px;width:18px;height:220px;background:#d7e1ea;border-radius:8px}
+    .balloon{position:absolute;left:120px;top:80px;width:110px;height:140px;background:#ff758f;border-radius:55% 55% 52% 52%;transition:all .5s ease}
+    .balloon:after{content:'';position:absolute;left:52px;bottom:-48px;width:2px;height:48px;background:#6f8191}
+    .balloon.rubbed{box-shadow:0 0 0 8px rgba(79,140,255,.15)}
+    .balloon.stuck{left:880px;top:74px}
+    .paper{position:absolute;width:44px;height:34px;background:#fff;border:1px solid #d8e7f2;border-radius:8px;transition:all .5s ease}
+    .paper1{left:360px;top:210px;transform:rotate(-8deg)}
+    .paper2{left:430px;top:170px;transform:rotate(9deg)}
+    .paper3{left:500px;top:220px;transform:rotate(-4deg)}
+    .balloon-scene.rubbed .paper1{left:250px;top:180px}
+    .balloon-scene.rubbed .paper2{left:270px;top:140px}
+    .balloon-scene.rubbed .paper3{left:290px;top:215px}
+    .magnet{position:absolute;left:100px;top:110px;width:110px;height:120px;border:16px solid #ff6b6b;border-bottom:none;border-radius:60px 60px 0 0;box-sizing:border-box}
+    .magnet:before{content:'';position:absolute;left:-16px;top:-16px;width:32px;height:48px;background:#4f8cff}
+    .magnet:after{content:'';position:absolute;right:-16px;top:-16px;width:32px;height:48px;background:#4f8cff}
+    .token{position:absolute;padding:12px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);transition:transform .5s ease}
+    #paperclip{left:340px;top:100px}
+    #coin{left:430px;top:170px}
+    #wood{left:520px;top:240px}
+    .sky-scene,.plane-scene,.moon-scene,.ramp-scene{position:relative;height:320px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 78%,#dcefd7 78%,#dcefd7 100%)}
+    .sun{position:absolute;left:220px;top:50px;width:76px;height:76px;background:#ffd34d;border-radius:50%;box-shadow:0 0 0 10px rgba(255,211,77,.18);transition:all .5s ease}
+    .person{position:absolute;left:220px;top:150px;width:16px;height:90px;background:#35516b;border-radius:8px}
+    .person:before{content:'';position:absolute;left:-10px;top:-26px;width:36px;height:36px;background:#35516b;border-radius:50%}
+    .shadow{position:absolute;left:236px;top:228px;height:18px;width:110px;background:rgba(53,81,107,.25);border-radius:999px;transform:skewX(-14deg);transform-origin:left center;transition:all .5s ease}
+    .ground-line{position:absolute;left:0;right:0;bottom:76px;height:2px;background:#aac7b0}
+    .air-line{position:absolute;left:-120px;width:140px;height:2px;background:rgba(79,140,255,.35);animation:air 4s linear infinite}
+    .line1{top:120px}.line2{top:170px;animation-delay:1.2s}.line3{top:220px;animation-delay:2.4s}
+    @keyframes air{from{transform:translateX(0)}to{transform:translateX(760px)}}
+    .plane{position:absolute;left:110px;top:150px;font-size:46px;transition:all .6s ease}
+    .plane.lift{left:360px;top:110px;transform:rotate(-18deg)}
+    .plane.flat{left:340px;top:150px;transform:rotate(-4deg)}
+    .plane.stall{left:300px;top:220px;transform:rotate(22deg)}
+    .lamp{position:absolute;left:70px;top:60px;width:34px;height:160px;background:#ffd34d;border-radius:20px}
+    .lamp:after{content:'';position:absolute;left:30px;top:32px;width:180px;height:10px;background:linear-gradient(90deg,rgba(255,211,77,.35),rgba(255,211,77,0));transform:rotate(12deg);transform-origin:left center}
+    .moon{position:absolute;left:300px;top:88px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffaf0 0%,#f7f1d9 60%,#e6dbab 100%);box-shadow:inset -28px 0 0 rgba(17,31,46,.28);transition:all .5s ease}
+    .moon.crescent{box-shadow:inset -78px 0 0 rgba(17,31,46,.48)}
+    .moon.half{box-shadow:inset -52px 0 0 rgba(17,31,46,.40)}
+    .moon.full{box-shadow:inset -8px 0 0 rgba(17,31,46,.10)}
+    .ramp{position:absolute;left:90px;top:180px;width:320px;height:14px;background:#6f8191;transform:rotate(-18deg);transform-origin:left center;border-radius:999px}
+    .block{position:absolute;left:120px;top:150px;width:54px;height:54px;background:#4f8cff;border-radius:14px;transition:left .5s ease}
+    .generic-scene{display:flex;align-items:center;justify-content:center;color:#46627b;font-size:22px;padding:28px;text-align:center}
+    .tank-scene,.plant-scene,.sprout-scene,.evap-scene,.crater-scene,.foodchain-scene{position:relative;height:320px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+    .tank-scene{background:linear-gradient(180deg,#d7f0ff 0%,#bde5ff 58%,#7fd0ff 58%,#5fc0f1 100%)}
+    .waterline{position:absolute;left:0;right:0;top:58%;height:3px;background:rgba(255,255,255,.8)}
+    .float-item{position:absolute;left:50%;transform:translateX(-50%);transition:all .7s ease}
+    .wood-item{width:96px;height:36px;background:#b97a56;border-radius:10px;top:47%}
+    .metal-item{width:44px;height:44px;background:#8593a5;border-radius:50%;top:73%}
+    .cup-item{width:72px;height:64px;border:8px solid #f7f7ff;border-top:none;border-radius:0 0 18px 18px;top:47%}
+    .floating{top:47%}.sinking{top:73%}
+    .plant-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 74%,#dcefd7 74%,#dcefd7 100%)}
+    .plant-scene .pot{position:absolute;left:50%;bottom:42px;transform:translateX(-50%);width:120px;height:70px;background:#d48b5b;border-radius:0 0 26px 26px}
+    .plant-scene .stem{position:absolute;left:50%;bottom:108px;width:12px;height:110px;background:#4cae68;border-radius:10px;transform-origin:bottom center;transition:transform .6s ease}
+    .plant-scene .leaf{position:absolute;width:54px;height:26px;background:#69c17f;border-radius:54px 54px 0 54px}
+    .plant-scene .leaf-left{left:calc(50% - 46px);bottom:180px;transform:rotate(-28deg)}
+    .plant-scene .leaf-right{left:50%;bottom:150px;transform:rotate(28deg)}
+    .sunbeam{position:absolute;top:36px;width:110px;height:18px;background:linear-gradient(90deg,rgba(255,211,77,.7),rgba(255,211,77,0));opacity:0;transition:opacity .4s ease}
+    .sunbeam.left{left:40px;transform:rotate(20deg)} .sunbeam.right{right:40px;transform:rotate(-20deg)}
+    .plant-scene.tilt-left .stem{transform:rotate(-16deg)} .plant-scene.tilt-right .stem{transform:rotate(16deg)} .plant-scene.tilt-center .stem{transform:rotate(0deg)}
+    .sprout-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 68%,#b78d61 68%,#8d6b52 100%)}
+    .sprout-scene .soil{position:absolute;left:0;right:0;bottom:0;height:110px;background:#8d6b52}
+    .seed{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);width:34px;height:26px;background:#8a4f2a;border-radius:50% 50% 48% 52%;transition:all .6s ease}
+    .seed-swollen{width:42px;height:32px;background:#a4693f}
+    .root{position:absolute;left:50%;bottom:82px;width:4px;background:#f1f1e8;transform:translateX(-50%);transition:height .7s ease}
+    .sprout{position:absolute;left:50%;bottom:120px;width:10px;background:#57b86e;transform:translateX(-50%);border-radius:10px 10px 0 0;transition:height .7s ease}
+    .sprout:before,.sprout:after{content:'';position:absolute;top:6px;width:26px;height:14px;background:#6fc986;border-radius:26px 26px 0 26px}
+    .sprout:before{left:-24px;transform:rotate(-28deg)} .sprout:after{right:-24px;transform:scaleX(-1) rotate(-28deg)}
+    .evap-scene{background:linear-gradient(180deg,#dff0ff 0%,#f8fbff 70%,#d9d0b8 70%,#c7b998 100%)}
+    .evap-scene .mini-sun{position:absolute;right:46px;top:36px;width:60px;height:60px;background:#ffd34d;border-radius:50%;box-shadow:0 0 0 10px rgba(255,211,77,.15);opacity:.35;transition:all .5s ease}
+    .evap-scene .cover{position:absolute;left:50%;top:48px;transform:translateX(-50%);width:180px;height:90px;border:4px solid rgba(120,150,180,.45);border-bottom:none;border-radius:18px 18px 0 0;opacity:0;transition:opacity .4s ease}
+    .evap-scene .puddle{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);width:180px;height:54px;background:#69c5ff;border-radius:50%;transition:all .8s ease}
+    .vapor{position:absolute;bottom:82px;width:18px;height:54px;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.0),rgba(255,255,255,.6));opacity:0;animation:vapor 2.4s ease-in-out infinite}
+    .vapor1{left:44%}.vapor2{left:50%;animation-delay:.5s}.vapor3{left:56%;animation-delay:1s}
+    @keyframes vapor{0%{transform:translateY(0);opacity:0}30%{opacity:.6}100%{transform:translateY(-60px);opacity:0}}
+    .evap-scene.sunny .mini-sun{opacity:1}.evap-scene.sunny .puddle{width:110px;height:32px}.evap-scene.sunny .vapor{opacity:1}
+    .evap-scene.shade .mini-sun{opacity:.15}.evap-scene.shade .puddle{width:160px;height:46px}
+    .evap-scene.covered .cover{opacity:1}.evap-scene.covered .vapor{opacity:1}.evap-scene.covered .puddle{width:140px;height:40px}
+    .crater-scene{background:linear-gradient(180deg,#0c1733 0%,#2d4564 45%,#9f927e 45%,#8a7b66 100%)}
+    .planet-sky{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.8) 0 2px,transparent 3px),radial-gradient(circle at 70% 18%,rgba(255,255,255,.7) 0 2px,transparent 3px),radial-gradient(circle at 85% 28%,rgba(255,255,255,.5) 0 2px,transparent 3px)}
+    .meteor{position:absolute;left:48%;top:20px;width:26px;height:26px;background:#ffb347;border-radius:50%;box-shadow:-18px 10px 0 0 rgba(255,179,71,.35);opacity:0}
+    .surface{position:absolute;left:0;right:0;bottom:0;height:145px;background:#9c8b74}
+    .crater{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 50% 40%,#786b58 0 35%,#534839 36% 60%,transparent 61%);opacity:.95}
+    .crater-small{width:90px;height:34px}.crater-fast{width:140px;height:48px}.crater-big{width:190px;height:66px}
+    .ejecta{position:absolute;bottom:96px;width:10px;height:10px;background:#d4c0a3;border-radius:50%;opacity:0}
+    .impact-small .meteor,.impact-fast .meteor,.impact-big .meteor{opacity:1;animation:meteorFall .6s ease forwards}
+    .impact-small .ejecta,.impact-fast .ejecta,.impact-big .ejecta{opacity:1;animation:eject .7s ease-out forwards}
+    .ejecta1{left:46%}.ejecta2{left:50%;animation-delay:.05s}.ejecta3{left:54%;animation-delay:.1s}
+    @keyframes meteorFall{0%{transform:translate(0,0) scale(.8)}100%{transform:translate(-6px,180px) scale(1.15);opacity:0}}
+    @keyframes eject{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translateY(-36px) translateX(22px);opacity:0}}
+    .foodchain-scene{background:linear-gradient(180deg,#e8f7ff 0%,#f7fbff 65%,#dcefd7 65%,#c9e5c2 100%)}
+    .foodchain-scene .node{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:96px;height:96px;border-radius:50%;background:#fff;border:2px solid var(--line);font-size:34px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .foodchain-scene .node span{font-size:18px;font-weight:800;color:#35516b}
+    .grass-node{left:90px;bottom:80px}.rabbit-node{left:50%;bottom:130px;transform:translateX(-50%)}.fox-node{right:90px;bottom:190px}
+    .foodchain-scene .link{position:absolute;height:4px;background:#9bc3d9;transform-origin:left center}
+    .link-grass{left:180px;bottom:145px;width:220px;transform:rotate(-18deg)} .link-rabbit{left:calc(50% + 20px);bottom:214px;width:220px;transform:rotate(-18deg)}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}.balloon.stuck{left:70%;}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="pill">뜨고 가라앉는 실험</div>
+      <h1>왜 어떤 물건은 뜨고, 어떤 것은 가라앉을까?</h1>
+      <div class="lead">물에 넣은 물건이 뜨는지 가라앉는지 비교하면서 무게만이 아니라 모양과 부피도 중요하다는 걸 생각해보는 미니 앱이야. 민건이는 밀도 느낌으로, 민결이는 욕조 장난감 놀이로 이어가기 좋아.</div>
+      <div class="status" style="margin-top:16px"><b>질문:</b> 왜 어떤 물건은 뜨고, 어떤 것은 가라앉을까?</div>
+    </section>
+    <section class="grid">
+      <article class="card">
+        <h2>왜 어떤 물건은 뜨고 어떤 것은 가라앉을까?</h2>
+        
+<div class="tank-scene" id="scene">
+  <div class="waterline"></div>
+  <div class="float-item wood-item floating" id="floatItem"></div>
+</div>
+        <div class="controls"><button class="btn primary" onclick="act('wood')">나무 블록</button><button class="btn " onclick="act('metal')">쇠구슬</button><button class="btn " onclick="act('cup')">빈 플라스틱 컵</button><button class="btn " onclick="act('reset')">처음 상태로</button></div>
+        <div class="status" id="status">버튼을 눌러 관찰을 시작해봐.</div>
+        
+      </article>
+      <article class="card">
+        <h2>생각 포인트</h2>
+        <div class="panel-list"><div class="item"><b>핵심 생각</b><br/>무게만이 아니라 모양과 물을 얼마나 밀어내는지도 중요해.</div><div class="item"><b>민건 질문</b><br/>왜 더 무거워 보여도 뜨는 물체가 있을까?</div><div class="item"><b>민결 질문</b><br/>욕조 장난감은 왜 물 위에 둥둥 뜰까?</div></div>
+      </article>
+    </section>
+  </div>
+  <script>
+const item=document.getElementById('floatItem');
+const statusBox=document.getElementById('status');
+function act(mode){
+  item.className='float-item';
+  if(mode==='wood'){
+    item.classList.add('wood-item','floating');
+    statusBox.innerHTML='<span class="good">관찰:</span> 나무 블록은 물 위에 일부만 잠기고 떠 있어.';
+  }else if(mode==='metal'){
+    item.classList.add('metal-item','sinking');
+    statusBox.innerHTML='<span class="warn">관찰:</span> 쇠구슬은 아래로 가라앉아. 재질 차이가 중요하다는 단서야.';
+  }else if(mode==='cup'){
+    item.classList.add('cup-item','floating');
+    statusBox.innerHTML='<span class="good">관찰:</span> 빈 컵은 공기를 품고 있어서 물 위에 잘 뜨는 편이야.';
+  }else{
+    item.classList.add('wood-item','floating');
+    statusBox.textContent='어떤 물건이 뜨고 어떤 물건이 가라앉는지 눌러 비교해봐.';
+  }
+}
+</script>
+</body>
+</html>
